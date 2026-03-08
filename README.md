@@ -1,0 +1,128 @@
+# PersonaMirror
+
+## 1) Elevator Pitch
+`나의 외형을 넘어, 가치관과 말투까지 담아내는 멀티모달 AI 디지털 페르소나 생성 서비스`
+
+## 2) Project Overview
+PersonaMirror는 텍스트(성격/가치관), 보이스(어조/화법), 비전(외형) 데이터를 통합 분석해 사용자와 닮은 예술적 디지털 자아를 생성하는 프로젝트입니다.
+
+핵심 목표:
+- 인터뷰 텍스트에서 페르소나 핵심 특성 추출
+- 음성 입력에서 어조/화법 특성 반영
+- Stable Diffusion + ControlNet 기반 스타일 아바타 생성
+- Nx 모노레포 기반 TS + Python 폴리글랏 개발 환경 운영
+
+## 3) Monorepo Target Structure
+```text
+/persona-mirror (Root)
+├── apps/
+│   ├── frontend/          # React Router 7 (UI, camera/mic control)
+│   ├── backend/           # FastAPI (API, orchestration, DB)
+│   └── ai-worker/         # Python worker (heavy inference)
+├── libs/
+│   ├── shared-interfaces/ # TS API contracts
+│   ├── ai-models/         # SD/Whisper loading and wrappers
+│   └── ui-components/     # reusable UI components
+├── infrastructure/
+│   └── terraform/         # AWS + Cloudflare IaC
+├── docker-compose.yml     # local integrated dev stack
+└── nx.json                # build cache/dependency graph
+```
+
+## 4) Tech Direction (Initial)
+- Monorepo: Nx
+- Frontend: React Router 7 + TypeScript
+- Backend: FastAPI + Python
+- Worker: Python (GPU inference separation)
+- AI/ML:
+  - LangChain (interview -> persona extraction)
+  - Whisper (voice transcription/feature extraction)
+  - Stable Diffusion + ControlNet (art-style avatar generation)
+- Infra/DevOps:
+  - Docker Compose (local integration)
+  - Terraform (AWS/Cloudflare automation)
+
+## 5) Development Phases
+
+### Phase 0. Foundation Setup
+목표: 모노레포 기반과 공통 개발 환경 확립
+- [ ] Nx workspace 초기화
+- [ ] `apps/`, `libs/`, `infrastructure/` 기본 디렉토리 생성
+- [ ] Python/Node 버전 정책 확정 (`.nvmrc`, `.python-version` 등)
+- [ ] 공통 린트/포맷/프리커밋 전략 정의
+- [ ] `docker-compose.yml` 초안 작성 (frontend/backend/worker/db/cache)
+
+### Phase 1. MVP Core Flow
+목표: 최소 기능 End-to-End 데모 완성
+- [ ] Frontend: 인터뷰/음성/이미지 입력 UI
+- [ ] Backend: 업로드/요청 처리 API + 작업 상태 API
+- [ ] LangChain 기반 텍스트 페르소나 추출 파이프라인
+- [ ] Whisper 기반 음성 텍스트화 및 말투 특징 추출(기초)
+- [ ] SD 기반 단일 스타일 아바타 생성
+- [ ] 결과 조회 화면(요약 페르소나 + 생성 이미지)
+
+MVP 완료 기준 (DoD):
+- [ ] 사용자 입력 -> 분석 -> 이미지 생성 -> 결과 확인까지 단일 플로우 성공
+- [ ] 실패/재시도/타임아웃 기본 처리
+
+### Phase 2. Quality Upgrade
+목표: 페르소나 일관성과 생성 품질 개선
+- [ ] ControlNet 도입으로 외형/포즈 일관성 향상
+- [ ] 가치관/말투를 프롬프트 체인에 반영
+- [ ] 프롬프트/파라미터 실험 체계(버전/로그) 정립
+- [ ] 기본 평가 지표 정의(주관+반자동)
+
+### Phase 3. Scalable Architecture
+목표: 처리 안정성/성능/비용 최적화
+- [ ] AI 작업을 큐 기반 비동기로 전환
+- [ ] Worker autoscaling 전략 수립
+- [ ] 캐싱/배치/모델 warm-up으로 지연 시간 절감
+- [ ] GPU 비용 모니터링 대시보드 구성
+
+### Phase 4. Deployment & Operations
+목표: 운영 가능한 배포 체계 확보
+- [ ] Terraform으로 AWS 리소스 코드화
+- [ ] Cloudflare 연계(도메인/보안/캐싱)
+- [ ] 관측성(로그/메트릭/트레이싱) 구축
+- [ ] 장애 대응 Runbook 작성
+
+## 6) Priority Risks
+- GPU 비용 및 추론 지연
+- 멀티모달 결과 일관성 부족
+- 개인정보/음성/이미지 데이터 보안 및 권한 처리
+
+## 7) Collaboration Rules (Working Memory)
+이 문서는 개발 기준점으로 사용합니다.
+- 새로운 결정은 README의 해당 섹션에 즉시 반영
+- 큰 변경은 "왜 바꿨는지"를 함께 기록
+- 완료된 항목은 체크박스로 상태 갱신
+
+## 8) Next Immediate Tasks
+- [ ] Nx 초기화 및 기본 앱/라이브러리 스캐폴딩
+- [ ] backend(FastAPI) + frontend(React) 최소 실행 확인
+- [ ] ai-worker와 backend 간 비동기 작업 인터페이스 초안 작성
+
+## 9) Git Workflow (Learning Mode)
+브랜치 전략:
+- `main`: 항상 실행 가능한 안정 브랜치 유지
+- `feat/*`: 학습 단위 기능 구현 브랜치
+- `study/*`: 실험/연습 브랜치 (깨져도 허용)
+
+브랜치 네이밍 예시:
+- `feat/phase0-project-bootstrap`
+- `feat/backend-fastapi-skeleton`
+- `feat/frontend-input-flow`
+- `study/langchain-prompt-exp-01`
+
+작업 루틴:
+1. `main` 최신화
+2. 새 브랜치 생성
+3. 작은 단위 커밋(의도 1개 = 커밋 1개)
+4. 로컬 실행/테스트
+5. 리뷰 후 `main` 병합
+6. 병합 후 작업 브랜치 삭제
+
+커밋 메시지 예시:
+- `feat(backend): add persona interview endpoint`
+- `fix(frontend): handle mic permission error`
+- `docs(readme): update phase 1 checklist`
