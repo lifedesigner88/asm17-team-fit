@@ -145,3 +145,28 @@
 ### 31) Frontend VS Code Tailwind 경고 정리
 - `apps/frontend/.vscode/settings.json` 추가
 - frontend 폴더를 단독으로 열어도 `@theme`, `@apply` 같은 Tailwind at-rule 경고가 뜨지 않도록 조정
+
+### 32) Capture 입력 플로우 시작
+- `capture` 라우트를 인터뷰/음성/이미지/리뷰 단계형 구조로 확장
+- React Router `loader/action` 기반으로 각 단계 저장과 이동을 구현
+- backend API가 붙기 전까지는 브라우저 `sessionStorage`에 로컬 draft를 저장하도록 구성
+
+### 33) Capture 프론트 구조 분리
+- 기존 `apps/frontend/src/capture.tsx` 단일 파일을 `features/capture/` 폴더 구조로 분리
+- route pages, draft storage/actions, route-local UI 컴포넌트를 역할별로 정리
+- 이후 backend capture API 연결 시 수정 범위를 페이지/상태 로직 기준으로 추적하기 쉽게 조정
+
+### 34) Frontend 폴더 레이아웃 재배치
+- shadcn UI 컴포넌트를 `apps/frontend/src/components/ui` 기준으로 정리
+- `features/capture` 내부는 `components/`, `layout/`, `pages/`, `utils/` 기준으로 재배치
+- TypeScript/Vite alias와 frontend lint 대상을 새 폴더 구조에 맞게 조정
+
+### 35) Frontend UI 경로 재정렬
+- 공용 shadcn UI는 `apps/frontend/src/common/components/ui`로 이동
+- `features/capture/ui/*`는 제거하고 `features/capture/components/*` 아래 개별 파일로 재배치
+- `capture` 페이지들은 공용 UI는 `@/common/components/ui`, feature 전용 UI는 `../components`만 보도록 단순화
+
+### 36) Component index 진입점 정리
+- `apps/frontend/src/common/components/index.ts`를 공용 UI 진입점으로 이동
+- `features/capture/components/index.ts`는 유지하고, 실제 TSX는 `components/*`로 평탄화
+- 외부 import는 `@/common/components`, `../components` 기준으로만 보이도록 정리

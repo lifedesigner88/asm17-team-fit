@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   AdminUsersPage,
   App,
-  CapturePage,
   HomePage,
   LoginPage,
   RouteErrorBoundary,
@@ -16,6 +15,19 @@ import {
   rootLoader,
   signupAction
 } from "./App";
+import {
+  CaptureLayout,
+  CaptureOverviewPage,
+  CaptureReviewPage,
+  ImageCapturePage,
+  InterviewCapturePage,
+  VoiceCapturePage,
+  captureLoader,
+  imageAction,
+  interviewAction,
+  resetCaptureAction,
+  voiceAction,
+} from "./features/capture";
 
 export const router = createBrowserRouter([
   {
@@ -32,8 +44,39 @@ export const router = createBrowserRouter([
         action: homeAction
       },
       {
+        id: "capture",
         path: "capture",
-        element: <CapturePage />
+        element: <CaptureLayout />,
+        loader: captureLoader,
+        children: [
+          {
+            index: true,
+            element: <CaptureOverviewPage />,
+          },
+          {
+            path: "interview",
+            element: <InterviewCapturePage />,
+            action: interviewAction,
+          },
+          {
+            path: "voice",
+            element: <VoiceCapturePage />,
+            action: voiceAction,
+          },
+          {
+            path: "image",
+            element: <ImageCapturePage />,
+            action: imageAction,
+          },
+          {
+            path: "review",
+            element: <CaptureReviewPage />,
+          },
+          {
+            path: "reset",
+            action: resetCaptureAction,
+          },
+        ]
       },
       {
         path: "auth/signup",

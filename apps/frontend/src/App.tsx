@@ -9,7 +9,7 @@ import {
   useRouteError
 } from "react-router-dom";
 
-import { Button } from "@/components/ui/button";
+import { Button, Field, Input, ShellCard, StatusPill } from "@/common/components";
 import { cn } from "@/lib/utils";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
@@ -19,68 +19,6 @@ type HealthActionData = { result: string };
 type AuthActionData = { error?: string };
 type AdminUser = { user_id: string; is_admin: boolean; created_at: string };
 type RootLoaderData = { sessionUser: AdminUser | null };
-
-function ShellCard({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section
-      className={cn(
-        "rounded-3xl border border-white/60 bg-card/95 p-6 shadow-[0_24px_80px_-36px_rgba(30,41,59,0.45)] backdrop-blur",
-        className
-      )}
-    >
-      {children}
-    </section>
-  );
-}
-
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block text-sm font-medium text-foreground/80">
-      <span className="mb-1.5 block">{label}</span>
-      {children}
-    </label>
-  );
-}
-
-function AuthInput(props: React.ComponentProps<"input">) {
-  return (
-    <input
-      {...props}
-      className={cn(
-        "w-full rounded-2xl border border-border/80 bg-white/80 px-3.5 py-3 text-sm outline-none transition",
-        "placeholder:text-muted-foreground/70 focus:border-foreground/30 focus:bg-white focus:ring-4 focus:ring-foreground/5",
-        props.className
-      )}
-    />
-  );
-}
-
-function StatusPill({ label, tone = "default" }: { label: string; tone?: "default" | "success" | "warn" }) {
-  const toneClass =
-    tone === "success"
-      ? "bg-emerald-100 text-emerald-800"
-      : tone === "warn"
-        ? "bg-amber-100 text-amber-800"
-        : "bg-slate-100 text-slate-700";
-
-  return (
-    <span className={cn("inline-flex rounded-full px-3 py-1 text-xs font-medium tracking-wide", toneClass)}>
-      {label}
-    </span>
-  );
-}
 
 async function requestHealthStatus(): Promise<string> {
   const response = await fetch(`${API_BASE_URL}/health`, {
@@ -307,10 +245,10 @@ export function SignupPage() {
       </div>
       <Form className="mt-6 space-y-4" method="post">
         <Field label="User ID">
-          <AuthInput autoComplete="username" name="user_id" required />
+          <Input autoComplete="username" name="user_id" required />
         </Field>
         <Field label="Password">
-          <AuthInput autoComplete="new-password" minLength={8} name="password" required type="password" />
+          <Input autoComplete="new-password" minLength={8} name="password" required type="password" />
         </Field>
         <div className="flex items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">Use 8+ characters. This account is for local dev testing.</p>
@@ -360,10 +298,10 @@ export function LoginPage() {
       </div>
       <Form className="mt-6 space-y-4" method="post">
         <Field label="User ID">
-          <AuthInput autoComplete="username" name="user_id" required />
+          <Input autoComplete="username" name="user_id" required />
         </Field>
         <Field label="Password">
-          <AuthInput autoComplete="current-password" minLength={8} name="password" required type="password" />
+          <Input autoComplete="current-password" minLength={8} name="password" required type="password" />
         </Field>
         <div className="flex items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">Seeded admin is documented in the project env template.</p>
@@ -470,25 +408,6 @@ export function RouteErrorBoundary() {
     <ShellCard className="mx-auto max-w-2xl">
       <h2 className="text-2xl font-semibold tracking-[-0.03em]">Unexpected application error</h2>
       <p className="mt-3 text-sm text-muted-foreground">Unknown error</p>
-    </ShellCard>
-  );
-}
-
-export function CapturePage() {
-  return (
-    <ShellCard className="bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(245,243,238,0.96))]">
-      <StatusPill label="Next milestone" />
-      <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em]">Capture workflow placeholder</h2>
-      <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
-        Camera, microphone, and interview input screens will be added here after the auth and admin baseline is stable.
-      </p>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        {["Interview prompt flow", "Voice upload + tone analysis", "Image/reference capture"].map((item) => (
-          <div key={item} className="rounded-2xl border border-black/5 bg-white/80 px-4 py-5 text-sm text-foreground">
-            {item}
-          </div>
-        ))}
-      </div>
     </ShellCard>
   );
 }
