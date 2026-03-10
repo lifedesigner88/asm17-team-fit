@@ -87,6 +87,7 @@
   - compose demo: `compose.env`
 
 ## Quality Rules
+- backend test: `pnpm test:backend`
 - frontend lint: `pnpm lint:frontend`
 - python lint: `uvx ruff check`
 - python format: `uvx ruff format`
@@ -103,6 +104,9 @@
   - 작업 중: 한 줄 메모 누적
   - 최종 커밋 직전: 이번 커밋 범위 기준으로 다시 요약
 - changelog 인덱스는 `docs/changelog/README.md`를 사용한다.
+- backend API의 실행 시점 정본은 FastAPI OpenAPI(`/docs`, `/openapi.json`)로 본다.
+- 수동 backend API endpoint 문서는 기본적으로 유지하지 않는다.
+- backend 테스트 계획은 README가 아니라 `apps/backend/docs/api/testing.md`에서 관리한다.
 - 사용자가 설명을 따로 요청하지 않아도, 큰 구조 변경이면 변경 이유를 짧게 남긴다.
 
 ## Response Style
