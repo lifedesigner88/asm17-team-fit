@@ -1,0 +1,19 @@
+{
+  "name": "ai-worker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ai-worker",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "envFile": "apps/ai-worker/.env",
+        "commands": [
+          "node scripts/wait-for-port.mjs 5432 127.0.0.1 60000",
+          "cd apps/ai-worker && uv run python -u -m worker.main"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

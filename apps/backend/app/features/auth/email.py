@@ -8,9 +8,13 @@ RESEND_FROM = os.getenv("RESEND_FROM", "onboarding@resend.dev")
 
 def _send(to: str, subject: str, html: str) -> None:
     if not RESEND_API_KEY:
+        print(f"[email] RESEND_API_KEY not set — skipping email to {to}")
         return
     resend.api_key = RESEND_API_KEY
-    resend.Emails.send({"from": RESEND_FROM, "to": to, "subject": subject, "html": html})
+    try:
+        resend.Emails.send({"from": RESEND_FROM, "to": to, "subject": subject, "html": html})
+    except Exception as exc:  # noqa: BLE001
+        print(f"[email] Failed to send to {to}: {exc}")
 
 
 def _otp_block(otp: str) -> str:

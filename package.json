@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.31.0",
   "scripts": {
     "setup": "node scripts/setup-dev.mjs",
-    "dev": "node scripts/ensure-dev-env.mjs && pnpm infra:up && nx run-many -t dev -p frontend,backend",
+    "dev": "node scripts/ensure-dev-env.mjs && pnpm infra:up && nx run-many -t dev -p frontend,backend,ai-worker",
     "infra:up": "docker compose up -d db redis",
     "infra:down": "node scripts/infra-down.mjs",
     "docker": "node scripts/ensure-dev-env.mjs && pnpm infra:up && nx run-many -t docker -p backend,frontend --output-style=stream",
