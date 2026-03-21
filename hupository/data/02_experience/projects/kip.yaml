@@ -1,0 +1,77 @@
+id: project_kip
+name: KIP
+full_name: 집단 지성 활용을 위한 지식 관리 시스템
+full_name_en: "Knowledge Is Power"
+type: team_project
+status: completed
+
+period:
+  start: "2024-03-14"
+  end: "2024-05-09"
+
+team:
+  size: 4
+  result: "6팀 중 1위 (한화시스템 BEYOND SW캠프 최종 프로젝트)"
+  my_contribution_pct:
+    frontend: 90
+    dba: 80
+    backend: 50
+
+summary: >
+  그룹 내부의 문서와 노하우를 체계적으로 축적·공유하는 사내 지식관리 시스템.
+  "정보는 쌓이는데 찾기 어렵고, 권한 때문에 공유가 막히는 문제" 해결에 집중.
+  문서 권한 모델, 그룹 계층, 버전 이력, 검색, 알림을 통합 구현.
+role: "프론트엔드 배포 및 그룹·문서 도메인 기능 구현"
+key_features:
+  - "권한 기반 문서 관리 (전체 공개 / 그룹 전용 / 권한 요청·승인 흐름)"
+  - "그룹 계층 기반 관리자 사용자·그룹 관리"
+  - "문서 검색·해시태그·북마크 기반 지식 탐색"
+  - "마크다운 문서 작성·수정 이력 버전 관리 및 복원"
+  - "이벤트 기반 알림 (권한 요청 승인/거절)"
+
+links:
+  github: https://github.com/lifedesigner88/240314_Project_05_KIP
+
+tech_stack:
+  frontend:
+    - Nuxt 3
+    - Vue 3
+    - Pinia
+    - Vuetify
+    - FormKit
+    - Toast UI Editor
+    - Firebase Cloud Messaging
+  backend:
+    - Java 17
+    - Spring Boot 3
+    - Spring Security
+    - JWT
+    - Spring Data JPA
+    - MariaDB
+    - Redis
+    - OpenSearch
+    - AWS S3
+    - Firebase Admin SDK
+    - Gradle
+  infra:
+    - Docker
+    - Kubernetes
+    - Amazon EKS
+    - Amazon ECR
+    - Amazon S3
+    - Amazon OpenSearch Service
+    - GitHub Actions
+  collaboration:
+    - Git
+    - GitHub
+    - Jira
+    - Slack
+    - Linux
+
+my_contributions:
+  - "Nuxt.js + AWS Amplify 프론트 배포 자동화"
+  - "유저·문서 그룹화 관리 기능 구현"
+  - "해시태그 기반 문서 카테고리 분류"
+  - "더블링크드 리스트로 문서 순서 관리"
+
+confidence: high

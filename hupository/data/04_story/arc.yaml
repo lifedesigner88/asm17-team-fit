@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=
+# 삶의 버전 히스토리 — AI가 서사 전체를 빠르게 이해하기 위한 파일
+
+person: parksejong
+total_span: "2007~2026 (19년)"
+
+eras:
+  - era: "v1: 방황과 재부팅"
+    years: "2007-2010"
+    chapter_file: "chapters/2007-2010_foundation.md"
+    headline: "암흑기를 통과해 삶을 다시 설계하다"
+    turning_points:
+      - "2008: 조울증·ROTC 퇴소·자살 시도 — 삶의 최저점"
+      - "2009: 첫 휴학, 대인공포 극복 비전, 커리큘럼 전환(심리·창업·AI)"
+      - "2010: 망막박리 수술·군면제, 카르페디엠 가입, 너울가지 1기 참여"
+
+  - era: "v2: 정체성 선언과 커뮤니티 빌더"
+    years: "2011-2015"
+    chapter_file: "chapters/2011-2015_community.md"
+    headline: "'라이프디자이너'를 선언하고 청년 공동체를 만들다"
+    turning_points:
+      - "2011: 카르페디엠 비전 선언 행사에서 '라이프디자이너' 선언 ★, 너울가지 사무국장"
+      - "2013: 졸업유예, 창업 고민 시작"
+      - "2015: 8년 만에 대학 졸업, 사회인 시작"
+
+  - era: "v3: 국제 무대와 교육자의 시작"
+    years: "2016-2019"
+    chapter_file: "chapters/2016-2019_career.md"
+    headline: "12개국 국제캠프 PM, 그리고 교육자로의 전환"
+    turning_points:
+      - "2017: 유럽 참가자 유치로 진정한 국제캠프 완성"
+      - "2019: 마지막 WYR 캠프, 에듀코 입사"
+
+  - era: "v4: 지식의 폭발과 패러다임 전환"
+    years: "2020-2022"
+    chapter_file: "chapters/2020-2022_transformation.md"
+    headline: "코로나로 멈춘 세상에서, 뇌과학·물리로 내면이 열리다"
+    turning_points:
+      - "2020: 코로나, 온라인 전환, 뇌과학 탐구 시작"
+      - "2021: 박자세 정회원, 대순진리회 탈퇴 ★"
+      - "2022: 성인 자격증 교육 개발"
+
+  - era: "v5: 만 35세 개발세계 입문"
+    years: "2023-2024"
+    chapter_file: "chapters/2023-2024_developer.md"
+    headline: "물리·뇌과학 탐구의 끝에서 코딩을 선택하다"
+    turning_points:
+      - "2023: 에듀코 퇴직, 부트캠프 입문"
+      - "2024: 120일 개근, 프로젝트 1위, 플레이데이터 입사 ★"
+
+  - era: "v6: 1인 창업과 교육×기술의 통합"
+    years: "2025-2026"
+    chapter_file: "chapters/2025-2026_founder.md"
+    headline: "교육자와 개발자가 하나의 서비스로 만나다"
+    turning_points:
+      - "2025: 엔코아 퇴사, 세종클래스 론칭 ★"
+      - "2026: Python/AI 고도화, SW마에스트로 도전"
+
+overall_narrative:
+  keyword: "설계"
+  summary: >
+    박세종의 삶은 '설계'라는 키워드로 관통된다.
+    암흑기를 스스로 헤쳐나오며 삶을 설계하고,
+    사람들을 모아 공동체를 설계하고,
+    국제캠프와 교육 커리큘럼을 설계하고,
+    마침내 37세에 시스템과 소프트웨어를 설계하기 시작했다.
+    세종클래스는 그 모든 설계의 집대성이다.

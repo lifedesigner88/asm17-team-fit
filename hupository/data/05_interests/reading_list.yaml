@@ -1,0 +1,32 @@
+# 박세종 독서 목록 — 인덱스
+# visibility: network
+# 이 파일은 연도별 파일의 인덱스입니다.
+# 실제 데이터는 reading/ 디렉토리의 연도별 파일에 있습니다.
+
+index:
+  - year: 2021
+    file: "reading/2021.yaml"
+    count: 39
+
+  - year: 2022
+    file: "reading/2022.yaml"
+    count: 44
+
+  - year: 2023
+    file: "reading/2023.yaml"
+    count: 37
+
+  - year: 2024
+    file: "reading/2024.yaml"
+    count: 27
+
+  - year: 2025
+    file: "reading/2025.yaml"
+    count: 31
+
+  - year: 2026
+    file: "reading/2026.yaml"
+    count: 2
+
+stats_file: "reading/stats.yaml"
+total: 180

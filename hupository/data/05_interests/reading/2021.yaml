@@ -1,0 +1,278 @@
+# 박세종 독서 목록 — 2021
+# visibility: network
+year: 2021
+total: 39
+
+books:
+  - title: "해빗"
+    author: "웬디 우드"
+    rating: 2
+    date_read: "2021-02-27"
+    publisher: "다산북스"
+    category: "자기계발"
+
+  - title: "머리를 비우는 뇌과학"
+    author: "닐스 비르바우머"
+    rating: 5
+    date_read: "2021-03-31"
+    publisher: "메디치"
+    category: "뇌과학"
+
+  - title: "세컨드 네이쳐"
+    author: "제럴드 에델만"
+    rating: 3
+    date_read: "2021-03-24"
+    publisher: "SM"
+    category: "뇌과학"
+
+  - title: "공부하는 뇌"
+    author: "다니엘 에이멘"
+    rating: 2
+    date_read: "2021-03-17"
+    publisher: "반니"
+    category: "뇌과학"
+
+  - title: "우리 아이 미래를 리드하다"
+    author: "심동화"
+    rating: 1
+    date_read: "2021-04-30"
+    publisher: "교담"
+    category: "교육·학습"
+
+  - title: "지속가능한 인류의 미래"
+    author: "권중원"
+    rating: 2
+    date_read: "2021-05-19"
+    publisher: "클라우드나인"
+    category: "철학·사고"
+
+  - title: "과학오디세이 — 인간, 생명, 마음"
+    author: "안중호"
+    rating: 3
+    date_read: "2021-06-24"
+    publisher: "MID"
+    category: "과학"
+
+  - title: "느낌의 진화"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2021-06-17"
+    publisher: "arte"
+    category: "뇌과학"
+
+  - title: "감정은 어떻게 만들어지는가"
+    author: "리사 펠드먼 배럿"
+    rating: 5
+    date_read: "2021-06-13"
+    publisher: "생각연구소"
+    category: "뇌과학"
+
+  - title: "생각의 탄생"
+    author: "로버트·미셸 루트번스타인"
+    rating: 3
+    date_read: "2021-06-14"
+    publisher: "에코의 서재"
+    category: "교육·학습"
+
+  - title: "우리 인간의 아주 깊은 역사"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2021-06-05"
+    publisher: "바다출판사"
+    category: "과학"
+
+  - title: "완전학습 바이블"
+    author: "임작가"
+    rating: 2
+    date_read: "2021-07-30"
+    publisher: "다산에듀"
+    category: "교육·학습"
+
+  - title: "우리의 뇌는 어떻게 배우는가"
+    author: "스타니슬라스 드앤"
+    rating: 5
+    date_read: "2021-07-28"
+    publisher: "ROK"
+    category: "뇌과학"
+
+  - title: "수학 잘하는 아이는 이렇게 공부합니다"
+    author: "류승제"
+    rating: 1
+    date_read: "2021-07-21"
+    publisher: "블루므스"
+    category: "교육·학습"
+
+  - title: "입시를 알면 아이 공부가 쉬워진다"
+    author: "정영은"
+    rating: 1
+    date_read: "2021-07-18"
+    publisher: "유노라이프"
+    category: "교육·학습"
+
+  - title: "공부머리는 문해력이다"
+    author: "진동섭"
+    rating: 1
+    date_read: "2021-07-17"
+    publisher: "프르체"
+    category: "교육·학습"
+
+  - title: "독서머리 독서법"
+    author: "최승필"
+    rating: 1
+    date_read: "2021-07-14"
+    publisher: "책그루"
+    category: "교육·학습"
+
+  - title: "우리는 왜 잠을 자야 할까"
+    author: "매슈 워커"
+    rating: 5
+    date_read: "2021-07-11"
+    publisher: "열린책들"
+    category: "건강·신체"
+
+  - title: "아주 작은 습관의 힘"
+    author: "제임스 클리어"
+    rating: 4
+    date_read: "2021-07-03"
+    publisher: "비즈니스북스"
+    category: "자기계발"
+
+  - title: "노화의 종말"
+    author: "데이비드 A. 싱클레어"
+    rating: 5
+    date_read: "2021-08-15"
+    publisher: "부케"
+    category: "과학"
+
+  - title: "실행이 답이다"
+    author: "이민규"
+    rating: 3
+    date_read: "2021-08-09"
+    publisher: "더난출판"
+    category: "자기계발"
+
+  - title: "이토록 뜻밖의 뇌과학"
+    author: "리사 펠드먼 배럿"
+    rating: 4
+    date_read: "2021-08-08"
+    publisher: "더 퀘스트"
+    category: "뇌과학"
+
+  - title: "강성태 66일 공부법"
+    author: "강성태"
+    rating: 3
+    date_read: "2021-08-05"
+    publisher: "다산에듀"
+    category: "교육·학습"
+
+  - title: "이휘소 평전"
+    author: "강주상"
+    rating: 3
+    date_read: "2021-08-03"
+    publisher: "사이언스북스"
+    category: "과학"
+
+  - title: "초등 자기조절능력의 힘"
+    author: "신동원"
+    rating: 2
+    date_read: "2021-08-01"
+    publisher: "길벗"
+    category: "교육·학습"
+
+  - title: "느끼고 아는 존재"
+    author: "안토니오 다마지오"
+    rating: 3
+    date_read: "2021-09-25"
+    publisher: "흐름출판"
+    category: "뇌과학"
+
+  - title: "그러므로 나는 의심한다"
+    author: "보로토"
+    rating: 5
+    date_read: "2021-09-23"
+    publisher: "해나무"
+    category: "철학·사고"
+
+  - title: "횡설수설하지 않고 정확하게 설명하는 법"
+    author: "고구레 다이치"
+    rating: 2
+    date_read: "2021-09-21"
+    publisher: "갈매나무"
+    category: "커뮤니케이션"
+
+  - title: "BIO SCIENCE 2025"
+    author: "요리시모 다모쓰"
+    rating: 2
+    date_read: "2021-09-18"
+    publisher: "이지북"
+    category: "과학"
+
+  - title: "다정한 것이 살아남는다"
+    author: "브라이언 헤어·버네사 우즈"
+    rating: 3
+    date_read: "2021-10-28"
+    publisher: "디플롯"
+    category: "과학"
+
+  - title: "글 읽는 뇌"
+    author: "스타니슬라스 드앤"
+    rating: 3
+    date_read: "2021-10-26"
+    publisher: "학지사"
+    category: "뇌과학"
+
+  - title: "어른답게 말합니다"
+    author: "강원국"
+    rating: 2
+    date_read: "2021-10-20"
+    publisher: "지식하우스"
+    category: "커뮤니케이션"
+
+  - title: "당신이 옳다"
+    author: "정혜신"
+    rating: 2
+    date_read: "2021-10-18"
+    publisher: "해냄"
+    category: "커뮤니케이션"
+
+  - title: "나는 당신이 스트레스 없이 말하면 좋겠습니다"
+    author: "고바야시 히로유키"
+    rating: 3
+    date_read: "2021-10-11"
+    publisher: "타커스"
+    category: "커뮤니케이션"
+
+  - title: "나는 무엇을 모르는지조차 모르고 살았다"
+    author: "이종욱"
+    rating: 1
+    date_read: "2021-10-05"
+    publisher: "투데이펍"
+    category: "자기계발"
+
+  - title: "식욕의 과학"
+    author: "앤드루 젠킨슨"
+    rating: 4
+    date_read: "2021-11-27"
+    publisher: "현암사"
+    category: "건강·신체"
+
+  - title: "호흡의 기술"
+    author: "제임스 네스터"
+    rating: 4
+    date_read: "2021-11-22"
+    publisher: "북트리거"
+    category: "건강·신체"
+
+  - title: "입학사정관의 시간"
+    author: "김보미"
+    rating: 1
+    date_read: "2021-12-25"
+    publisher: "책과이음"
+    category: "교육·학습"
+
+  - title: "생각하는 뇌, 생각하는 기계"
+    author: "제프 호킨스"
+    rating: 5
+    date_read: "2021-12-18"
+    publisher: "멘토르"
+    category: "뇌과학"

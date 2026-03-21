@@ -1,0 +1,87 @@
+# 기술 스택 (2026-03 기준)
+# level: advanced / intermediate / beginner
+
+backend:
+  - name: Spring Boot
+    level: intermediate
+    used_in: [kip]
+  - name: Java
+    level: intermediate
+    used_in: [kip, bootcamp]
+  - name: MySQL
+    level: beginner
+    note: "포트폴리오 명시 스택"
+  - name: Python
+    level: intermediate
+    trend: growing
+    note: "AI Agent 개발 학습 중"
+  - name: PostgreSQL
+    level: intermediate
+    used_in: [sejongclass]
+  - name: MariaDB
+    level: intermediate
+    used_in: [kip]
+  - name: Redis
+    level: beginner
+  - name: Elasticsearch / OpenSearch
+    level: intermediate
+    used_in: [kip]
+
+frontend:
+  - name: TypeScript
+    level: intermediate
+    used_in: [sejongclass]
+  - name: React / React Router
+    level: intermediate
+    used_in: [sejongclass]
+  - name: Vue.js / Nuxt.js
+    level: intermediate
+    used_in: [kip]
+  - name: Shadcn UI
+    level: intermediate
+    used_in: [sejongclass]
+
+infra_devops:
+  - name: AWS (EC2, S3, EKS, ECR, Amplify)
+    level: intermediate
+    used_in: [kip]
+  - name: Docker
+    level: intermediate
+  - name: Kubernetes
+    level: intermediate
+    used_in: [kip]
+  - name: Terraform
+    level: intermediate
+    used_in: [kip]
+  - name: GitHub Actions
+    level: intermediate
+  - name: GHCR
+    level: beginner
+    note: "GitHub Container Registry"
+  - name: Vercel
+    level: intermediate
+    used_in: [sejongclass]
+  - name: CloudFlare
+    level: intermediate
+    used_in: [sejongclass]
+  - name: Linux
+    level: intermediate
+    trend: growing
+
+services:
+  - name: Supabase
+    level: intermediate
+    used_in: [sejongclass]
+  - name: Firebase
+    level: beginner
+    used_in: [kip]
+  - name: TossPayments
+    level: beginner
+    used_in: [sejongclass]
+
+currently_learning:
+  - Python (심화)
+  - FastAPI
+  - LangGraph
+  - SQL (심화)
+  - Linux / Ubuntu (인프라)

@@ -1,0 +1,229 @@
+# 박세종 독서 목록 — 2025
+# visibility: network
+year: 2025
+total: 31
+
+books:
+  - title: "퓨처셀프"
+    author: "벤저민 하디"
+    rating: 3
+    date_read: "2025-01-05"
+    publisher: "상상스퀘어"
+    category: "자기계발"
+
+  - title: "넥서스"
+    author: "유발 하라리"
+    rating: 5
+    date_read: "2025-01-11"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "느끼는 뇌"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2025-01-26"
+    publisher: "한언"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "시냅스와 자아"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2025-02-08"
+    publisher: "동녘사이언스"
+    category: "뇌과학"
+
+  - title: "성격의 탄생"
+    author: "대니얼 네틀"
+    rating: 5
+    date_read: "2025-02-26"
+    publisher: "와이즈북"
+    category: "심리"
+    note: "재독"
+
+  - title: "불안"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2025-03-12"
+    publisher: "인벤션"
+    category: "뇌과학"
+
+  - title: "깨끗한 존경"
+    author: "이슬아"
+    rating: 4
+    date_read: "2025-03-17"
+    publisher: "헤엄"
+    category: "소설·기타"
+
+  - title: "철학은 날씨를 바꾼다"
+    author: "서동욱"
+    rating: 3
+    date_read: "2025-03-19"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "부지런한 사랑"
+    author: "이슬아"
+    rating: 4
+    date_read: "2025-03-20"
+    publisher: "문학동네"
+    category: "소설·기타"
+
+  - title: "심신단련"
+    author: "이슬아"
+    rating: 4
+    date_read: "2025-03-23"
+    publisher: "헤엄"
+    category: "소설·기타"
+
+  - title: "창작과 농담"
+    author: "이슬아"
+    rating: 4
+    date_read: "2025-03-24"
+    publisher: "헤엄"
+    category: "소설·기타"
+
+  - title: "일간이슬아"
+    author: "이슬아"
+    rating: 4
+    date_read: "2025-04-01"
+    publisher: "헤엄"
+    category: "소설·기타"
+
+  - title: "듀얼브레인"
+    author: "이선 몰릭"
+    rating: 3
+    date_read: "2025-04-09"
+    publisher: "상상스퀘어"
+    category: "뇌과학"
+
+  - title: "지능의 기원"
+    author: "맥스 베넷"
+    rating: 5
+    date_read: "2025-04-26"
+    publisher: "더퀘스트"
+    category: "뇌과학"
+
+  - title: "센티언스"
+    author: "니컬러스 험프리"
+    rating: 4
+    date_read: "2025-05-01"
+    publisher: "아르테"
+    category: "뇌과학"
+
+  - title: "뇌, 욕망의 비밀을 풀다"
+    author: "한스 게오르크 호이젤"
+    rating: 4
+    date_read: "2025-05-07"
+    publisher: "비즈니스북스"
+    category: "뇌과학"
+
+  - title: "대화하는 뇌"
+    author: "셰인 오마라"
+    rating: 3
+    date_read: "2025-05-11"
+    publisher: "어크로스"
+    category: "뇌과학"
+
+  - title: "우리의 뇌는 어떻게 배우는가"
+    author: "스타니슬라스 드앤"
+    rating: 5
+    date_read: "2025-05-18"
+    publisher: "로크미디어"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "우리 인간의 아주 깊은 역사"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2025-05-31"
+    publisher: "바다출판사"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "데카르트의 오류"
+    author: "안토니오 다마지오"
+    rating: 5
+    date_read: "2025-06-07"
+    publisher: "눈출판그룹"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "행복에 걸려 비틀거리다"
+    author: "대니얼 길버트"
+    rating: 4
+    date_read: "2025-06-28"
+    publisher: "김영사"
+    category: "심리"
+
+  - title: "행복의 심리학"
+    author: "대니얼 네틀"
+    rating: 4
+    date_read: "2025-06-29"
+    publisher: "와이즈북"
+    category: "심리"
+
+  - title: "기브 앤 테이크"
+    author: "애덤 그랜트"
+    rating: 3
+    date_read: "2025-07-05"
+    publisher: "생각연구소"
+    category: "자기계발"
+
+  - title: "드라이브"
+    author: "다니엘 핑크"
+    rating: 3
+    date_read: "2025-07-12"
+    publisher: "청림출판"
+    category: "자기계발"
+
+  - title: "멍 때리기의 기적"
+    author: "스리니 필레이"
+    rating: 4
+    date_read: "2025-07-13"
+    publisher: "김영사"
+    category: "뇌과학"
+
+  - title: "느낌의 발견"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2025-07-27"
+    publisher: "아르테"
+    category: "뇌과학"
+
+  - title: "스피노자의 뇌"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2025-08-08"
+    publisher: "사이언스북"
+    category: "뇌과학"
+
+  - title: "느낌의 진화"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2025-10-08"
+    publisher: "아르테"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "느끼고 아는 존재"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2025-10-18"
+    publisher: "흐름출판"
+    category: "뇌과학"
+    note: "재독"
+
+  - title: "더 좋은 결정을 위한 뇌과학"
+    author: "조엘 피어슨"
+    rating: 4
+    date_read: "2025-11-02"
+    publisher: "RHKOREA"
+    category: "뇌과학"
+
+  - title: "자아가 마음에 오다"
+    author: "안토니오 다마지오"
+    rating: 4
+    date_read: "2025-11-24"
+    publisher: "그린비"
+    category: "뇌과학"

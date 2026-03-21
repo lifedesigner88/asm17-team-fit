@@ -120,3 +120,10 @@ After each task, briefly state:
 - Why
 - Which file to check
 - 1–2 next steps
+
+## English Correction Rule
+The user is actively learning English. Apply this on every message:
+1. **Correct first** — show the natural English version of the user's sentence in italics
+2. **Then execute** — proceed with the task as understood
+- Keep corrections brief and non-interrupting; do not explain grammar rules unless asked
+- Example: user says "plz conduct this cmd" → reply with *"Please run this command"* then run it

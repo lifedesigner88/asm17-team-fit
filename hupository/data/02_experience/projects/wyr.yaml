@@ -1,0 +1,107 @@
+# WYR (World Youth Rally) — 국제캠프 시리즈
+# visibility: public
+
+project_id: wyr_series
+name: "World Youth Rally (WYR) 국제캠프"
+organization: "(사)한국유스호스텔연맹 / Hostelling International Korea"
+role: "Project Manager (총괄 기획·운영)"
+period: "2015-2019"
+duration: "4년 6개월 (매년 1회)"
+type: "비영리 국제 문화교류 행사 시리즈"
+visibility: public
+
+summary: >
+  호스텔링인터내셔널(HI) 한국지부가 주최하는 아시아·글로벌 대학생 국제캠프 시리즈.
+  2015~2019년 5년간 제40~44회를 총괄 기획·운영. 행사 전 과정(기획·디자인·예산·
+  현장 운영·다국적 커뮤니케이션)을 단독 책임. 2017년 HI 본부 직원 참가를 기점으로
+  아시아 행사에서 글로벌 행사로 격상.
+
+events:
+  - edition: 40
+    year: 2015
+    location: "연세대학교 국제캠퍼스, 인천"
+    dates: "2015.07.24~29 (5박 6일)"
+    participants: 200
+    breakdown: "외국인 100명 + 한국인 100명"
+    countries: "아시아 중심 (말레이시아·싱가폴·중국·대만·홍콩 등)"
+    slogan: "Say HI to the World"
+    theme: "환경과 평화"
+    programs:
+      - "Talk my country"
+      - "강화도 호스텔링 (평화전망대·갯벌체험)"
+      - "한국 문화 클래스 (한복·태권도·한글)"
+      - "런닝맨 팀빌딩"
+      - "서울 나들이"
+      - "200명 플래시몹 댄스 (Uptown Funk)"
+      - "캔들 세리머니"
+    incident: "행사 기간 중 메르스 사태 발생. 외국인 참가자 이탈 압박에도 완수."
+    significance: "첫 국제캠프 PM. 너울가지 5년 경험이 국제 무대에서 검증된 첫 순간."
+
+  - edition: 41
+    year: 2016
+    location: "서울"
+    participants: 150
+    countries: "8개국 + 인도 신규 진입"
+    key_changes:
+      - "시각디자인 직접 제작 시작 (포스터·홍보물 전담)"
+      - "운영 체계 정립 (전년도 피드백 반영)"
+
+  - edition: 42
+    year: 2017
+    location: "서울 올림픽파크텔"
+    participants: 147
+    countries: 18
+    theme: "SDGs (지속가능발전목표)"
+    regions: "유럽(영국·폴란드), 북미(미국·캐나다), 중동(카타르), 오세아니아(호주)"
+    turning_point: true
+    turning_point_note: >
+      Hostelling International 본부(영국) 직원이 직접 참가한 첫 해.
+      아시아권 중심 행사에서 글로벌 행사로 공식 격상. HI 네트워크 내 한국 행사 위상 상승.
+
+  - edition: 43
+    year: 2018
+    location: "서울 → 양평 → 부산"
+    participants: 83
+    countries: 8
+    structure: "3단계 로케이션 (서울·양평·부산 순차 이동) + 부산 엑스트라 투어"
+    difficulty: "역대 최고"
+    incidents:
+      - "이집트 비자 위기: 참가 예정 23명 → 최종 6명 (공항 출발 전 당일 취소 다수)"
+      - "아버지 대형 교통사고 — 개인 위기 속 행사 완수"
+
+  - edition: 44
+    year: 2019
+    location: "서울"
+    participants: 70
+    countries: 12
+    programs:
+      - "TNKR(Teach North Korean Refugees) 탈북 청년 대화 세션"
+      - "#SleepForPeace 캠페인"
+    note: "마지막 기수. WYR 2020 준비 중 코로나 장기화로 연맹 활동 중단."
+
+total_stats:
+  editions: 5
+  years: "2015-2019"
+  max_participants: 200
+  max_countries: 18
+  total_estimated_participants: "~550명+"
+
+responsibilities:
+  - "국제연맹(HI)과 영어 화상회의 (연간 기획 협의)"
+  - "행사 시각디자인 전담 (포스터·SNS·현장 자료)"
+  - "영상 제작"
+  - "예산 관리"
+  - "현장 운영 총괄"
+  - "다국적 참가자 커뮤니케이션 (영어)"
+
+skills_demonstrated:
+  - 대규모 이벤트 기획·운영 (50~200명)
+  - 영어 국제 커뮤니케이션
+  - 비주얼 디자인 (포스터·홍보물)
+  - 위기 대응 (메르스, 비자 문제, 가족 위기)
+  - 다국적 팀·참가자 관리
+
+legacy: >
+  너울가지 5년간 쌓은 '사람을 모으고 경험을 설계하는' 역량이 국제 무대에서 검증된 시기.
+  2019년 이후 이 경험이 입시컨설팅·교육 분야로 이어지고,
+  이후 데이터/개발에 대한 관심으로 진화하는 전환점이 됨.

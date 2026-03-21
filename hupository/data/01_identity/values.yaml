@@ -1,0 +1,67 @@
+core_values:
+  - id: life_design
+    label: "라이프디자인"
+    description: >
+      자신의 삶을 스스로 설계하고 살아야 한다는 신념.
+      2011년 선언 이후 15년간 일관된 북극성.
+    evidence_level: high
+
+  - id: growth_learning
+    label: "성장과 학습"
+    description: >
+      지속적인 자기계발. 뇌과학, 물리학, 철학, 코딩을
+      독학으로 깊이 탐구하는 삶의 태도.
+    evidence_level: high
+
+  - id: education_sharing
+    label: "교육과 나눔"
+    description: >
+      가르치는 것을 통해 자신도 성장한다고 믿음.
+      청년단체 → 입시컨설팅 → 자격증 강사 → 개발 교육 → 세종클래스로 이어지는 일관된 흐름.
+    evidence_level: high
+
+  - id: community_connection
+    label: "공동체와 연결"
+    description: >
+      너울가지, 국제캠프, 개발자 커뮤니티 등
+      사람을 모으고 연결하는 활동에서 의미를 찾음.
+    evidence_level: high
+
+  - id: system_thinking
+    label: "시스템화"
+    description: >
+      반복되는 일을 시스템으로 만들려는 경향.
+      교육도 플랫폼화, 배포도 코드화(Terraform).
+    evidence_level: medium
+
+# ─────────────────────────────────────────
+# UN SDGs 정렬
+# 2026-03-21 대화에서 확인: 현재 가치관·강점과 공명하는 목표
+# ─────────────────────────────────────────
+sdg_alignment:
+  confirmed_on: "2026-03-21"
+  aligned_goals:
+    - sdg: 4
+      label: "양질의 교육 (Quality Education)"
+      resonance: high
+      reason: "15년간 교육·커리큘럼 설계, 세종클래스, teaching_drive"
+    - sdg: 8
+      label: "양질의 일자리와 경제성장 (Decent Work and Economic Growth)"
+      resonance: high
+      reason: "1인 창업, AI 빌더 전환, 기술 기반 자립 모델"
+    - sdg: 10
+      label: "불평등 감소 (Reduced Inequalities)"
+      resonance: medium
+      reason: "라이프디자인 — 누구나 자신의 삶을 설계할 수 있어야 한다는 신념"
+    - sdg: 17
+      label: "글로벌 파트너십 (Partnerships for the Goals)"
+      resonance: medium
+      reason: "12개국 국제캠프 PM, 커뮤니티 빌더 경험"
+
+core_questions:
+  - "어떻게 사는 것이 사람답게 사는 것일까?"
+  - "사람의 삶을 더 잘 설계하게 도울 수 있는가?"
+
+social_preference:
+  preferred: "작지만 진한 신뢰 기반 관계"
+  not_ideal: "얕은 네트워킹, 과시형 관계, 의미 없는 반복 노동"

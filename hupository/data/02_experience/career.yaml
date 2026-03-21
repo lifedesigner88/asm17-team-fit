@@ -1,0 +1,79 @@
+career:
+  - id: youth_hostel
+    company: (사)한국유스호스텔연맹
+    role: "국제캠프기획 Project Manager"
+    start: "2015-03"
+    end: "2019-08"
+    duration: "4년 6개월"
+    type: full-time
+    visibility: public
+    summary: "Hostelling International 주최 World Youth Rally(WYR) 국제캠프 시리즈 총괄 기획·운영"
+    wyr_series:
+      - {edition: 40, year: 2015, location: "연세대 국제캠퍼스(인천)", participants: 200, countries: "아시아 중심", note: "첫 PM. 메르스 사태 속 완수."}
+      - {edition: 41, year: 2016, location: "서울", participants: 150, countries: "8개국+인도", note: "디자인 직접 제작 시작"}
+      - {edition: 42, year: 2017, location: "서울 올림픽파크텔", participants: 147, countries: 18, note: "HI 본부 직원 직접 참가★ — 글로벌 행사로 격상"}
+      - {edition: 43, year: 2018, location: "서울·양평·부산", participants: 83, countries: 8, note: "이집트 비자 위기(23→6명) 현장 대응. 역대 최고 난도."}
+      - {edition: 44, year: 2019, location: "서울", participants: 70, countries: 12, note: "TNKR 탈북 청년 세션. 마지막 기수."}
+    key_achievements:
+      - "WYR 40~44회 5년 연속 기획·운영 (총 ~550명+, 최대 18개국)"
+      - "2017년 HI 본부 직원 직접 참가 유치 — 아시아 지역 행사에서 글로벌 행사로 격상"
+      - "행사 전 과정 단독 담당: 기획·시각디자인·영상·예산·현장 운영·영어 커뮤니케이션"
+      - "메르스(2015), 이집트 비자 위기(2018), 가족 위기(2018) 등 돌발상황 현장 대응"
+    skills_used:
+      - 대규모 이벤트 기획·운영 (50~200명)
+      - 영어 국제 커뮤니케이션 (HI 본부 화상회의 포함)
+      - 시각디자인 (포스터·홍보물)
+      - 예산 관리
+      - 위기 대응
+    project_detail: "02_experience/projects/wyr.yaml"
+    confidence: high
+
+  - id: educo
+    company: (주)동화세상에듀코
+    role: "입시컨설팅 / 방문·온라인 학습코칭"
+    start: "2019-09"
+    end: "2023-08"
+    duration: "4년 0개월"
+    type: full-time
+    visibility: public
+    summary: "초·중·고 방문 및 온라인 1:1 학습코칭, 의예·이공계 대입 컨설팅"
+    key_achievements:
+      - "의예과·이공계·자연과학 계열 학생부 관리"
+      - "300개 대학교 3만 건 입시데이터 직접 수집·분석 (엑셀 기반)"
+      - "데이터엔지니어링 기반 경쟁사 등장 → 개발 학습 결심의 직접적 계기"
+      - "코로나 시기 100% 온라인 수업 전환 주도"
+      - "2021년 유스호스텔연맹 업무 병행 107.5타임 달성"
+    skills_used:
+      - 수학·물리 교과 지도
+      - 입시 전략 설계
+      - 학생 동기부여 코칭
+    confidence: high
+
+  - id: coaching_institute
+    company: (사)한국코칭심리협회
+    role: "진로능력상담사 2급·3급 강사"
+    start: "2021-01"
+    end: "2023-08"
+    duration: "2년 8개월"
+    type: part-time
+    visibility: public
+    summary: "청소년 진로 상담 성인 자격증 과정 개발 및 강의"
+    key_achievements:
+      - "자격증 교육 커리큘럼 자체 개발 (3급 리모델링 포함)"
+      - "에듀코 업무 병행 — 교육의 내용과 시스템 양쪽을 동시에 다룸"
+    confidence: high
+
+  - id: encoa_playdata
+    company: (주)엔코아 — 플레이데이터 평생교육원
+    role: "교육관리보조"
+    start: "2024-08"
+    end: "2025-07"
+    duration: "1년"
+    type: full-time
+    visibility: public
+    summary: "개발자 부트캠프 수강생 전과정(모집·선발·수료) 관리"
+    key_achievements:
+      - "1년간 4개 반 (1반 30명, 총 120명, 총 20개 팀) 운영"
+      - "9기·10기·14기·15기 수강생 관리"
+    departure_reason: "2025.08.01 퇴사 — 1인 창업(세종클래스) 집중"
+    confidence: high

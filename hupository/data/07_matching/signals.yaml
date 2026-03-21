@@ -1,0 +1,43 @@
+# 매칭 시그널 — SNS 사람 추천 엔진에서 소비하는 파일
+as_of: "2026-03"
+
+seeking:
+  - type: collaborator
+    context: "edtech / 교육 플랫폼 사이드 프로젝트"
+    needs: [design, marketing, content]
+
+  - type: study_partner
+    context: "Python·AI·알고리즘 함께 공부할 사람"
+    location: Seoul / Online
+
+  - type: community
+    context: "빌더 커뮤니티, 독서 모임, 개발자 스터디"
+    preference: "소규모, 깊은 대화 가능한 곳"
+
+  - type: mentor
+    context: "1인 창업·기술 사업화 경험자"
+
+open_to:
+  - coffee_chat
+  - online_collab
+  - side_project
+  - speaking  # 교육·개발 전직 경험 공유
+  - mentoring_others  # 학습 코칭, 커리어 전환 조언
+
+good_fit_people:
+  - "성장과 배움에 진심인 사람"
+  - "깊은 대화와 긴 호흡의 프로젝트를 좋아하는 사람"
+  - "교육, 과학, 기술, 커뮤니티 중 두 가지 이상 겹치는 사람"
+  - "기록과 회고를 가치 있게 여기는 사람"
+  - "자기 삶을 스스로 설계하려는 사람"
+
+good_fit_contexts:
+  - "소규모 스터디·독서 모임"
+  - "제품·서비스를 함께 만드는 빌더 커뮤니티"
+  - "교육 실험이나 커리큘럼 설계 모임"
+  - "온라인보다 오프라인도 함께 이어지는 신뢰 기반 관계"
+
+not_good_fit:
+  - "겉핥기식 네트워킹"
+  - "성장 의지가 거의 없는 관계"
+  - "정리와 실행 없이 말만 많은 협업"

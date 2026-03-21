@@ -1,0 +1,58 @@
+# 매칭 벡터 — 수치화된 성향 차원 (0~5 척도)
+# 같은 스키마로 저장된 두 사람의 벡터를 비교해 유사도 점수를 계산합니다.
+as_of: "2026-03"
+confidence: medium  # AI 추론 포함, 사실 데이터로 직접 사용 주의
+
+dimensions:
+  learning_drive:
+    score: 5
+    note: "뇌과학·물리·코딩 독학, 153개 회고 블로그"
+
+  teaching_drive:
+    score: 5
+    note: "수학 과외 → 입시컨설팅 → 자격증 강사 → 세종클래스"
+
+  community_drive:
+    score: 5
+    note: "너울가지 8기 운영, 국제캠프 PM 4년"
+
+  builder_drive:
+    score: 4
+    note: "KIP 1위, 세종클래스 1인 개발·운영"
+
+  scientific_curiosity:
+    score: 5
+    note: "입자물리 독학, 박자세 정회원"
+
+  entrepreneurship:
+    score: 4
+    note: "1인 창업, 세종클래스 운영 중"
+
+  reflection_depth:
+    score: 5
+    note: "연도별 회고 블로그 19년, 연도별 자기 기록"
+
+tags:
+  primary:
+    - educator-builder
+    - science-curious
+    - community-organizer
+    - reflective-doer
+    - solo-founder
+    - documentation-driven
+    - late-bloomer-developer
+
+  interest_tags:
+    - neuroscience
+    - physics
+    - math-education
+    - edtech
+    - life-design
+    - bootcamp
+    - ai-agent
+
+  personality_tags:
+    - introvert-leaning
+    - deep-thinker
+    - long-game-player
+    - systematic

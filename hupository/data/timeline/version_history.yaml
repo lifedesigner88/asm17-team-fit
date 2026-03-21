@@ -1,0 +1,36 @@
+version_history:
+  - version: "v2024-v2026"
+    label: "폭발적인 성장과 시스템 아키텍트로의 도약"
+    summary:
+      - "2024년 한화시스템 BEYOND SW캠프 합류, 프로젝트 1위와 우수 수료생 성과"
+      - "2025년 퇴사 후 1인 창업 도전, 세종클래스 직접 구축"
+      - "2026년 Python, SQL, Linux 기반 인프라 고도화와 SW마에스트로 17기 도전"
+    confidence: "high"
+    source: "user_provided_resume_snapshot_2026_03"
+
+  - version: "v2020-v2023"
+    label: "지식의 확장과 패러다임 시프트"
+    summary:
+      - "코로나 시기 100% 온라인 수업 전환"
+      - "뇌과학, 물리, 심층 독서에 몰입"
+      - "2023년 말 기존 직장을 마무리하고 개발자 부트캠프 시작"
+    confidence: "high"
+    source: "user_provided_resume_snapshot_2026_03"
+
+  - version: "v2019-v2023"
+    label: "교육자로서의 커리어"
+    summary:
+      - "초/중/고 방문 및 온라인 1:1 학습 코칭"
+      - "입시 컨설팅"
+      - "성인 대상 진로능력상담사 자격증 교육 개발 및 강의"
+    confidence: "high"
+    source: "user_provided_resume_snapshot_2026_03"
+
+  - version: "v2007-v2018"
+    label: "자아 탐색과 매니지먼트 역량의 기반"
+    summary:
+      - "암흑기와 대인 공포를 극복하기 위한 자기 성찰"
+      - "'라이프 디자이너' 비전 정립"
+      - "너울가지 회장과 국제캠프 매니저 활동으로 소통/기획 기반 형성"
+    confidence: "high"
+    source: "user_provided_resume_snapshot_2026_03"

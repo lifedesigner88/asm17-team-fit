@@ -1,0 +1,41 @@
+# 필드별 공개 정책
+# 서비스에서 이 파일을 읽어 어떤 데이터를 노출할지 결정합니다.
+
+default_visibility: public
+
+overrides:
+  contact.phone: secret
+  contact.email: private
+  birth.month_day: private
+
+  # 민감한 서사
+  story_2007_2010: network          # 암흑기·방황 내용 포함
+  story_2020_2022.religion: private # 수도 탈퇴 세부 내용
+  story_mental_health: secret       # 정신과 치료, 우울증
+
+  # 타인 식별 정보
+  third_party_names: secret         # 지인 실명은 저장·노출 안 함
+
+  # 매칭
+  matching_vectors: public
+  matching_signals: public
+  matching_tags: public
+
+public_safe_fields:
+  - "01_identity/core.yaml (links 제외 연락처)"
+  - "01_identity/persona.yaml"
+  - "01_identity/values.yaml"
+  - "02_experience/"
+  - "03_skills/"
+  - "04_story/chapters/2011-2015_community.md"
+  - "04_story/chapters/2016-2019_career.md"
+  - "04_story/chapters/2023-2024_developer.md"
+  - "04_story/chapters/2025-2026_founder.md"
+  - "05_interests/"
+  - "06_goals/"
+  - "07_matching/"
+  - "08_ai_layer/outputs/"
+
+publishing_note: >
+  공개용 프로필은 성장 서사와 현재 방향에 집중하고,
+  암흑기·회복 서사나 타인 식별 정보는 축약 또는 비공개 처리.

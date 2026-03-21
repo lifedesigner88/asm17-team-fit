@@ -310,12 +310,40 @@ Current main domains:
 - [ ] Infrastructure automation
 - [ ] Operational observability (logging · monitoring)
 
+## March 25 MVP — Implementation Plan
+
+### Step 1 — Email signup (backend + frontend) `~1h`
+- Add `email` field to `User` model and `SignupRequest` schema
+- No email verification for MVP — just store it
+- Files: `apps/backend/app/features/auth/models.py`, `schemas.py`, `apps/frontend/src/features/auth/pages/signup-page.tsx`
+
+### Step 2 — LangGraph single node: text → Persona JSON (ai-worker) `~3h`
+- Input: `selfSummary`, `coreValues`, `speakingStyle`, `keywords` from Capture job
+- Node: `extract_values` → Claude API → `{ archetype, top3_values, one_liner }`
+- Output: written back to `capture_jobs.result` as JSON
+- Files: `apps/ai-worker/` (new LangGraph workflow)
+
+### Step 3 — Job result → Persona JSON (backend) `~1h`
+- Add `result` field to `CaptureJob` model
+- Add `GET /capture/jobs/{job_id}/result` or include result in existing job response
+- Files: `apps/backend/app/features/capture/models.py`, `schemas.py`, `router.py`
+
+### Step 4 — Level 1 persona card (frontend) `~2h`
+- After job submit → poll job status → display card when `status = done`
+- Card shows: archetype · top 3 values · one-liner
+- Files: `apps/frontend/src/features/capture/` (new result page or component)
+
+### Step 5 — Hupository demo account `~1h`
+- Seed script reads `hupository/` YAML → inserts as preset persona for `parksejong` user
+- Demonstrates Level N final vision on the dashboard
+- Files: `apps/backend/app/common/seed.py` or `apps/ai-worker/seed/`
+
+### Step 6 — Public shareable URL `~1h`
+- Read-only page at `/persona/{id}` — no auth required
+- Files: `apps/frontend/src/features/persona/` (new feature), backend `GET /persona/{id}`
+
 ## Next Recommended Work (toward March 25 MVP)
-1. **LangGraph single-node in ai-worker** — Capture text → Claude API → Persona JSON
-2. **Progressive dashboard frontend** — Level 1 card (archetype · values · one-liner)
-3. **Public shareable URL** — `/persona/{id}` read-only page
-4. **Hupository demo account** — preset persona data for Park Sejong
-5. **File upload scaffolding** — prepare audio/image fields for Phase 2
+Start with **Step 1** (email signup) then **Step 2** (LangGraph node) — these are the critical path.
 
 ## Quality Commands
 ```bash

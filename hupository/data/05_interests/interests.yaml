@@ -1,0 +1,79 @@
+primary:
+  - domain: "개발 / 소프트웨어 엔지니어링"
+    depth: deep
+    since: 2023
+    trend: growing
+
+  - domain: "교육 / 학습 과학"
+    depth: very_deep
+    since: 2011
+
+  - domain: "뇌과학 / 신경과학"
+    depth: deep
+    since: 2020
+    note: "박자세(박문호의 자연과학 세상) 정회원"
+
+  - domain: "물리학 (입자물리까지)"
+    depth: intermediate_deep
+    since: 2021
+    note: "대학교과서 수준 독학"
+
+secondary:
+  - domain: "인생 설계 / 자기계발"
+    depth: deep
+    since: 2011
+
+  - domain: "커뮤니티 빌딩"
+    depth: deep
+    since: 2010
+
+  - domain: "신체 / 체력 관리"
+    depth: intermediate
+    since: 2022
+    note: "필라테스, 방송댄스, 100m 달리기"
+
+  - domain: "AI / 머신러닝"
+    depth: beginner_intermediate
+    since: 2025
+    trend: growing
+
+reading_profile:
+  total_recorded: 180
+  period: "2021-2026"
+  data: "private/05_interests/reading/ (연도별 파일) + reading/stats.yaml"
+  top_category: "뇌과학 (63권, 35%)"
+  yearly_avg: 30권
+  peak_year: "2022 (44권)"
+  core_tendency:
+    - label: "뇌과학 집착형"
+      detail: "의식·감정·학습·기억을 신경과학 관점으로 이해하려는 일관된 지향. 교양서를 넘어 학술 수준 도서(에릭 켄델 신경과학의 원리 등) 도전."
+    - label: "저자 전작 탐독형"
+      detail: "다마지오 7권, 르두 4권, 하라리 4권, 이슬아 5권 — 마음에 드는 저자는 전작을 모두 읽는 패턴."
+    - label: "생애 전환 반영형"
+      detail: "교육·학습 집중(2021-2022 입시컨설팅) → AI·개발 등장(2023 부트캠프) → 소설·문학(2025 이슬아) — 독서 카테고리가 삶의 국면을 정확히 반영함."
+    - label: "핵심서 재독형"
+      detail: "5점 도서를 재독하는 습관. 2025년에 2021-2023년 핵심 뇌과학서 7권 집중 재독."
+  deep_dive_authors:
+    - "안토니오 다마지오 (7권) — 감정과 의식의 신체 기반"
+    - "조지프 르두 (4권) — 감정의 신경과학적 기원"
+    - "유발 하라리 (4권) — 인류의 과거·현재·미래"
+    - "이슬아 (5권) — 글쓰기·서사에 대한 2025년 새 관심"
+  category_timeline:
+    "2021-2022": "뇌과학 + 교육·학습 (입시컨설팅 시기)"
+    "2023": "AI·개발 입문 + 철학·종교 탐색"
+    "2024": "과학(진화·유전) + AI·개발"
+    "2025": "뇌과학 재독 + 소설·문학 첫 본격 진입"
+
+hobbies:
+  - 방송댄스 (2025~)
+  - 필라테스 (2024~)
+  - 독서 (뇌과학·물리·자기계발)
+  - 블로그 글쓰기 (연도별 회고)
+  - 알고리즘 문제풀이 (백준)
+  - 유튜브 콘텐츠 제작
+
+conversation_starters:
+  - "뇌과학, 물리학, 수학, AI"
+  - "어떻게 살아야 할지에 대한 질문"
+  - "교육 시스템, 학습법, 성장 설계"
+  - "서비스 기획, 커뮤니티 운영, 개인 브랜딩"

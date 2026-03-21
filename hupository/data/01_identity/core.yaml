@@ -1,0 +1,14 @@
+# 핵심 식별 정보
+# visibility: public
+# 연락처/링크 상세 → data/profile.yaml 참조
+
+person_id: parksejong
+username: lifedesigner88
+
+education_summary:
+  degree: "서울시립대학교 전자전기컴퓨터공학부 학사"
+  graduation: "2015.02"
+  gpa: "2.91/4.5"
+
+career_total: "약 10년 (교육/기획/운영 포함)"
+dev_career_start: "2023-11"

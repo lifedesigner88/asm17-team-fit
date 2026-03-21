@@ -1,0 +1,194 @@
+# 박세종 독서 목록 — 2024
+# visibility: network
+year: 2024
+total: 27
+
+books:
+  - title: "수학하는 뇌"
+    author: "안드레아스"
+    rating: 3
+    date_read: "2024-01-20"
+    publisher: "바다출판사"
+    category: "뇌과학"
+
+  - title: "다미주 신경이론"
+    author: "뎁 다나"
+    rating: 3
+    date_read: "2024-01-30"
+    publisher: "불광출판사"
+    category: "뇌과학"
+
+  - title: "기억의 과학"
+    author: "찰스 퍼니휴"
+    rating: 3
+    date_read: "2024-02-16"
+    publisher: "에이도스"
+    category: "뇌과학"
+
+  - title: "느리게 나이드는 습관"
+    author: "정희원"
+    rating: 3
+    date_read: "2024-02-22"
+    publisher: "한빛라이프"
+    category: "건강·신체"
+
+  - title: "클린 애자일"
+    author: "로버트 C. 마틴"
+    rating: 1
+    date_read: "2024-03-01"
+    publisher: "인사이트"
+    category: "AI·개발"
+
+  - title: "소프트웨어 장인 정신 이야기"
+    author: "로버트 C. 마틴"
+    rating: 2
+    date_read: "2024-03-08"
+    publisher: "인사이트"
+    category: "AI·개발"
+
+  - title: "모두의 네트워크"
+    author: "미즈구치 카즈야"
+    rating: 1
+    date_read: "2024-03-15"
+    publisher: "길벗"
+    category: "AI·개발"
+
+  - title: "모두의 깃 & 깃허브"
+    author: "강민철"
+    rating: 2
+    date_read: "2024-03-21"
+    publisher: "길벗"
+    category: "AI·개발"
+
+  - title: "일류의 조건"
+    author: "사이토 다카시"
+    rating: 3
+    date_read: "2024-03-24"
+    publisher: "필름"
+    category: "자기계발"
+
+  - title: "뇌 진화의 역사"
+    author: "브렛 스텟카"
+    rating: 3
+    date_read: "2024-05-01"
+    publisher: "리가서재"
+    category: "뇌과학"
+
+  - title: "사람을 안다는 것"
+    author: "데이비드 브룩스"
+    rating: 4
+    date_read: "2024-05-21"
+    publisher: "웅진지식하우스"
+    category: "심리"
+
+  - title: "결정적 순간의 대화"
+    author: "조셉 그레니·케리 패터슨·론 맥밀런·알 스위즐러"
+    rating: 3
+    date_read: "2024-07-23"
+    publisher: "김영사"
+    category: "커뮤니케이션"
+
+  - title: "10대의 뇌"
+    author: "프랜시스 젠슨·에이미 엘리스 넛"
+    rating: 3
+    date_read: "2024-07-25"
+    publisher: "웅진지식하우스"
+    category: "뇌과학"
+
+  - title: "호모 사피엔스"
+    author: "조지프 헨릭"
+    rating: 5
+    date_read: "2024-07-30"
+    publisher: "21세기북스"
+    category: "과학"
+
+  - title: "1만년의 폭발"
+    author: "그레고리 코크란·헨리 하펜딩"
+    rating: 3
+    date_read: "2024-08-01"
+    publisher: "글항아리"
+    category: "과학"
+
+  - title: "잃어버린 게놈을 찾아서"
+    author: "스반테 페보"
+    rating: 3
+    date_read: "2024-08-14"
+    publisher: "부키"
+    category: "과학"
+
+  - title: "유전자 오디세이"
+    author: "에블린 에예르"
+    rating: 2
+    date_read: "2024-08-20"
+    publisher: "사람in"
+    category: "과학"
+
+  - title: "뇌를 비롯한 신체기관에 숨겨진 진화의 비밀"
+    author: "앨리스 로버츠"
+    rating: 3
+    date_read: "2024-08-27"
+    publisher: "소와당"
+    category: "과학"
+
+  - title: "생명 그 자체의 감각"
+    author: "크리스토프 코흐"
+    rating: 4
+    date_read: "2024-09-02"
+    publisher: "아르테"
+    category: "뇌과학"
+
+  - title: "우리는 왜 죽는가"
+    author: "벤키 라마크리슈난"
+    rating: 4
+    date_read: "2024-09-11"
+    publisher: "김영사"
+    category: "과학"
+
+  - title: "스프링 부트 핵심 가이드"
+    author: "장정우"
+    rating: 2
+    date_read: "2024-09-15"
+    publisher: "위키북스"
+    category: "AI·개발"
+
+  - title: "세계 너머의 세계"
+    author: "에릭 호엘"
+    rating: 3
+    date_read: "2024-09-25"
+    publisher: "흐름출판"
+    category: "뇌과학"
+
+  - title: "21세기를 여행하는 수렵채집인을 위한 안내서"
+    author: "헤더 헤잉"
+    rating: 4
+    date_read: "2024-10-17"
+    publisher: "와이즈베리"
+    category: "과학"
+
+  - title: "트랜스포머"
+    author: "닉 레인"
+    rating: 3
+    date_read: "2024-10-30"
+    publisher: "까치"
+    category: "과학"
+
+  - title: "기독교의 발흥"
+    author: "로드니 스타크"
+    rating: 2
+    date_read: "2024-11-12"
+    publisher: "좋은씨앗"
+    category: "철학·종교"
+
+  - title: "소년이 온다"
+    author: "한강"
+    rating: 3
+    date_read: "2024-11-22"
+    publisher: "창비"
+    category: "소설·기타"
+
+  - title: "나의 인생만사 답사기"
+    author: "유홍준"
+    rating: 2
+    date_read: "2024-11-24"
+    publisher: "창비"
+    category: "소설·기타"

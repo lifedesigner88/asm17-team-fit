@@ -1,0 +1,41 @@
+leadership:
+  - label: "커뮤니티 빌딩"
+    evidence: "너울가지 청년단체 창립 및 8기 운영 (2010~2014)"
+    level: advanced
+  - label: "대규모 이벤트 PM"
+    evidence: "12개국 국제캠프 전체 총괄 (2015~2019)"
+    level: advanced
+
+communication:
+  - label: "교육 설계 및 강의"
+    evidence: "청소년 1:1 코칭, 성인 자격증 강의, 유튜브 강의"
+    level: advanced
+  - label: "기술 글쓰기"
+    evidence: "부트캠프 153개 회고, 연도별 블로그 운영"
+    level: intermediate
+
+self_management:
+  - label: "극도의 성실함"
+    evidence: "부트캠프 120일 개근, 지각 0회"
+    level: advanced
+  - label: "자기주도 학습"
+    evidence: "뇌과학·물리·코딩 독학, 분야 전환"
+    level: advanced
+  - label: "장기 비전 유지"
+    evidence: "'라이프디자이너' 2011년 선언 후 15년 유지"
+    level: advanced
+
+problem_solving:
+  - label: "시스템적 사고"
+    evidence: "교육 플랫폼화, Terraform IaC, 배포 자동화"
+    level: intermediate
+  - label: "커리큘럼 설계"
+    evidence: "자격증 교육과정 개발, 세종클래스 강의 구성"
+    level: advanced
+
+languages:
+  - language: Korean
+    level: native
+  - language: English
+    level: intermediate
+    note: "국제캠프 5년 운영 기반"

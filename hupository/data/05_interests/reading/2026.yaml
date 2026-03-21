@@ -1,0 +1,46 @@
+# 박세종 독서 목록 — 2026
+# visibility: network
+year: 2026
+total: 2
+to_read: 4   # 구입 완료, 소마 합격 발표 후 읽을 예정
+
+books:
+  - title: "고유지능"
+    author: "앵거스 플레처"
+    rating: null
+    date_read: "2026-01-01"
+    publisher: "인플루엔셜"
+    category: "뇌과학"
+
+  - title: "뇌는 왜 친구를 원하는가"
+    author: "벤 라인"
+    rating: 4
+    date_read: "2026-01-25"
+    publisher: "더퀘스트"
+    category: "뇌과학"
+
+# ── 구입 완료 / 읽기 예정 (소마 합격 발표 후) ──────────────────
+to_read:
+  - title: "눔 마인드셋"
+    author: "Noom (공동창업자 Saeju Jeong 서문)"
+    purchased: "2026-03-17"
+    category: "행동심리학"
+    summary: "행동 과학 기반 습관 형성·사고 왜곡 극복·내적 동기 강화 전략. 지속 가능한 변화를 위한 심리적 접근."
+
+  - title: "장병규의 스타트업 한국"
+    author: "장병규 (크래프톤 의장, 본엔젤스 공동창업자)"
+    purchased: "2026-03-17"
+    category: "스타트업"
+    summary: "사람·업·자금 3축 중심의 한국 스타트업 입문서. 네오위즈·우아한형제들 등 실제 사례로 창업 원리 풀이."
+
+  - title: "스타트업 투자유치 — 창업자 출신 VC가 알려주는 스타트업 펀딩 가이드"
+    author: "이택경 (매쉬업벤처스 대표, Daum 공동창업자)"
+    purchased: "2026-03-17"
+    category: "스타트업 / 투자"
+    summary: "창업자·엔젤·VC를 모두 경험한 저자가 알려주는 펀딩 실전 전략 및 한국 벤처투자 생태계 노하우."
+
+  - title: "권도균의 스타트업 경영 수업"
+    author: "권도균 (프라이머 대표)"
+    purchased: "2026-03-17"
+    category: "스타트업"
+    summary: "스타트업부터 엑시트까지 12강 구성. 고객 중심 사고·조직 리더십·위기관리·마케팅 실전 노하우."

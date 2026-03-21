@@ -1,0 +1,313 @@
+# 박세종 독서 목록 — 2022
+# visibility: network
+year: 2022
+total: 44
+
+books:
+  - title: "다크호스"
+    author: "토드 로즈·오기 오가스"
+    rating: 3
+    date_read: "2022-01-31"
+    publisher: "21세기북스"
+    category: "자기계발"
+
+  - title: "진로적성검사는 과학이다"
+    author: "석인수"
+    rating: 2
+    date_read: "2022-01-29"
+    publisher: "지식과감성"
+    category: "교육·학습"
+
+  - title: "고교학점제, 진로교육을 다시 디자인하다"
+    author: "정미라·곽충훈·노병태 등"
+    rating: 3
+    date_read: "2022-01-27"
+    publisher: "맘에드림"
+    category: "교육·학습"
+
+  - title: "평균의 종말"
+    author: "토드 로즈"
+    rating: 3
+    date_read: "2022-01-24"
+    publisher: "21세기북스"
+    category: "교육·학습"
+
+  - title: "거대한 가속"
+    author: "스콧 갤러웨이"
+    rating: 3
+    date_read: "2022-01-16"
+    publisher: "리더스북"
+    category: "철학·사고"
+
+  - title: "아내를 모자로 착각한 남자"
+    author: "올리버 색스"
+    rating: 3
+    date_read: "2022-01-01"
+    publisher: "알마"
+    category: "뇌과학"
+
+  - title: "종의 기원"
+    author: "다윈"
+    rating: 1
+    date_read: "2022-02-25"
+    publisher: "사이언스북스"
+    category: "과학"
+
+  - title: "학문의 즐거움"
+    author: "히로나카 헤이스케"
+    rating: 3
+    date_read: "2022-02-16"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "데카르트의 오류"
+    author: "안토니오 다마지오"
+    rating: 3
+    date_read: "2022-02-07"
+    publisher: "눈출판"
+    category: "뇌과학"
+
+  - title: "움직임의 뇌과학"
+    author: "캐럴라인 윌리엄스"
+    rating: 3
+    date_read: "2022-02-05"
+    publisher: "갤리온"
+    category: "뇌과학"
+
+  - title: "스틱! 1초만에 착 달라붙는 메시지"
+    author: "칩 히스·댄 히스"
+    rating: 3
+    date_read: "2022-03-25"
+    publisher: "엘도라도"
+    category: "커뮤니케이션"
+
+  - title: "생각한다는 착각"
+    author: "닉 채터"
+    rating: 5
+    date_read: "2022-03-22"
+    publisher: "Whale Books"
+    category: "뇌과학"
+
+  - title: "미래교육의 불편한 진실"
+    author: "박제원"
+    rating: 3
+    date_read: "2022-03-17"
+    publisher: "EBS Book"
+    category: "교육·학습"
+
+  - title: "뇌 기반 학습과학"
+    author: "테리 돌레·토드 자카섹"
+    rating: 3
+    date_read: "2022-03-16"
+    publisher: "학지사"
+    category: "교육·학습"
+
+  - title: "아무도 의심하지 않는 일곱 가지 교육 미신"
+    author: "데이지 크리스토둘루"
+    rating: 4
+    date_read: "2022-03-13"
+    publisher: "페이퍼로드"
+    category: "교육·학습"
+
+  - title: "죽고 싶은 사람은 없다"
+    author: "임세원"
+    rating: 2
+    date_read: "2022-03-09"
+    publisher: "RHK"
+    category: "심리"
+
+  - title: "인류를 바꿀 유전자 이야기"
+    author: "김경철"
+    rating: 3
+    date_read: "2022-03-02"
+    publisher: "세종"
+    category: "과학"
+
+  - title: "미래를 여는 교육 고교학점제"
+    author: "박찬학"
+    rating: 2
+    date_read: "2022-03-01"
+    publisher: "BookK"
+    category: "교육·학습"
+
+  - title: "꿈 — 과학으로 푸는 재미있는 꿈의 비밀"
+    author: "앨런 홉슨"
+    rating: 4
+    date_read: "2022-04-15"
+    publisher: "아카넷"
+    category: "뇌과학"
+
+  - title: "너무 놀라운 작은 뇌세포 이야기"
+    author: "도나 잭슨 나카자와"
+    rating: 4
+    date_read: "2022-04-10"
+    publisher: "BRONSTEIN"
+    category: "뇌과학"
+
+  - title: "픽사 스토리텔링"
+    author: "매튜 룬"
+    rating: 2
+    date_read: "2022-04-02"
+    publisher: "현대지성"
+    category: "커뮤니케이션"
+
+  - title: "대체 뭐가 문제야"
+    author: "제럴드 와인버그·도널드 고즈"
+    rating: 2
+    date_read: "2022-05-11"
+    publisher: "인사이트"
+    category: "철학·사고"
+
+  - title: "천재의 식단"
+    author: "맥스 루가비어·폴 그레왈"
+    rating: 3
+    date_read: "2022-05-08"
+    publisher: "앵글북스"
+    category: "건강·신체"
+
+  - title: "처음 만나는 소화의 세계"
+    author: "예병일"
+    rating: 2
+    date_read: "2022-05-03"
+    publisher: "반니"
+    category: "건강·신체"
+
+  - title: "One Thing — 한 가지에 집중하라"
+    author: "게리 캘러"
+    rating: 4
+    date_read: "2022-05-02"
+    publisher: "비즈니스북"
+    category: "자기계발"
+
+  - title: "울트라 러닝"
+    author: "스콧 영"
+    rating: 3
+    date_read: "2022-06-24"
+    publisher: "비즈니스북스"
+    category: "교육·학습"
+
+  - title: "도파미네이션"
+    author: "애나 렘키"
+    rating: 3
+    date_read: "2022-08-31"
+    publisher: "흐름출판"
+    category: "뇌과학"
+
+  - title: "습관의 알고리즘"
+    author: "러셀 폴드랙"
+    rating: 3
+    date_read: "2022-08-24"
+    publisher: "비즈니스북스"
+    category: "뇌과학"
+
+  - title: "내가 된다는 것 (Being You)"
+    author: "아닐 세스"
+    rating: 5
+    date_read: "2022-08-18"
+    publisher: "흐름출판"
+    category: "뇌과학"
+
+  - title: "세상에서 가장 쉬운 베이즈 통계학 입문"
+    author: "고지마 히로유키"
+    rating: 3
+    date_read: "2022-08-16"
+    publisher: "지상사"
+    category: "수학"
+
+  - title: "생각은 어떻게 행동이 되는가 (On Task)"
+    author: "데이비드 바드르"
+    rating: 5
+    date_read: "2022-08-13"
+    publisher: "해나무"
+    category: "뇌과학"
+
+  - title: "미적분의 힘"
+    author: "스티븐 스트로가츠"
+    rating: 2
+    date_read: "2022-08-10"
+    publisher: "해나무"
+    category: "수학"
+
+  - title: "천 개의 뇌"
+    author: "제프 호킨스"
+    rating: 4
+    date_read: "2022-09-26"
+    publisher: "이데아"
+    category: "뇌과학"
+
+  - title: "기억하는 뇌, 망각하는 뇌"
+    author: "이인아"
+    rating: 2
+    date_read: "2022-09-25"
+    publisher: "21세기북스"
+    category: "뇌과학"
+
+  - title: "탤런트 코드"
+    author: "대니얼 코일"
+    rating: 3
+    date_read: "2022-09-23"
+    publisher: "지식하우스"
+    category: "교육·학습"
+
+  - title: "이건희 에세이 — 생각 좀 하며 세상을 보자"
+    author: "이건희"
+    rating: 4
+    date_read: "2022-09-20"
+    publisher: "동아일보사"
+    category: "경영·창업"
+
+  - title: "경제사상가 이건희"
+    author: "허문영"
+    rating: 5
+    date_read: "2022-09-16"
+    publisher: "동아일보사"
+    category: "경영·창업"
+
+  - title: "21세기를 위한 21가지 제언"
+    author: "유발 하라리"
+    rating: 5
+    date_read: "2022-10-26"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "호모 데우스"
+    author: "유발 하라리"
+    rating: 5
+    date_read: "2022-10-13"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "사피엔스"
+    author: "유발 하라리"
+    rating: 5
+    date_read: "2022-10-09"
+    publisher: "김영사"
+    category: "철학·사고"
+
+  - title: "짧은 유럽사"
+    author: "사이먼 젠킨스"
+    rating: 1
+    date_read: "2022-10-04"
+    publisher: "한울엠플러스"
+    category: "철학·사고"
+
+  - title: "감정의 발견"
+    author: "마크 브래킷"
+    rating: 5
+    date_read: "2022-11-30"
+    publisher: "북라이프"
+    category: "뇌과학"
+
+  - title: "그레인 브레인"
+    author: "데이비드 퍼멀터"
+    rating: 4
+    date_read: "2022-11-12"
+    publisher: "지식너머"
+    category: "건강·신체"
+
+  - title: "역행자"
+    author: "자청"
+    rating: 1
+    date_read: "2022-12-14"
+    publisher: "웅진지식하우스"
+    category: "자기계발"

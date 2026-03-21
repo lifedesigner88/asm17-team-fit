@@ -1,0 +1,47 @@
+# 박세종 기본 프로필
+# visibility: public
+
+person_id: parksejong
+legal_name:
+  ko: "박세종"
+  en: "Park Sejong"
+preferred_name: "세종"
+aliases:
+  - "라이프디자이너"
+  - "lifedesigner88"
+
+birth:
+  year: 1988
+  month_day: "09-12"
+
+current_phase: "교육자형 1인 창업자 / AI 빌더 전환기"
+
+core_questions:
+  - "어떻게 사는 것이 사람답게 사는 것일까?"
+  - "사람의 삶을 더 잘 설계하게 도울 수 있는가?"
+
+contact:
+  email: "lifedesigner88@gmail.com"
+  github: "https://github.com/lifedesigner88"
+  blog: "https://blog.naver.com/lifedesigner88"
+  youtube: "https://www.youtube.com/@sejongclass"
+  website: "https://sejongclass.kr/"
+
+one_line: "삶을 설계하는 질문을 붙잡고 교육, 과학, 코딩을 연결해 온 교육자형 빌더."
+
+profile_summary: >
+  세종은 사람의 성장과 삶의 방향을 설계하는 데 관심이 큰 사람이다.
+  국제캠프와 교육기획, 입시/수학 지도, 성인 교육과정 설계, 뇌과학·물리 탐구,
+  코딩 부트캠프와 AI 학습을 거쳐 현재는 1인 서비스와 교육 콘텐츠를 만드는 방향으로
+  나아가고 있다.
+
+recurring_roles:
+  - "커뮤니티 기획자"
+  - "교육자/멘토"
+  - "커리큘럼 설계자"
+  - "행사 운영자"
+  - "학습자"
+  - "빌더"
+  - "1인 창업자"
+
+blog_category_url: "https://blog.naver.com/PostList.naver?blogId=lifedesigner88&categoryNo=37&from=menu"

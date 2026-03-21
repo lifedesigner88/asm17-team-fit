@@ -1,0 +1,264 @@
+# 박세종 독서 목록 — 2023
+# visibility: network
+year: 2023
+total: 37
+
+books:
+  - title: "AI 최강의 수업"
+    author: "김진형"
+    rating: 2
+    date_read: "2023-01-18"
+    publisher: "매일경제신문사"
+    category: "AI·개발"
+
+  - title: "인공지능과 뇌는 어떻게 생각하는가"
+    author: "이상완"
+    rating: 4
+    date_read: "2023-02-27"
+    publisher: "솔"
+    category: "AI·개발"
+
+  - title: "마스터 알고리즘"
+    author: "페드로 도밍고스"
+    rating: 5
+    date_read: "2023-02-25"
+    publisher: "비즈니스북스"
+    category: "AI·개발"
+
+  - title: "IT 5분 잡학사전"
+    author: "노마더코더·배지현"
+    rating: 1
+    date_read: "2023-02-15"
+    publisher: "이지스퍼블리싱"
+    category: "AI·개발"
+
+  - title: "비터스위트"
+    author: "수전 케인"
+    rating: 2
+    date_read: "2023-03-30"
+    publisher: "RHK"
+    category: "심리"
+
+  - title: "콰이어트"
+    author: "수전 케인"
+    rating: 3
+    date_read: "2023-03-23"
+    publisher: "RHK"
+    category: "심리"
+
+  - title: "성격의 탄생"
+    author: "대니얼 네틀"
+    rating: 4
+    date_read: "2023-03-20"
+    publisher: "와이즈북"
+    category: "심리"
+
+  - title: "MBTI의 의미"
+    author: "박철용"
+    rating: 3
+    date_read: "2023-03-18"
+    publisher: "HAUM"
+    category: "심리"
+
+  - title: "백년 운동"
+    author: "정선근"
+    rating: 3
+    date_read: "2023-04-30"
+    publisher: "unfangling"
+    category: "건강·신체"
+
+  - title: "백년허리 2"
+    author: "정선근"
+    rating: 3
+    date_read: "2023-04-28"
+    publisher: "unfangling"
+    category: "건강·신체"
+
+  - title: "백년허리 1"
+    author: "정선근"
+    rating: 3
+    date_read: "2023-04-27"
+    publisher: "unfangling"
+    category: "건강·신체"
+
+  - title: "뇌의 가장 깊숙한 곳"
+    author: "케빈 넬슨"
+    rating: 3
+    date_read: "2023-04-25"
+    publisher: "해나무"
+    category: "뇌과학"
+
+  - title: "신은 왜 우리 곁을 떠나지 않는가"
+    author: "앤드류 뉴버그"
+    rating: 4
+    date_read: "2023-04-23"
+    publisher: "한울림"
+    category: "철학·종교"
+
+  - title: "고엔카의 위빠사나 명상"
+    author: "윌리엄 하트"
+    rating: 3
+    date_read: "2023-04-17"
+    publisher: "김영사"
+    category: "철학·종교"
+
+  - title: "호흡이 주는 선물"
+    author: "래리 로젠버그"
+    rating: 3
+    date_read: "2023-04-16"
+    publisher: "나무를 심는 사람들"
+    category: "철학·종교"
+
+  - title: "내면소통"
+    author: "김주환"
+    rating: 5
+    date_read: "2023-04-13"
+    publisher: "인플루엔셜"
+    category: "뇌과학"
+
+  - title: "사회적 뇌"
+    author: "매튜 D. 리버먼"
+    rating: 5
+    date_read: "2023-05-05"
+    publisher: "시공사"
+    category: "뇌과학"
+
+  - title: "왜 생각처럼 대화가 되지 않을까"
+    author: "앤드류 뉴버그"
+    rating: 4
+    date_read: "2023-05-02"
+    publisher: "알키"
+    category: "심리"
+
+  - title: "수학의 수학"
+    author: "김민형"
+    rating: 5
+    date_read: "2023-05-29"
+    publisher: ""
+    category: "수학"
+
+  - title: "아름다움은 왜 진리인가"
+    author: "이언 스튜어트"
+    rating: 5
+    date_read: "2023-05-31"
+    publisher: "승산"
+    category: "수학"
+
+  - title: "지속가능한 나이듦"
+    author: "정희원"
+    rating: 3
+    date_read: "2023-07-23"
+    publisher: "두리반"
+    category: "건강·신체"
+
+  - title: "당신도 느리게 나이 들 수 있습니다"
+    author: "정희원"
+    rating: 3
+    date_read: "2023-07-24"
+    publisher: "더퀘스트"
+    category: "건강·신체"
+
+  - title: "뇌의식의 우주"
+    author: "제럴드 에델만·줄리오 토노니"
+    rating: 5
+    date_read: "2023-08-23"
+    publisher: "한언"
+    category: "뇌과학"
+
+  - title: "어떻게 인생을 살 것인가"
+    author: "쑤린"
+    rating: 3
+    date_read: "2023-09-04"
+    publisher: "다연"
+    category: "자기계발"
+
+  - title: "신, 만들어진 위험"
+    author: "리처드 도킨스"
+    rating: 4
+    date_read: "2023-09-07"
+    publisher: "김영사"
+    category: "철학·종교"
+
+  - title: "제로 투 원"
+    author: "피터 틸"
+    rating: 3
+    date_read: "2023-09-10"
+    publisher: "한국경제신문사"
+    category: "경영·창업"
+
+  - title: "신경과학의 원리 1"
+    author: "에릭 켄델"
+    rating: 4
+    date_read: "2023-09-12"
+    publisher: "범문에듀케이션"
+    category: "뇌과학"
+
+  - title: "느끼는 뇌"
+    author: "조지프 르두"
+    rating: 5
+    date_read: "2023-09-18"
+    publisher: "학지사"
+    category: "뇌과학"
+
+  - title: "신경과학의 원리 2"
+    author: "에릭 켄델"
+    rating: 4
+    date_read: "2023-09-30"
+    publisher: "범문에듀케이션"
+    category: "뇌과학"
+
+  - title: "데이터는 어떻게 인생의 무기가 되는가"
+    author: "세스 스티븐스 다비도위츠"
+    rating: 4
+    date_read: "2023-10-12"
+    publisher: "더퀘스트"
+    category: "AI·개발"
+
+  - title: "우리는 각자의 세계가 된다"
+    author: "데이비드 이글먼"
+    rating: 4
+    date_read: "2023-11-02"
+    publisher: "RHK"
+    category: "뇌과학"
+
+  - title: "쾌감 본능"
+    author: "진 웰렌스타인"
+    rating: 5
+    date_read: "2023-11-05"
+    publisher: "은행나무"
+    category: "뇌과학"
+
+  - title: "당신의 꿈은 우연이 아니다"
+    author: "안토니오 자드라·로버트 스틱골드"
+    rating: 3
+    date_read: "2023-11-14"
+    publisher: "추수밭"
+    category: "뇌과학"
+
+  - title: "진화하는 언어"
+    author: "모텐 H. 크리스티안센·닉 채터"
+    rating: 4
+    date_read: "2023-11-23"
+    publisher: "이혜경"
+    category: "뇌과학"
+
+  - title: "데이터 모델링 실전처럼 시작하기"
+    author: "박종원"
+    rating: 3
+    date_read: "2023-12-01"
+    publisher: "세나북스"
+    category: "AI·개발"
+
+  - title: "강박에 빠진 뇌"
+    author: "제프리 슈워츠"
+    rating: 4
+    date_read: "2023-12-28"
+    publisher: "알에이치코리아"
+    category: "뇌과학"
+
+  - title: "제정신이라는 착각"
+    author: "필리프 슈테르처"
+    rating: 5
+    date_read: "2023-12-31"
+    publisher: "김영사"
+    category: "뇌과학"

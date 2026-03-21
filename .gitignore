@@ -29,7 +29,3 @@ venv/
 !apps/backend/.env.example
 !apps/frontend/.env.example
 
-# Local data / generated assets
-data/
-outputs/
-artifacts/
