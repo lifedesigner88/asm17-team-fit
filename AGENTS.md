@@ -135,6 +135,14 @@ The agent briefly explains the following by default:
 - Before opening a new PR, confirm that already-merged branches are identified as cleanup targets.
 - Unless a stacked child is still using the parent branch as its base, deleting merged branches from both local and remote is the default policy.
 
+## Memory Files
+These files store context about the user and collaboration preferences so the agent can maintain consistency across sessions.
+
+- `MEMORY.md` — index of all memory files with brief descriptions
+- `user_profile.md` — user background and communication preferences (e.g. English correction preference)
+
+The agent reads these at the start of each session to restore context. New memory entries are added here when the user shares preferences or relevant personal context.
+
 ## Default Start-of-Task Checklist
 1. Check current stage and priorities in `README.md`
 2. Explore relevant directories/code
