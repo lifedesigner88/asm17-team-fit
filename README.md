@@ -6,7 +6,7 @@
 PersonaMirror is a monorepo that builds a **Progressive Persona Dashboard** — a service that extracts a user's values, speaking patterns, and archetypes from text (and later voice/image) inputs, generating a richer persona as more answers are accumulated.
 
 This repository has two goals:
-- Build a real service structure step by step, targeting a public MVP by April 1, 2026.
+- Build a real service structure step by step, targeting a public MVP by March 25, 2026.
 - Document both the code and the reasoning behind architectural decisions.
 
 ## Product Concept: Progressive Persona Dashboard
@@ -15,58 +15,59 @@ The dashboard grows richer as the user provides more input:
 
 | Level | Input | Output |
 |-------|-------|--------|
-| Level 1 | 3–5 questions | Archetype · Top 3 values · One-line summary |
+| Level 1 | 5 AI interview questions | Archetype · Top 3 values · One-line summary |
 | Level 2 | 10–15 questions | + Language patterns · Decision-making tendencies · Career direction |
 | Level N | Hupository-scale | + Life timeline · Goal hierarchy tree · Value evolution · SDG alignment |
 
-Park Sejong's own Hupository data serves as the **"final vision" demo** — what PersonaMirror looks like when fed years of accumulated data.
+Park Sejong's own Hupository data serves as the **"final vision" demo** — what PersonaMirror looks like when fed years of accumulated data. Visit `/persona/demo` to see it.
 
 ## Current Status
-Features that are currently working:
-- Sign up / Login / Logout
+
+### Already Working
+- Email signup with OTP verification (via Resend) and 4-digit PIN login
+- Reset PIN flow via email OTP
 - Session authentication based on `httpOnly` cookies
 - Admin account seed and admin-only user list view
-- Capture UI draft for interview / voice / image input
-- Capture job create / read API
-- Basic backend smoke test suite
-- All three execution paths verified:
-  - Local dev: `pnpm dev`
-  - Dockerfile test: `pnpm docker`
-  - Docker Compose demo: `docker compose up`
+- AI chat interview: Claude asks 5 adaptive questions one at a time
+- Capture job create / read / delete API
+- **ai-worker LangGraph pipeline**: polls pending jobs → calls Claude → writes persona result to DB
+- **Level 1 Persona Card**: appears on capture submission detail page when job completes (polls every 2s)
+- **Public persona page** (`/persona/:id`): hero card, MBTI bars, drive vector radar, SDG alignment, identity timeline, strengths
+- **Demo persona** at `/persona/demo`: fully rendered with Hupository data — no backend required
+- Capture routes require login (nav hidden + route redirect for unauthenticated users)
+- `pnpm dev` starts all 3 services: frontend, backend, ai-worker
 
-Core features not yet implemented (April 1 MVP targets):
-- LangGraph-based persona extraction via Claude API
-- Progressive dashboard frontend (Level 1 card)
-- Public shareable URL (`/persona/{id}`)
-- Hupository demo account (Park Sejong's preset data)
-- Whisper-based voice analysis (Phase 2)
-- Stable Diffusion / ControlNet-based image generation (Phase 2)
-- Async job processing between ai-worker and backend (Phase 2)
+### Not Yet Done
+- `GET /persona/:id` real backend endpoint (demo page only for now)
+- `POST /persona/:id/ask` — Q&A panel AI answer endpoint
+- Voice and image capture (marked "coming soon" in UI)
+- DB volume reset required on next deploy (new columns: `result`, `persona_id`)
 
 ## Tech Stack
 - Monorepo: Nx
-- Frontend: React Router 7, TypeScript, Tailwind CSS, shadcn/ui
+- Frontend: React Router v6, TypeScript, Tailwind CSS, shadcn/ui
 - Backend: FastAPI, SQLAlchemy, PostgreSQL
-- Worker: Python, uv, **LangGraph**, Claude API
-- Package manager:
-  - Node: pnpm
-  - Python: uv
-- Infra / local runtime:
-  - Docker Compose
-  - Terraform
+- Worker: Python, uv, **LangGraph**, **Claude API** (`claude-sonnet-4-6`)
+- Package manager: pnpm (Node), uv (Python)
+- Infra / local runtime: Docker Compose, Terraform
 
 ## AI Architecture (ai-worker)
 
 ```
-Input (text / later: voice · image)
+User answers 5 AI interview questions
     ↓
-LangGraph workflow
-    ├── [Node 1] extract_values    (Claude)  ← MVP
-    ├── [Node 2] extract_speaking  (Claude)  ← Phase 2
-    ├── [Node 3] extract_archetype (Claude)  ← Phase 2
-    └── [Node 4] generate_card     (Claude)  ← Phase 2
+POST /capture/interview/chat  (Claude — stateless chat)
     ↓
-backend (FastAPI) → Persona JSON → frontend dashboard
+Capture job created (status=pending)
+    ↓
+ai-worker polling loop (every 5s)
+    ├── [Node] extract_persona  (Claude)  ← MVP (active)
+    │       reads interview messages → { archetype, top3_values, one_liner }
+    ├── [Node] extract_speaking  (Claude)  ← Phase 2
+    └── [Node] generate_card    (Claude)  ← Phase 2
+    ↓
+result written to capture_jobs.result (JSON)
+status = done → frontend PersonaCard renders
 ```
 
 Why LangGraph:
@@ -76,17 +77,16 @@ Why LangGraph:
 
 ## Parallel Worktree Setup
 
-Three git worktrees run in parallel for the March 25 MVP:
+Three git worktrees run in parallel for the MVP:
 
 | Workspace | Path | Branch | Frontend | Backend | Scope |
 |-----------|------|--------|----------|---------|-------|
 | main | `/home/sejong/260309_persona-mirror` | `main` | 3000 | 8000 | merge only |
-| work1 | `/home/sejong/persona-mirror-work1` | `feat/email-signup` | 3001 | 8001 | Backend Steps 1→2→3 |
-| work2 | `/home/sejong/persona-mirror-work2` | `feat/frontend-mvp` | 3002 | 8002 | Frontend Steps 4→6 |
+| work1 | `/home/sejong/persona-mirror-work1` | `feat/email-signup` | 3001 | 8001 | Backend features |
+| work2 | `/home/sejong/persona-mirror-work2` | `feat/frontend-mvp` | 3002 | 8002 | Frontend features |
 
 ### Port Policy
-- Each workspace uses dedicated ports to avoid conflicts when running simultaneously.
-- `VITE_API_BASE_URL` and `BACKEND_CORS_ORIGINS` must match the workspace's port pair.
+Each workspace uses dedicated ports to avoid conflicts when running simultaneously.
 
 | Workspace | `VITE_API_BASE_URL` | `BACKEND_CORS_ORIGINS` |
 |-----------|---------------------|------------------------|
@@ -111,12 +111,7 @@ Related files:
 - [docker-compose.yml](docker-compose.yml)
 
 ## Quick Start
-Prerequisites:
-- `nvm`
-- `corepack`
-- `uv`
-- `docker`
-- `docker compose`
+Prerequisites: `nvm`, `corepack`, `uv`, `docker`, `docker compose`
 
 Initial setup:
 ```bash
@@ -127,136 +122,78 @@ uv python install 3.11.15
 pnpm setup
 ```
 
-What `pnpm setup` does:
-- Auto-generates `apps/frontend/.env` from `apps/frontend/.env.example`
-- Auto-generates `apps/backend/.env` from `apps/backend/.env.example`
-- Installs Node dependencies
-- Syncs backend / ai-worker Python environments
+`pnpm setup` auto-generates `.env` files from `.env.example`, installs Node dependencies, and syncs Python environments.
 
 ## Run Modes
 ### 1. Local Development
-The most commonly used execution path.
-
 ```bash
 pnpm dev
 ```
+Starts db + redis via Docker Compose, then backend, frontend, and ai-worker via Nx. Frontend waits for backend port before starting.
 
-Behavior:
-- Runs `db` and `redis` via Docker Compose
-- Nx runs `backend` and `frontend` as local dev servers
-- Backend waits for port `5432` before starting
-- Frontend waits for port `8000` before starting
-
-Shutdown:
-- Stop app processes: `Ctrl+C`
-- Stop remaining `db` and `redis`:
 ```bash
-pnpm infra:down
+pnpm infra:down   # stop db and redis
 ```
 
 ### 2. Dockerfile Test
-Used to verify that the app Dockerfiles actually build and run correctly.
-
 ```bash
-pnpm docker
-```
-
-Behavior:
-- Runs `db` and `redis` via Docker Compose
-- Nx builds frontend / backend Docker images with BuildKit
-- Build logs are streamed to the Nx console
-- After build, frontend / backend containers run in detached mode
-
-View logs:
-```bash
-pnpm docker:logs
-```
-
-Shutdown:
-```bash
+pnpm docker        # build and run frontend/backend as Docker containers
+pnpm docker:logs   # stream logs
 pnpm docker:down
 ```
 
 ### 3. Docker Compose Demo
-The simplest path for external users to try the demo.
-
 ```bash
 docker compose up
-```
-
-Shutdown:
-```bash
 docker compose down
 ```
 
-Note:
-- `pnpm infra:down` only stops `db` and `redis`.
-- `docker compose down` stops all services started by compose (frontend, backend, ai-worker, db, redis).
-
 ## Environment Variables
-### Policy
-- Actual local app env files are not committed to Git.
-- Only example files are tracked.
-- Docker Compose demo defaults are kept in the trackable [compose.env](compose.env).
+
+### Required Keys
+| App | Key | Notes |
+|-----|-----|-------|
+| Frontend | `VITE_API_BASE_URL` | Backend origin |
+| Backend | `DATABASE_URL` | Postgres connection string |
+| Backend | `JWT_SECRET_KEY` | Cookie signing |
+| Backend | `BACKEND_CORS_ORIGINS` | Frontend origin |
+| Backend | `RESEND_API_KEY` | Email OTP delivery |
+| Backend | `ANTHROPIC_API_KEY` | Claude API (interview + ai-worker) |
+| ai-worker | `ANTHROPIC_API_KEY` | LangGraph persona extraction |
 
 ### Files
-- Frontend example: [apps/frontend/.env.example](apps/frontend/.env.example)
-- Backend example: [apps/backend/.env.example](apps/backend/.env.example)
-- Compose demo env: [compose.env](compose.env)
+- Frontend: [apps/frontend/.env.example](apps/frontend/.env.example)
+- Backend: [apps/backend/.env.example](apps/backend/.env.example)
+- Compose demo: [compose.env](compose.env)
 
-### Effective Use
-- Local dev / local docker test:
-  - `apps/frontend/.env`
-  - `apps/backend/.env`
-- Compose demo:
-  - `compose.env`
+## API Overview
 
-### Important Keys
-- Frontend:
-  - `VITE_API_BASE_URL`
-- Backend:
-  - `DATABASE_URL`
-  - `JWT_SECRET_KEY`
-  - `BACKEND_CORS_ORIGINS`
-  - `AUTH_COOKIE_*`
-  - `ADMIN_SEED_*`
-- Compose / db:
-  - `POSTGRES_DB`
-  - `POSTGRES_USER`
-  - `POSTGRES_PASSWORD`
-
-## What Is Implemented Today
 ### Auth
-- `POST /auth/signup`
+- `POST /auth/signup` — email + 4-digit PIN; sends OTP verification email
+- `POST /auth/verify` — confirm OTP to activate account
 - `POST /auth/login`
 - `POST /auth/logout`
 - `GET /auth/me`
+- `POST /auth/reset-pin/request` — send OTP to email
+- `POST /auth/reset-pin/confirm` — set new PIN
 
 ### Admin
-- `GET /admin/users`
-- Frontend menu is only shown for admin sessions
+- `GET /admin/users` — admin session required
 
 ### Capture
+- `POST /capture/interview/chat` — stateless AI chat; returns `{ message, is_complete }`
 - `POST /capture/jobs`
 - `GET /capture/jobs`
-- `GET /capture/jobs/{job_id}`
+- `GET /capture/jobs/{job_id}` — includes `result` field when done
 - `DELETE /capture/jobs/{job_id}`
-- The frontend provides a step-based capture UI; drafts are managed in browser memory and submitted to the backend job API at the review step
-- After submission, the `My submissions` screen supports card-style list view, detail view, and deletion
+
+### Persona
+- `GET /persona/{id}` — public, no auth required (real endpoint pending; demo at `/persona/demo`)
 
 ### Health
 - `GET /health`
 
-## API Docs
-- Backend test plan: [apps/backend/docs/api/testing.md](apps/backend/docs/api/testing.md)
-- Backend live docs when running:
-  - Swagger UI: `http://localhost:8000/docs`
-  - OpenAPI JSON: `http://localhost:8000/openapi.json`
-- Principles:
-  - FastAPI OpenAPI is the authoritative source at runtime.
-  - Manual backend API endpoint documentation is not maintained.
-  - The README only keeps a scope overview and entry links.
-  - Manual docs are only written for concept/strategy explanations, like test plans.
+API docs when running: `http://localhost:8000/docs`
 
 ## Monorepo Structure
 ```text
@@ -266,10 +203,6 @@ Note:
 │   ├── backend/
 │   │   └── docs/api/
 │   └── ai-worker/
-├── libs/
-│   ├── shared-interfaces/
-│   ├── ai-models/
-│   └── ui-components/
 ├── infrastructure/
 │   └── terraform/
 ├── docs/
@@ -279,100 +212,56 @@ Note:
 └── nx.json
 ```
 
-### Frontend Structure
-Principles:
-- Shared UI lives in `src/common/components`
-- Feature code lives in `src/features/<domain>`
-- React Router `loader` / `action` is the default pattern
-- New pages are first built by composing shared UI from `src/common/components`; feature-specific components are only added when a repeating pattern is confirmed
+### Frontend Domains
+- `auth` — signup, login, OTP verification, reset PIN
+- `admin` — user list (admin only)
+- `capture` — AI chat interview, draft management, job submission, submission detail with persona card
+- `persona` — public persona page, demo page
 
-Current main domains:
-- `auth`
-- `admin`
-- `capture`
-
-### Backend Structure
-Principles:
-- Common code lives in `app/common`
-- Feature code lives in `app/features/<domain>`
-- Features are split into `router.py`, `service.py`, `schemas.py`, `models.py` as needed
-
-Current main domains:
-- `auth`
-- `admin`
-- `capture`
+### Backend Domains
+- `auth` — session, OTP, reset PIN
+- `admin` — user list
+- `capture` — job CRUD, AI chat interview endpoint
+- `persona` — public persona read
 
 ## Roadmap
-### Phase 0. Foundation Setup (Done)
-- [x] Nx workspace initialization
-- [x] Common runtime / lint / format / pre-commit setup
+### Phase 0 — Foundation (Done)
+- [x] Nx workspace, lint, format, pre-commit
 - [x] Local / docker / compose execution paths
 - [x] Frontend / backend base structure
 
-### Phase 1. March 25 MVP — G-PM-01 (Active)
-- [x] Basic authentication
-- [x] Admin user list screen
-- [x] Capture UI draft
+### Phase 1 — March 25 MVP (Active)
+- [x] Email signup with OTP verification
+- [x] 4-digit PIN login + reset PIN via email
+- [x] Admin user list
+- [x] AI chat interview (5 questions, Claude)
 - [x] Capture job API
-- [x] Capture review → backend job API connection
-- [ ] LangGraph single-node: Capture text → Claude API → Persona JSON
-- [ ] Progressive dashboard frontend (Level 1 card: archetype · values · one-liner)
-- [ ] Public shareable URL — `/persona/{id}`
-- [ ] Hupository demo account (Park Sejong's preset data → final vision)
-- [ ] File upload scaffolding (voice · image prep)
+- [x] LangGraph single-node: interview messages → Claude → Persona JSON
+- [x] Level 1 persona card (archetype · values · one-liner)
+- [x] Public shareable URL — `/persona/:id` (demo)
+- [x] Hupository demo account (Park Sejong's preset data)
+- [ ] `GET /persona/:id` real backend endpoint
+- [ ] `POST /persona/:id/ask` Q&A panel
 
-### Phase 2. Enriched Analysis (Planned)
+### Phase 2 — Enriched Analysis (Planned)
 - [ ] Whisper voice analysis node
 - [ ] Image analysis node
-- [ ] Async job processing (ai-worker ↔ backend)
 - [ ] Multi-LLM backend support (GPT, Gemini)
-- [ ] Quality improvements
+- [ ] Level 2+ persona depth
 
-### Phase 3. Operations (Planned)
+### Phase 3 — Operations (Planned)
 - [ ] Infrastructure automation
-- [ ] Operational observability (logging · monitoring)
+- [ ] Logging and monitoring
 
-## March 25 MVP — Implementation Plan
-
-### Step 1 — Email signup (backend + frontend) `~1h`
-- Add `email` field to `User` model and `SignupRequest` schema
-- No email verification for MVP — just store it
-- Files: `apps/backend/app/features/auth/models.py`, `schemas.py`, `apps/frontend/src/features/auth/pages/signup-page.tsx`
-
-### Step 2 — LangGraph single node: text → Persona JSON (ai-worker) `~3h`
-- Input: `selfSummary`, `coreValues`, `speakingStyle`, `keywords` from Capture job
-- Node: `extract_values` → Claude API → `{ archetype, top3_values, one_liner }`
-- Output: written back to `capture_jobs.result` as JSON
-- Files: `apps/ai-worker/` (new LangGraph workflow)
-
-### Step 3 — Job result → Persona JSON (backend) `~1h`
-- Add `result` field to `CaptureJob` model
-- Add `GET /capture/jobs/{job_id}/result` or include result in existing job response
-- Files: `apps/backend/app/features/capture/models.py`, `schemas.py`, `router.py`
-
-### Step 4 — Level 1 persona card (frontend) `~2h`
-- After job submit → poll job status → display card when `status = done`
-- Card shows: archetype · top 3 values · one-liner
-- Files: `apps/frontend/src/features/capture/` (new result page or component)
-
-### Step 5 — Hupository demo account `~1h`
-- Seed script reads `hupository/` YAML → inserts as preset persona for `parksejong` user
-- Demonstrates Level N final vision on the dashboard
-- Files: `apps/backend/app/common/seed.py` or `apps/ai-worker/seed/`
-
-### Step 6 — Public shareable URL `~1h`
-- Read-only page at `/persona/{id}` — no auth required
-- Files: `apps/frontend/src/features/persona/` (new feature), backend `GET /persona/{id}`
-
-## Next Recommended Work (toward March 25 MVP)
-Start with **Step 1** (email signup) then **Step 2** (LangGraph node) — these are the critical path.
+## Next Recommended Work
+1. `GET /persona/:id` — real backend endpoint so `/persona/demo` can be replaced with real user profiles
+2. `POST /persona/:id/ask` — Q&A panel AI answer
 
 ## Quality Commands
 ```bash
 pnpm test:backend
 pnpm lint
 pnpm format
-uvx pre-commit install
 uvx pre-commit run --all-files
 ```
 
@@ -380,43 +269,16 @@ uvx pre-commit run --all-files
 - Index: [docs/changelog/README.md](docs/changelog/README.md)
 - Daily records: `docs/changelog/YYYY-MM-DD.md`
 
-Recording style:
-- While working: accumulate one-line notes
-- Before committing: summarize based on the commit scope
-
 ## Git Workflow
-> **`main` is protected — updated only via PR. Never push directly to `main`.**
-
 Branch strategy:
-- `main`: stable branch — PR merge only
+- `main`: stable — PR merge only, never push directly
 - `feat/*`: feature branches
 - `study/*`: experimental branches
 
-Branch examples:
-- `feat/ai`
-- `feat/auth`
-- `feat/capture`
-- `study/prompt-exp`
-
-Commit principles:
-- Keep commits small
-- Review change summary before the final commit
-- Push the current branch to remote after approval
-
-Branch start principles:
-- Independent work starts a new branch from the latest `origin/main`.
-- Dependent work that continues from a not-yet-merged branch starts from that branch.
-- One PR = one branch is maintained, but the base is not always fixed to `main`.
-- Do not reuse a branch that already has an open PR; create a new child branch from it if needed.
-
-PR operation principles:
-- Merge the previous PR before starting the next branch whenever possible.
-- If the next task can't wait, use a stacked branch approach.
-- A stacked branch PR may target the parent branch, then be rebased to `main` after the parent merges.
-- Before pushing a new PR or additional commits, verify the current branch is not already a merged PR branch.
-- Do not push new commits to a merged PR branch. Instead, create a new branch from the correct base and cherry-pick only the needed commits.
-- Clean up merged branches before opening a new PR.
-- Clean up both local and remote branches; delay only when a stacked child still depends on the parent branch.
+PR principles:
+- Merge the previous PR before starting the next branch whenever possible
+- One PR = one branch; do not reuse a merged PR branch
+- Clean up local and remote branches after merge
 
 ## Hupository ↔ PersonaMirror Connection
 
@@ -424,13 +286,12 @@ PR operation principles:
 |-------|------|
 | Hupository | Data accumulation (personal YAML repository) |
 | PersonaMirror | Service layer — a product anyone can use |
-| PersonaMirror Demo | Park Sejong's Hupository = final vision of what Level N looks like |
+| `/persona/demo` | Park Sejong's Hupository data = final vision of Level N |
 
 ## Why This Repo Is Useful For Learners
-This repository is not just a tutorial — it also demonstrates:
-- Feature-based folder structure design
+- Feature-based folder structure (auth / admin / capture / persona)
 - Separation of local / docker / compose execution paths
-- Environment variable policy
-- Real implementations of auth, admin, and capture flows
+- Real auth flow: httpOnly cookies, OTP email verification, PIN reset
 - LangGraph + Claude API integration pattern
-- A structure that can be extended to ai-worker and model pipelines
+- React Router v6 data APIs (loader / action)
+- Nx monorepo with parallel dev targets
