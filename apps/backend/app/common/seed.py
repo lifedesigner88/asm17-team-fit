@@ -10,10 +10,10 @@ from app.common.security import hash_password
 from app.features.auth.models import User
 from app.features.persona.models import Persona
 
-DEMO_USER_ID = os.getenv("DEMO_USER_ID", "pse001")
+DEMO_USER_ID    = os.getenv("DEMO_USER_ID",    "pse001")               # 6-char static user ID
 DEMO_USER_EMAIL = os.getenv("DEMO_USER_EMAIL", "lifedesigner88@gmail.com")
-DEMO_USER_PIN = os.getenv("DEMO_USER_PIN", "8809")          # birth month-day hint
-DEMO_PERSONA_ID = os.getenv("DEMO_PERSONA_ID", "d31sf2")    # public URL: /persona/d31sf2
+DEMO_USER_PIN   = os.getenv("DEMO_USER_PIN",   "1234")                 # login: email + 1234
+DEMO_PERSONA_ID = os.getenv("DEMO_PERSONA_ID", "d31sf2")               # /persona/d31sf2
 
 # Hupository data — mirrors DEMO_PROFILE in frontend loader.ts
 _DEMO_DATA: dict = {
