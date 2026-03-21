@@ -4,5 +4,6 @@ export { CaptureJobCard } from "./capture-job-card";
 export { CaptureJobStatusBadge } from "./capture-job-status-badge";
 export { CapturePayloadSummary } from "./capture-payload-summary";
 export { ChoiceCard } from "./choice-card";
+export { PersonaCard } from "./persona-card";
 export { StepLink } from "./step-link";
 export { SummaryBlock } from "./summary-block";

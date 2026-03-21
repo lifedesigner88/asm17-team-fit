@@ -1,16 +1,35 @@
+import { useEffect, useState } from "react";
 import { Form, NavLink, useActionData, useLoaderData, useNavigation } from "react-router-dom";
 
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/common/components";
 
-import { CaptureJobStatusBadge, CapturePayloadSummary } from "../components";
+import { CaptureJobStatusBadge, CapturePayloadSummary, PersonaCard } from "../components";
+import { requestCaptureJob, readCaptureJobResponse } from "../utils/api";
 import { formatCaptureTimestamp } from "../utils/format";
-import type { CaptureJobActionData, CaptureJobDetailLoaderData } from "../utils/types";
+import type { CaptureJob, CaptureJobActionData, CaptureJobDetailLoaderData } from "../utils/types";
+
+const POLLING_STATUSES = new Set(["pending", "processing"]);
 
 export function CaptureSubmissionDetailPage() {
-  const { job, created } = useLoaderData() as CaptureJobDetailLoaderData;
+  const { job: initialJob, created } = useLoaderData() as CaptureJobDetailLoaderData;
   const actionData = useActionData() as CaptureJobActionData | undefined;
   const navigation = useNavigation();
   const deleting = navigation.state === "submitting";
+
+  const [job, setJob] = useState<CaptureJob>(initialJob);
+  const polling = POLLING_STATUSES.has(job.status);
+
+  useEffect(() => {
+    if (!polling) return;
+    const id = setInterval(async () => {
+      const response = await requestCaptureJob(job.id);
+      if (response.ok) {
+        const updated = await readCaptureJobResponse(response);
+        setJob(updated);
+      }
+    }, 2000);
+    return () => clearInterval(id);
+  }, [polling, job.id]);
 
   return (
     <div className="space-y-6">
@@ -36,6 +55,9 @@ export function CaptureSubmissionDetailPage() {
             <div className="flex flex-wrap items-center gap-3">
               <Badge variant="outline">Submission detail</Badge>
               <CaptureJobStatusBadge status={job.status} />
+              {polling ? (
+                <span className="text-xs text-muted-foreground animate-pulse">Analyzing…</span>
+              ) : null}
             </div>
             <CardTitle className="text-2xl">{job.payload.interview.selfSummary || `Capture job ${job.id.slice(0, 8)}`}</CardTitle>
             <CardDescription className="max-w-2xl">
@@ -50,6 +72,10 @@ export function CaptureSubmissionDetailPage() {
           </div>
         </CardHeader>
       </Card>
+
+      {job.status === "done" && job.result ? (
+        <PersonaCard result={job.result} />
+      ) : null}
 
       <CapturePayloadSummary payload={job.payload} />
 

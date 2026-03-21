@@ -22,6 +22,7 @@ import {
   submitCaptureAction,
   voiceAction,
 } from "./features/capture";
+import { PersonaPage, personaLoader } from "./features/persona";
 
 export const router = createBrowserRouter([
   {
@@ -102,6 +103,11 @@ export const router = createBrowserRouter([
         path: "admin/users",
         element: <AdminUsersPage />,
         loader: adminUsersLoader
+      },
+      {
+        path: "persona/:personId",
+        element: <PersonaPage />,
+        loader: personaLoader,
       }
     ]
   }

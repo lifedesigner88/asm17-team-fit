@@ -35,11 +35,19 @@ export type CaptureSubmitActionData = {
   error?: string;
 };
 
+export type PersonaResult = {
+  persona_id: string; // 6-digit UUID — used for the public /persona/:personId URL
+  archetype: string;
+  top3_values: string[];
+  one_liner: string;
+};
+
 export type CaptureJob = {
   id: string;
   owner_user_id: string;
-  status: string;
+  status: "pending" | "processing" | "done" | "failed";
   payload: CaptureDraft;
+  result?: PersonaResult | null;
   created_at: string;
   updated_at: string;
 };
