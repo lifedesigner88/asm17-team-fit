@@ -10,6 +10,21 @@ Build PersonaMirror step by step — not just fast, but in a way that makes stru
 4. Write changelog automatically (see Documentation Rules)
 5. Share results and next steps
 
+## Parallel Worktree Setup
+
+| Workspace | Path | Branch | Scope |
+|-----------|------|--------|-------|
+| main | `/home/sejong/260309_persona-mirror` | `main` | merge only — no direct work |
+| work1 | `/home/sejong/persona-mirror-work1` | `feat/email-signup` | Backend (Steps 1→2→3) |
+| work2 | `/home/sejong/persona-mirror-work2` | `feat/frontend-mvp` | Frontend (Steps 4→6) |
+
+Rules:
+- `main` is updated **only via PR** — never commit or push directly to `main`.
+- work1 and work2 push to their own branches (`feat/email-signup`, `feat/frontend-mvp`) and open a PR to `main`.
+- PR must be reviewed and approved before merging.
+- When adding a new worktree: `git worktree add <path> <branch>` from the main repo.
+- When done: PR merged → `git worktree remove <path>` → delete remote branch.
+
 ## Source of Truth
 - `README.md` is the authority on current state, priorities, and runtime policy.
 - On conflict between docs and code, align with `README.md`.
@@ -108,11 +123,13 @@ After any task that changes `README.md`, `AGENTS.md`, or project structure:
 - Do not reuse a branch that already has an open PR; create a child branch instead.
 
 ### PR Policy
+- **`main` is protected — only updated via PR, never by direct push.**
 - One PR = one branch.
+- work1 and work2 each open a PR to `main` when their step is complete.
 - Merge the previous PR before starting the next branch whenever possible; use stacked branches if not.
 - A stacked PR targets the parent branch; rebase to `main` after the parent merges.
 - Never add commits to an already-merged PR branch — create a new branch and cherry-pick if needed.
-- Clean up merged branches (local + remote) before opening a new PR, unless a stacked child still depends on the parent.
+- Clean up merged branches (local + remote) after PR is merged.
 
 ## Response Style
 After each task, briefly state:

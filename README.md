@@ -74,6 +74,18 @@ Why LangGraph:
 - Pluggable LLM backends (Claude, GPT, Gemini)
 - Conditional routing based on answer depth
 
+## Parallel Worktree Setup
+
+Three git worktrees run in parallel for the March 25 MVP:
+
+| Workspace | Path | Branch | Scope |
+|-----------|------|--------|-------|
+| main | `/home/sejong/260309_persona-mirror` | `main` | merge only |
+| work1 | `/home/sejong/persona-mirror-work1` | `feat/email-signup` | Backend — Steps 1→2→3 |
+| work2 | `/home/sejong/persona-mirror-work2` | `feat/frontend-mvp` | Frontend — Steps 4→6 |
+
+Open each path as a separate VS Code window to work in parallel.
+
 ## Runtime Policy
 For reproducibility, local and Docker runtime versions are pinned to the patch level:
 - Node: `24.11.0`
@@ -363,8 +375,10 @@ Recording style:
 - Before committing: summarize based on the commit scope
 
 ## Git Workflow
+> **`main` is protected — updated only via PR. Never push directly to `main`.**
+
 Branch strategy:
-- `main`: stable branch
+- `main`: stable branch — PR merge only
 - `feat/*`: feature branches
 - `study/*`: experimental branches
 
