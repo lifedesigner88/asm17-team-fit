@@ -1,4 +1,6 @@
 import os
+import secrets
+from datetime import datetime, timedelta, timezone
 
 from fastapi import Depends, HTTPException, Request, Response, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -16,16 +18,18 @@ from app.common.security import (
     verify_password_and_update,
 )
 
+from .email import send_otp_email, send_reset_pin_email
 from .models import User
-from .schemas import LoginRequest, SessionResponse, SignupRequest, UserResponse
+from .schemas import LoginRequest, ResetPinConfirm, ResetPinRequest, SessionResponse, SignupRequest, UserResponse, VerifyRequest
 
 security_scheme = HTTPBearer(auto_error=False)
 ADMIN_SEED_USER_ID = os.getenv("ADMIN_SEED_USER_ID", "admin")
 ADMIN_SEED_PASSWORD = os.getenv("ADMIN_SEED_PASSWORD", "Admin#2026!Mirror")
+ADMIN_SEED_EMAIL = os.getenv("ADMIN_SEED_EMAIL", "admin@example.com")
 
 
 def to_user_response(user: User) -> UserResponse:
-    return UserResponse(user_id=user.user_id, is_admin=user.is_admin, created_at=user.created_at)
+    return UserResponse(user_id=user.user_id, email=user.email, is_admin=user.is_admin, created_at=user.created_at)
 
 
 def sync_admin_seed(db: Session) -> None:
@@ -34,12 +38,16 @@ def sync_admin_seed(db: Session) -> None:
         db.add(
             User(
                 user_id=ADMIN_SEED_USER_ID,
+                email=ADMIN_SEED_EMAIL,
                 password_hash=hash_password(ADMIN_SEED_PASSWORD),
                 is_admin=True,
+                is_verified=True,
             )
         )
     else:
         admin.is_admin = True
+        admin.is_verified = True
+        admin.email = ADMIN_SEED_EMAIL
         is_valid, updated_hash = verify_password_and_update(ADMIN_SEED_PASSWORD, admin.password_hash)
         if not is_valid:
             admin.password_hash = hash_password(ADMIN_SEED_PASSWORD)
@@ -48,10 +56,23 @@ def sync_admin_seed(db: Session) -> None:
     db.commit()
 
 
+def _generate_otp() -> tuple[str, datetime]:
+    otp = f"{secrets.randbelow(1_000_000):06d}"
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=10)
+    return otp, expires_at
+
+
 def create_user(payload: SignupRequest, db: Session) -> UserResponse:
+    if db.scalar(select(User).where(User.email == payload.email)) is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already registered")
+    otp, expires_at = _generate_otp()
     user = User(
         user_id=payload.user_id,
+        email=payload.email,
         password_hash=hash_password(payload.password),
+        is_verified=False,
+        otp_code=otp,
+        otp_expires_at=expires_at,
         is_admin=False,
     )
     db.add(user)
@@ -59,15 +80,68 @@ def create_user(payload: SignupRequest, db: Session) -> UserResponse:
         db.commit()
     except IntegrityError as exc:
         db.rollback()
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="user_id already exists") from exc
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="ID already taken — try another") from exc
     db.refresh(user)
+    send_otp_email(user.email, otp)
     return to_user_response(user)
 
 
+def verify_otp(payload: VerifyRequest, db: Session) -> None:
+    user = db.scalar(select(User).where(User.email == payload.email))
+    if user is None or user.otp_code is None:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired code")
+    if user.is_verified:
+        return
+    now = datetime.now(timezone.utc)
+    expires = user.otp_expires_at
+    if expires is not None and expires.tzinfo is None:
+        expires = expires.replace(tzinfo=timezone.utc)
+    if expires is None or now > expires:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Code expired — request a new one")
+    if not secrets.compare_digest(user.otp_code, payload.otp):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired code")
+    user.is_verified = True
+    user.otp_code = None
+    user.otp_expires_at = None
+    db.commit()
+
+
+def request_pin_reset(payload: ResetPinRequest, db: Session) -> None:
+    user = db.scalar(select(User).where(User.email == payload.email))
+    if user is None:
+        return  # silently ignore — don't reveal if email exists
+    otp, expires_at = _generate_otp()
+    user.otp_code = otp
+    user.otp_expires_at = expires_at
+    db.commit()
+    send_reset_pin_email(user.email, otp)
+
+
+def confirm_pin_reset(payload: ResetPinConfirm, db: Session) -> None:
+    user = db.scalar(select(User).where(User.email == payload.email))
+    if user is None or user.otp_code is None:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired code")
+    now = datetime.now(timezone.utc)
+    expires = user.otp_expires_at
+    if expires is not None and expires.tzinfo is None:
+        expires = expires.replace(tzinfo=timezone.utc)
+    if expires is None or now > expires:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Code expired — request a new one")
+    if not secrets.compare_digest(user.otp_code, payload.otp):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired code")
+    user.password_hash = hash_password(payload.new_pin)
+    user.otp_code = None
+    user.otp_expires_at = None
+    db.commit()
+
+
 def build_session(payload: LoginRequest, response: Response, db: Session) -> SessionResponse:
-    user = db.scalar(select(User).where(User.user_id == payload.user_id))
+    user = db.scalar(select(User).where(User.email == payload.email))
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+
+    if not user.is_verified:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Email not verified — check your inbox")
 
     is_valid, updated_hash = verify_password_and_update(payload.password, user.password_hash)
     if not is_valid:

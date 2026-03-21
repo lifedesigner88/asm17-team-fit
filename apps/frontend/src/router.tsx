@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { App, HomePage, RouteErrorBoundary, homeAction, homeLoader } from "./App";
 import { AdminUsersPage, adminUsersLoader } from "./features/admin";
-import { LoginPage, SignupPage, loginAction, rootLoader, signupAction } from "./features/auth";
+import { LoginPage, ResetPinPage, SignupPage, loginAction, rootLoader, signupAction } from "./features/auth";
 import {
   CaptureLayout,
   CaptureOverviewPage,
@@ -93,6 +93,10 @@ export const router = createBrowserRouter([
         path: "auth/login",
         element: <LoginPage />,
         action: loginAction
+      },
+      {
+        path: "auth/reset-pin",
+        element: <ResetPinPage />,
       },
       {
         path: "admin/users",

@@ -23,33 +23,73 @@ export async function rootLoader(): Promise<RootLoaderData> {
 
 export async function signupAction({ request }: { request: Request }): Promise<AuthActionData | Response> {
   const formData = await request.formData();
-  const user_id = String(formData.get("user_id") ?? "").trim();
+  const user_id = String(formData.get("user_id") ?? "");
   const password = String(formData.get("password") ?? "");
+  const email = String(formData.get("email") ?? "").trim() || null;
 
   const response = await fetch(`${API_BASE_URL}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id, password }),
+    body: JSON.stringify({ user_id, password, email }),
     credentials: "include",
   });
 
   if (response.ok) {
-    return redirect("/auth/login");
+    const data = (await response.json()) as { user_id: string };
+    return { generatedUserId: data.user_id, signupEmail: email };
   }
 
   const data = (await response.json().catch(() => null)) as { detail?: string } | null;
   return { error: data?.detail ?? "Signup failed" };
 }
 
+export async function requestPinReset(email: string): Promise<{ error?: string }> {
+  const response = await fetch(`${API_BASE_URL}/auth/reset-pin/request`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+    credentials: "include",
+  });
+  if (response.ok) return {};
+  const data = (await response.json().catch(() => null)) as { detail?: string } | null;
+  return { error: data?.detail ?? "Request failed" };
+}
+
+export async function confirmPinReset(email: string, otp: string, new_pin: string): Promise<{ error?: string }> {
+  const response = await fetch(`${API_BASE_URL}/auth/reset-pin/confirm`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, otp, new_pin }),
+    credentials: "include",
+  });
+  if (response.ok) return {};
+  const data = (await response.json().catch(() => null)) as { detail?: string } | null;
+  return { error: data?.detail ?? "Reset failed" };
+}
+
+export async function verifyOtp(email: string, otp: string): Promise<{ error?: string }> {
+  const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, otp }),
+    credentials: "include",
+  });
+
+  if (response.ok) return {};
+
+  const data = (await response.json().catch(() => null)) as { detail?: string } | null;
+  return { error: data?.detail ?? "Verification failed" };
+}
+
 export async function loginAction({ request }: { request: Request }): Promise<AuthActionData | Response> {
   const formData = await request.formData();
-  const user_id = String(formData.get("user_id") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 
   const response = await fetch(`${API_BASE_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id, password }),
+    body: JSON.stringify({ email, password }),
     credentials: "include",
   });
 

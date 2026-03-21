@@ -24,7 +24,9 @@ from app.common.db import Base, SessionLocal, engine
 from app.features.auth.service import sync_admin_seed
 from app.main import app
 
-DEFAULT_PASSWORD = "strong-pass-123"
+DEFAULT_PASSWORD = "1234"
+DEFAULT_EMAIL = "alice@example.com"
+ADMIN_EMAIL = "admin@example.com"
 ADMIN_PASSWORD = "Admin#2026!Mirror"
 
 
@@ -45,18 +47,26 @@ def client():
 
 @pytest.fixture()
 def signup_user(client):
-    def _signup_user(user_id: str = "alice", password: str = DEFAULT_PASSWORD):
-        response = client.post("/auth/signup", json={"user_id": user_id, "password": password})
+    def _signup_user(user_id: str = "ALI001", email: str = DEFAULT_EMAIL, password: str = DEFAULT_PASSWORD):
+        response = client.post("/auth/signup", json={"user_id": user_id, "email": email, "password": password})
         assert response.status_code == 201
-        return {"user_id": user_id, "password": password, "response": response}
+        # Bypass email: read OTP directly from DB and verify
+        from sqlalchemy import select
+        from app.features.auth.models import User
+        with SessionLocal() as db:
+            user = db.scalar(select(User).where(User.email == email))
+            otp = user.otp_code
+        verify_response = client.post("/auth/verify", json={"email": email, "otp": otp})
+        assert verify_response.status_code == 204
+        return {"user_id": user_id, "email": email, "password": password, "response": response}
 
     return _signup_user
 
 
 @pytest.fixture()
 def login_user(client):
-    def _login_user(user_id: str = "alice", password: str = DEFAULT_PASSWORD):
-        response = client.post("/auth/login", json={"user_id": user_id, "password": password})
+    def _login_user(email: str, password: str = DEFAULT_PASSWORD):
+        response = client.post("/auth/login", json={"email": email, "password": password})
         assert response.status_code == 200
         return response
 
@@ -65,15 +75,15 @@ def login_user(client):
 
 @pytest.fixture()
 def user_session(client, signup_user, login_user):
-    def _user_session(user_id: str = "alice", password: str = DEFAULT_PASSWORD):
-        signup_user(user_id, password)
-        login_user(user_id, password)
-        return client
+    def _user_session(user_id: str = "ALI001", email: str = DEFAULT_EMAIL, password: str = DEFAULT_PASSWORD):
+        result = signup_user(user_id, email, password)
+        login_user(result["email"], password)
+        return client, result["user_id"]
 
     return _user_session
 
 
 @pytest.fixture()
 def admin_session(client, login_user):
-    login_user("admin", ADMIN_PASSWORD)
+    login_user(ADMIN_EMAIL, ADMIN_PASSWORD)
     return client

@@ -1,33 +1,187 @@
-import { Form, useActionData } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { Form, Link, useActionData, useNavigate } from "react-router-dom";
 
 import { Button, Field, Input, ShellCard, StatusPill } from "@/common/components";
 
+import { verifyOtp } from "../api";
 import type { AuthActionData } from "../types";
+
+const ID_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+function generateId(): string {
+  return Array.from({ length: 6 }, () => ID_CHARSET[Math.floor(Math.random() * ID_CHARSET.length)]).join("");
+}
 
 export function SignupPage() {
   const actionData = useActionData() as AuthActionData | undefined;
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState(() => generateId());
+  const [copied, setCopied] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
+  // OTP verification state
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState<string | null>(null);
+  const [verified, setVerified] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(userId);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [userId]);
+
+  const handleRandomize = useCallback(() => {
+    setUserId(generateId());
+  }, []);
+
+  const handleVerify = useCallback(async () => {
+    if (!actionData?.signupEmail || otp.length !== 6) return;
+    setVerifying(true);
+    setOtpError(null);
+    const result = await verifyOtp(actionData.signupEmail, otp);
+    setVerifying(false);
+    if (result.error) {
+      setOtpError(result.error);
+    } else {
+      setVerified(true);
+      setTimeout(() => navigate("/auth/login"), 2000);
+    }
+  }, [actionData?.signupEmail, otp]);
+
+  // Step 3: Verified
+  if (actionData?.generatedUserId && verified) {
+    return (
+      <ShellCard className="mx-auto max-w-xl bg-white/92">
+        <div className="space-y-2">
+          <StatusPill label="Verified" />
+          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Email verified!</h2>
+          <p className="text-sm leading-6 text-muted-foreground">
+            Your persona is ready. Save your ID and PIN — they are the only way to log in.
+          </p>
+        </div>
+        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
+          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+          <div className="mt-1 flex items-center gap-3">
+            <p className="font-mono text-4xl font-bold tracking-widest text-amber-900">
+              {actionData.generatedUserId}
+            </p>
+            <Button
+              size="sm"
+              type="button"
+              variant="outline"
+              onClick={() => navigator.clipboard.writeText(actionData.generatedUserId!)}
+            >
+              Copy
+            </Button>
+          </div>
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">Redirecting to login…</p>
+      </ShellCard>
+    );
+  }
+
+  // Step 2: OTP verification
+  if (actionData?.generatedUserId) {
+    return (
+      <ShellCard className="mx-auto max-w-xl bg-white/92">
+        <div className="space-y-2">
+          <StatusPill label="Check your email" />
+          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Enter verification code</h2>
+          <p className="text-sm leading-6 text-muted-foreground">
+            We sent a 6-digit code to <span className="font-medium text-foreground">{actionData.signupEmail}</span>.
+            Enter it below to activate your account.
+          </p>
+        </div>
+
+        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4">
+          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+          <p className="mt-1 font-mono text-3xl font-bold tracking-widest text-amber-900">
+            {actionData.generatedUserId}
+          </p>
+          <p className="mt-1 text-xs text-amber-700">Write this down — you will need it to log in.</p>
+        </div>
+
+        <div className="mt-6 space-y-4">
+          <Field label="Verification code">
+            <Input
+              autoComplete="one-time-code"
+              inputMode="numeric"
+              maxLength={6}
+              minLength={6}
+              placeholder="000000"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
+            />
+          </Field>
+          {otpError ? (
+            <p className="text-sm text-red-600">{otpError}</p>
+          ) : null}
+          <div className="flex justify-end">
+            <Button disabled={otp.length !== 6 || verifying} onClick={handleVerify}>
+              {verifying ? "Verifying…" : "Verify email"}
+            </Button>
+          </div>
+        </div>
+      </ShellCard>
+    );
+  }
+
+  // Step 1: Signup form
   return (
     <ShellCard className="mx-auto max-w-xl bg-white/92">
       <div className="space-y-2">
         <StatusPill label="New member" />
-        <h2 className="text-2xl font-semibold tracking-[-0.03em]">Create a local test identity</h2>
+        <h2 className="text-2xl font-semibold tracking-[-0.03em]">Start your persona</h2>
         <p className="text-sm leading-6 text-muted-foreground">
-          This creates a normal member account. Admin access remains reserved for the seeded operator account.
+          A unique 6-character ID will be generated for you. Add a PIN to protect it.
         </p>
       </div>
+
+      <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
+        <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+        <div className="mt-1 flex items-center gap-3">
+          <p className="font-mono text-4xl font-bold tracking-widest text-amber-900">{userId}</p>
+          <div className="flex flex-col gap-1.5">
+            <Button size="sm" type="button" variant="outline" onClick={handleCopy}>
+              {copied ? "Copied!" : "Copy"}
+            </Button>
+            <Button size="sm" type="button" variant="outline" onClick={handleRandomize}>
+              Shuffle
+            </Button>
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-amber-700">Not happy with it? Hit Shuffle to get a new one.</p>
+      </div>
+
       <Form className="mt-6 space-y-4" method="post">
-        <Field label="User ID">
-          <Input autoComplete="username" name="user_id" required />
+        <input name="user_id" type="hidden" value={userId} />
+        <Field label="Email" hint="A 6-digit verification code will be sent to this address.">
+          <Input autoComplete="email" name="email" required type="email" />
         </Field>
-        <Field label="Password">
-          <Input autoComplete="new-password" minLength={8} name="password" required type="password" />
+        <Field label="PIN (4 digits)">
+          <div className="flex items-center gap-2">
+            <Input
+              autoComplete="new-password"
+              inputMode="numeric"
+              maxLength={4}
+              minLength={4}
+              name="password"
+              pattern="\d{4}"
+              required
+              type={showPin ? "text" : "password"}
+            />
+            <Button size="sm" type="button" variant="outline" onClick={() => setShowPin((v) => !v)}>
+              {showPin ? "Hide" : "Show"}
+            </Button>
+          </div>
         </Field>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">Use 8+ characters. This account is for local dev testing.</p>
+          <p className="text-xs text-muted-foreground">4-digit numeric PIN. Demo account only.</p>
           <Button type="submit">Create account</Button>
         </div>
       </Form>
+
       {actionData?.error ? (
         <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {actionData.error}

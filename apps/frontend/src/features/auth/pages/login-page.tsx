@@ -1,4 +1,5 @@
-import { Form, useActionData } from "react-router-dom";
+import { useState } from "react";
+import { Form, Link, useActionData } from "react-router-dom";
 
 import { Button, Field, Input, ShellCard, StatusPill } from "@/common/components";
 
@@ -6,6 +7,7 @@ import type { AuthActionData } from "../types";
 
 export function LoginPage() {
   const actionData = useActionData() as AuthActionData | undefined;
+  const [showPin, setShowPin] = useState(false);
 
   return (
     <ShellCard className="mx-auto max-w-xl bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(243,248,248,0.95))]">
@@ -17,20 +19,38 @@ export function LoginPage() {
         </p>
       </div>
       <Form className="mt-6 space-y-4" method="post">
-        <Field label="User ID">
-          <Input autoComplete="username" name="user_id" required />
+        <Field label="Email">
+          <Input autoComplete="email" name="email" required type="email" />
         </Field>
-        <Field label="Password">
-          <Input autoComplete="current-password" minLength={8} name="password" required type="password" />
+        <Field label="PIN">
+          <div className="flex items-center gap-2">
+            <Input
+              autoComplete="current-password"
+              inputMode="numeric"
+              name="password"
+              required
+              type={showPin ? "text" : "password"}
+            />
+            <Button size="sm" type="button" variant="outline" onClick={() => setShowPin((v) => !v)}>
+              {showPin ? "Hide" : "Show"}
+            </Button>
+          </div>
         </Field>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">Seeded admin is documented in the project env template.</p>
+          <Link className="text-xs text-muted-foreground underline underline-offset-2" to="/auth/reset-pin">
+            Forgot PIN?
+          </Link>
           <Button type="submit">Login</Button>
         </div>
       </Form>
       {actionData?.error ? (
         <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {actionData.error}
+          {actionData.error.includes("not verified") ? (
+            <span className="ml-1">
+              — <Link className="underline" to="/auth/signup">go back to verify</Link>
+            </span>
+          ) : null}
         </div>
       ) : null}
     </ShellCard>

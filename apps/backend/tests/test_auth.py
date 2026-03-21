@@ -6,17 +6,18 @@ from app.features.auth.service import sync_admin_seed
 
 
 def test_signup_login_me_and_logout_flow(client, signup_user, login_user):
-    signup_response = signup_user()["response"]
-    assert signup_response.json()["user_id"] == "alice"
-    assert signup_response.json()["is_admin"] is False
+    result = signup_user()
+    user_id = result["user_id"]
+    assert result["response"].json()["user_id"] == user_id
+    assert result["response"].json()["is_admin"] is False
 
-    login_response = login_user()
-    assert login_response.json() == {"user_id": "alice", "is_admin": False}
+    login_response = login_user(result["email"])
+    assert login_response.json() == {"user_id": user_id, "is_admin": False}
     assert "pm_access_token" in login_response.cookies
 
     me_response = client.get("/auth/me")
     assert me_response.status_code == 200
-    assert me_response.json()["user_id"] == "alice"
+    assert me_response.json()["user_id"] == user_id
     assert me_response.json()["is_admin"] is False
 
     logout_response = client.post("/auth/logout")

@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from app.common.db import get_db
 
-from .schemas import LoginRequest, SessionResponse, SignupRequest, UserResponse
-from .service import build_session, clear_session_cookie, create_user, get_current_user, to_user_response
+from .schemas import LoginRequest, ResetPinConfirm, ResetPinRequest, SessionResponse, SignupRequest, UserResponse, VerifyRequest
+from .service import build_session, clear_session_cookie, confirm_pin_reset, create_user, get_current_user, request_pin_reset, to_user_response, verify_otp
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -12,6 +12,21 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 @router.post("/signup", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def signup(payload: SignupRequest, db: Session = Depends(get_db)) -> UserResponse:
     return create_user(payload, db)
+
+
+@router.post("/verify", status_code=status.HTTP_204_NO_CONTENT)
+def verify(payload: VerifyRequest, db: Session = Depends(get_db)) -> None:
+    verify_otp(payload, db)
+
+
+@router.post("/reset-pin/request", status_code=status.HTTP_204_NO_CONTENT)
+def reset_pin_request(payload: ResetPinRequest, db: Session = Depends(get_db)) -> None:
+    request_pin_reset(payload, db)
+
+
+@router.post("/reset-pin/confirm", status_code=status.HTTP_204_NO_CONTENT)
+def reset_pin_confirm(payload: ResetPinConfirm, db: Session = Depends(get_db)) -> None:
+    confirm_pin_reset(payload, db)
 
 
 @router.post("/login", response_model=SessionResponse)

@@ -10,4 +10,7 @@ export type RootLoaderData = {
 
 export type AuthActionData = {
   error?: string;
+  generatedUserId?: string;
+  signupEmail?: string;
+  verified?: boolean;
 };
