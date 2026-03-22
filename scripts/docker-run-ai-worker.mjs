@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const containerName = "persona-mirror-backend";
+const containerName = "persona-mirror-ai-worker";
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -19,7 +19,7 @@ function run(command, args, options = {}) {
 
 // Parse .env and override DATABASE_URL for Docker networking
 const envVars = Object.fromEntries(
-  readFileSync("apps/backend/.env", "utf8")
+  readFileSync("apps/ai-worker/.env", "utf8")
     .split("\n")
     .filter((line) => line && !line.startsWith("#") && line.includes("="))
     .map((line) => {
@@ -27,7 +27,7 @@ const envVars = Object.fromEntries(
       return [line.slice(0, idx).trim(), line.slice(idx + 1).trim()];
     })
 );
-// Use compose service name "db" — backend joins the same Docker network
+// Use compose service name "db" — ai-worker joins the same Docker network
 envVars["DATABASE_URL"] =
   "postgresql+psycopg://persona:persona@db:5432/persona_mirror";
 
@@ -42,10 +42,8 @@ const status = run("docker", [
   containerName,
   "--network",
   "persona-mirror_default",
-  "-p",
-  "8000:8000",
   ...envFlags,
-  "persona-mirror-backend:dev",
+  "persona-mirror-ai-worker:dev",
 ]);
 
 process.exit(status);

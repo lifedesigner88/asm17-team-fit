@@ -10,7 +10,11 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fromConfigRoot("./src")
-    }
+    },
+    dedupe: ["react", "react-dom", "react-router-dom"]
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "react/jsx-dev-runtime", "react-router-dom"]
   },
   server: {
     host: "0.0.0.0",

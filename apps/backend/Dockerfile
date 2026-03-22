@@ -13,4 +13,4 @@ RUN uv sync --project apps/backend
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "uv run --project apps/backend uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir apps/backend --env-file apps/backend/.env"]
+CMD ["sh", "-c", "uv run --project apps/backend uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir apps/backend"]

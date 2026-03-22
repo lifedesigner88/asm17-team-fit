@@ -9,7 +9,7 @@ if (!dockerfilePath || !imageTag) {
 
 const result = spawnSync(
   "docker",
-  ["build", "--progress=plain", "-f", dockerfilePath, "-t", imageTag, "."],
+  ["build", "-f", dockerfilePath, "-t", imageTag, "."],
   {
     stdio: "inherit",
     shell: false,

@@ -4,6 +4,16 @@
   "sourceRoot": "apps/ai-worker",
   "projectType": "application",
   "targets": {
+    "docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node scripts/docker-build.mjs apps/ai-worker/Dockerfile persona-mirror-ai-worker:dev",
+          "node scripts/docker-run-ai-worker.mjs"
+        ],
+        "parallel": false
+      }
+    },
     "dev": {
       "executor": "nx:run-commands",
       "options": {

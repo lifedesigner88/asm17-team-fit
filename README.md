@@ -57,22 +57,29 @@ node scripts/setup-dev.mjs   # installs pnpm, Node deps, Python envs, generates 
 
 ### 3. Add API keys
 
-Edit `apps/backend/.env` and fill in:
+Edit `apps/backend/.env` and `apps/ai-worker/.env` and fill in:
 
 ```
 ANTHROPIC_API_KEY=...   # console.anthropic.com
 RESEND_API_KEY=...      # resend.com (optional — for email OTP)
 ```
 
-`apps/ai-worker` uses the same `ANTHROPIC_API_KEY` (already wired via Docker Compose).
-
 ### 4. Run
 
+**Option A — local dev** (services on host, DB + Redis in Docker)
 ```bash
-pnpm dev           # local dev (DB + Redis via Docker, services via Nx)
-pnpm docker        # build & run all services as Docker containers
+pnpm dev
+```
+
+**Option B — full Docker** (all services as containers)
+```bash
+pnpm docker        # builds images + starts backend, frontend, ai-worker
+pnpm docker:down   # stop all app containers
 pnpm infra:down    # stop DB and Redis
 ```
+
+> `pnpm docker` requires DB + Redis already running (`pnpm infra:up` is called automatically).
+> On first run, Docker builds can take a few minutes. Subsequent runs reuse cached layers.
 
 ---
 
