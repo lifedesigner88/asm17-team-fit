@@ -178,6 +178,8 @@ const DEMO_PROFILE_KO: PersonaProfile = {
 export async function personaLoader({ params }: LoaderFunctionArgs): Promise<PersonaLoaderData> {
   const personId = params.personId ?? "";
 
+  // "demo" route: try the real backend persona first; fall back to hardcoded data
+  // so the Ask panel has a valid persona_id to post against.
   if (personId === "demo") {
     const lang = i18n.resolvedLanguage ?? "en";
     return { profile: lang === "ko" ? DEMO_PROFILE_KO : DEMO_PROFILE_EN };
