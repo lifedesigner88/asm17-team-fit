@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { Form, Link, useActionData, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { Button, Field, Input, ShellCard, StatusPill } from "@/common/components";
 
@@ -13,6 +14,7 @@ function generateId(): string {
 }
 
 export function SignupPage() {
+  const { t } = useTranslation("auth");
   const actionData = useActionData() as AuthActionData | undefined;
   const navigate = useNavigate();
   const [userId, setUserId] = useState(() => generateId());
@@ -54,14 +56,12 @@ export function SignupPage() {
     return (
       <ShellCard className="mx-auto max-w-xl bg-white/92">
         <div className="space-y-2">
-          <StatusPill label="Verified" />
-          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Email verified!</h2>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Your persona is ready. Save your ID and PIN — they are the only way to log in.
-          </p>
+          <StatusPill label={t("signup.step3Pill")} />
+          <h2 className="text-2xl font-semibold tracking-[-0.03em]">{t("signup.step3Title")}</h2>
+          <p className="text-sm leading-6 text-muted-foreground">{t("signup.step3Description")}</p>
         </div>
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
-          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">{t("signup.personaIdLabel")}</p>
           <div className="mt-1 flex items-center gap-3">
             <p className="font-mono text-4xl font-bold tracking-widest text-amber-900">
               {actionData.generatedUserId}
@@ -72,11 +72,11 @@ export function SignupPage() {
               variant="outline"
               onClick={() => navigator.clipboard.writeText(actionData.generatedUserId!)}
             >
-              Copy
+              {t("signup.copy")}
             </Button>
           </div>
         </div>
-        <p className="mt-6 text-sm text-muted-foreground">Redirecting to login…</p>
+        <p className="mt-6 text-sm text-muted-foreground">{t("signup.redirecting")}</p>
       </ShellCard>
     );
   }
@@ -86,24 +86,22 @@ export function SignupPage() {
     return (
       <ShellCard className="mx-auto max-w-xl bg-white/92">
         <div className="space-y-2">
-          <StatusPill label="Check your email" />
-          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Enter verification code</h2>
+          <StatusPill label={t("signup.step2Pill")} />
+          <h2 className="text-2xl font-semibold tracking-[-0.03em]">{t("signup.step2Title")}</h2>
           <p className="text-sm leading-6 text-muted-foreground">
-            We sent a 6-digit code to <span className="font-medium text-foreground">{actionData.signupEmail}</span>.
-            Enter it below to activate your account.
+            {t("signup.step2Description", { email: actionData.signupEmail })}
           </p>
         </div>
 
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4">
-          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-amber-600">{t("signup.personaIdLabel")}</p>
           <p className="mt-1 font-mono text-3xl font-bold tracking-widest text-amber-900">
             {actionData.generatedUserId}
           </p>
-          <p className="mt-1 text-xs text-amber-700">Write this down — you will need it to log in.</p>
         </div>
 
         <div className="mt-6 space-y-4">
-          <Field label="Verification code">
+          <Field label={t("signup.verificationCodeLabel")}>
             <Input
               autoComplete="one-time-code"
               inputMode="numeric"
@@ -119,7 +117,7 @@ export function SignupPage() {
           ) : null}
           <div className="flex justify-end">
             <Button disabled={otp.length !== 6 || verifying} onClick={handleVerify}>
-              {verifying ? "Verifying…" : "Verify email"}
+              {verifying ? t("signup.verifying") : t("signup.verify")}
             </Button>
           </div>
         </div>
@@ -131,35 +129,33 @@ export function SignupPage() {
   return (
     <ShellCard className="mx-auto max-w-xl bg-white/92">
       <div className="space-y-2">
-        <StatusPill label="New member" />
-        <h2 className="text-2xl font-semibold tracking-[-0.03em]">Start your persona</h2>
-        <p className="text-sm leading-6 text-muted-foreground">
-          A unique 6-character ID will be generated for you. Add a PIN to protect it.
-        </p>
+        <StatusPill label={t("signup.step1Pill")} />
+        <h2 className="text-2xl font-semibold tracking-[-0.03em]">{t("signup.step1Title")}</h2>
+        <p className="text-sm leading-6 text-muted-foreground">{t("signup.step1Description")}</p>
       </div>
 
       <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
-        <p className="text-xs font-medium uppercase tracking-widest text-amber-600">Your Persona ID</p>
+        <p className="text-xs font-medium uppercase tracking-widest text-amber-600">{t("signup.personaIdLabel")}</p>
         <div className="mt-1 flex items-center gap-3">
           <p className="font-mono text-4xl font-bold tracking-widest text-amber-900">{userId}</p>
           <div className="flex flex-col gap-1.5">
             <Button size="sm" type="button" variant="outline" onClick={handleCopy}>
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("signup.copied") : t("signup.copy")}
             </Button>
             <Button size="sm" type="button" variant="outline" onClick={handleRandomize}>
-              Shuffle
+              {t("signup.shuffle")}
             </Button>
           </div>
         </div>
-        <p className="mt-3 text-xs text-amber-700">Not happy with it? Hit Shuffle to get a new one.</p>
+        <p className="mt-3 text-xs text-amber-700">{t("signup.personaIdHint")}</p>
       </div>
 
       <Form className="mt-6 space-y-4" method="post">
         <input name="user_id" type="hidden" value={userId} />
-        <Field label="Email" hint="A 6-digit verification code will be sent to this address.">
+        <Field label={t("signup.emailLabel")} hint={t("signup.emailHint")}>
           <Input autoComplete="email" name="email" required type="email" />
         </Field>
-        <Field label="PIN (4 digits)">
+        <Field label={t("signup.pinLabel")}>
           <div className="flex items-center gap-2">
             <Input
               autoComplete="new-password"
@@ -172,13 +168,13 @@ export function SignupPage() {
               type={showPin ? "text" : "password"}
             />
             <Button size="sm" type="button" variant="outline" onClick={() => setShowPin((v) => !v)}>
-              {showPin ? "Hide" : "Show"}
+              {showPin ? t("signup.hide") : t("signup.show")}
             </Button>
           </div>
         </Field>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">4-digit numeric PIN. Demo account only.</p>
-          <Button type="submit">Create account</Button>
+          <p className="text-xs text-muted-foreground">{t("signup.pinNote")}</p>
+          <Button type="submit">{t("signup.createAccount")}</Button>
         </div>
       </Form>
 

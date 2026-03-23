@@ -57,6 +57,24 @@ Goal: full AI pipeline → shareable Level 1 persona card
 
 ---
 
+## Phase 1.5 — Internationalization (KOR / ENG) `planned`
+
+Goal: full Korean ↔ English UI switch with AI responses in the active locale
+
+- [ ] Install `react-i18next` + `i18next-http-backend`; configure lazy namespace loading
+- [ ] Locale JSON files per feature: `en/{common,auth,capture,persona}.json` + `ko/` mirrors
+- [ ] Language detection: `localStorage` → `navigator.language` (`ko*` → Korean) → `en`
+- [ ] `<LangToggle>` component in nav (KO / EN pill switch, persists to localStorage)
+- [ ] Replace all hardcoded UI strings in auth, capture, persona, admin pages with `t()` calls
+- [ ] Korean web font — Pretendard via `@fontsource/pretendard` or CDN; apply in `index.css`
+- [ ] Layout audit: remove fixed widths on text containers; verify KOR/ENG renders without overflow
+- [ ] Pass `lang` (active locale) from frontend to `POST /capture/interview/chat` → backend forwards to Claude system prompt so AI replies in the correct language
+- [ ] AI-worker: inject locale into LangGraph state; persona generation prompts output KOR or ENG based on `lang`
+- [ ] Date / number formatting: replace manual formats with `Intl.DateTimeFormat` / `Intl.NumberFormat` using active locale
+- [ ] `<html lang="...">` attribute updated reactively on locale change
+
+---
+
 ## Phase 2 — Enriched Analysis `planned`
 
 Goal: Level 2+ persona depth, multi-modal input
