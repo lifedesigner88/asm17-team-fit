@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_PREFIX }}/persona-mirror-frontend:latest
           build-args: |
-            VITE_API_BASE_URL=https://asm.huposit.kr/api
+            VITE_API_BASE_URL=https://asm17.huposit.kr/api
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

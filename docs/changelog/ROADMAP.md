@@ -52,7 +52,7 @@ Goal: full AI pipeline → shareable Level 1 persona card
 - [ ] DB volume reset required (new columns: `result`, `persona_id`)
 - [ ] Production Docker images: frontend nginx build, backend
 - [ ] GHCR CI: build + push `persona-mirror-frontend` and `persona-mirror-backend`
-- [ ] Deploy to `asm.huposit.kr` via 260312-demo-infra (Caddy + compose) `2026-03-22`
+- [ ] Deploy to `asm17.huposit.kr` via 260312-demo-infra (Caddy + compose) `2026-03-22`
 
 ---
 
@@ -86,6 +86,6 @@ Goal: production-ready
 ## Next Recommended Work
 
 1. Production Docker images + GHCR CI for frontend and backend
-2. Deploy to `asm.huposit.kr` via 260312-demo-infra (Caddy routing + compose)
+2. Deploy to `asm17.huposit.kr` via 260312-demo-infra (Caddy routing + compose)
 3. `POST /persona/:id/ask` — Q&A panel AI answer
 4. DB volume reset on next local deploy (run `docker compose down -v && docker compose up`)
