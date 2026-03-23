@@ -3,7 +3,11 @@
   "remote.autoForwardPortsSource": "process",
   "remote.forwardOnOpen": true,
   "ports": [
-    { "number": 3000, "label": "Frontend", "protocol": "http" },
-    { "number": 8000, "label": "Backend API", "protocol": "http" }
+    { "number": 3000, "label": "Frontend (main)", "protocol": "http" },
+    { "number": 8000, "label": "Backend (main)", "protocol": "http" },
+    { "number": 3001, "label": "Frontend (front worktree)", "protocol": "http" },
+    { "number": 8001, "label": "Backend (front worktree)", "protocol": "http" },
+    { "number": 3002, "label": "Frontend (back worktree)", "protocol": "http" },
+    { "number": 8002, "label": "Backend (back worktree)", "protocol": "http" }
   ]
 }
