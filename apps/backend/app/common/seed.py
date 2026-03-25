@@ -12,7 +12,7 @@ from app.features.auth.models import User
 from app.features.persona.models import Persona
 
 DEMO_USER_EMAIL = os.getenv("DEMO_USER_EMAIL", "lifedesigner88@gmail.com")
-DEMO_USER_PIN   = os.getenv("DEMO_USER_PIN",   "1234")                 # login: email + 1234
+DEMO_USER_PIN   = os.getenv("DEMO_USER_PIN",   "123456")               # login: email + 123456
 DEMO_PERSONA_ID = os.getenv("DEMO_PERSONA_ID", "sejong")               # /persona/sejong
 DEMO_PERSONA_TITLE = "박세종 · AI SW Maestro 17 Team Building"
 DEMO_USER_NAME = "박세종"
@@ -433,7 +433,11 @@ _DATA_KOR: dict = {
         "cta": {
             "title": "저와 함께 팀을 하고 싶다는 생각이 드셨다면,\n빠르게 이메일로 연락주세요.",
             "body": (
-                "실무에서는 이메일 소통을 주로 쓰기 때문에, 편하게 이메일로 먼저 이야기해봐요."
+                "최근 만든 것, 맡고 싶은 역할, 함께하고 싶은 이유를 메일로 보내주세요.\n"
+                "보내주신 내용은 하나씩 모두 읽어보고,\n"
+                "24시간 안에 꼭 답장드리겠습니다.\n"
+                "이번에 함께하지 못하더라도 같은 문제의식과 주제에 관심 있는 분으로 기억하겠습니다.\n"
+                "이후 비슷한 프로젝트를 진행하게 되면 먼저 연락드리거나 협업을 제안드리겠습니다."
             ),
         },
     },

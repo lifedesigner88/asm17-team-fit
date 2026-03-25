@@ -25,10 +25,10 @@ from app.common.db import Base, SessionLocal, engine
 from app.features.auth.service import sync_admin_seed
 from app.main import app
 
-DEFAULT_PASSWORD = "1234"
+DEFAULT_PASSWORD = "123456"
 DEFAULT_EMAIL = "alice@example.com"
 ADMIN_EMAIL = "parksejong88@gmail.com"
-ADMIN_PASSWORD = "2026"
+ADMIN_PASSWORD = "123456"
 
 
 @pytest.fixture(autouse=True)

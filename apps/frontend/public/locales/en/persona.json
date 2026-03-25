@@ -5,7 +5,7 @@
   "hero": {
     "badge": "Public persona",
     "topValues": "Top values",
-    "portfolioButton": "Final Interview Portfolio",
+    "portfolioButton": "Deep Interview Portfolio",
     "healthButton": "Health Check",
     "healthLoading": "Checking...",
     "healthError": "Failed",

@@ -174,7 +174,7 @@ export function AdminVerificationsPage() {
                       <InfoField label="성별" value={formatGender(user.gender)} />
                       <InfoField label="생년월일" value={user.birth_date} mono />
                       <InfoField label="거주지" value={user.residence} />
-                      <InfoField label="휴대폰 번호" value={user.phone} mono />
+                      <InfoField label="합격자 초대코드" value={user.invite_code ?? user.phone} mono />
                       <InfoField
                         label="면접 날짜"
                         value={

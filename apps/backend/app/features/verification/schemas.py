@@ -6,11 +6,11 @@ from pydantic import BaseModel
 class VerificationApplyRequest(BaseModel):
     name: str
     gender: str  # 'M' | 'F'
-    birth_date: date
-    residence: str
-    phone: str
-    github_address: str
-    notion_url: str
+    birth_date: date | None = None
+    residence: str | None = None
+    invite_code: str | None = None
+    github_address: str | None = None
+    notion_url: str | None = None
     interview_date: date
     interview_start_time: time
     interview_room: int  # 1-5

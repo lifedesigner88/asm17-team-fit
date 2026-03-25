@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { Button, Field, Input, ShellCard, StatusPill } from "@/common/components";
 
-import { verifyOtp } from "../api";
+import { resendVerificationCode, verifyOtp } from "../api";
 import type { AuthActionData } from "../types";
 
 export function SignupPage() {
@@ -18,11 +18,14 @@ export function SignupPage() {
   const [otpError, setOtpError] = useState<string | null>(null);
   const [verified, setVerified] = useState(false);
   const [verifying, setVerifying] = useState(false);
+  const [resending, setResending] = useState(false);
+  const [resendNotice, setResendNotice] = useState<string | null>(null);
 
   const handleVerify = useCallback(async () => {
     if (!actionData?.signupEmail || otp.length !== 6) return;
     setVerifying(true);
     setOtpError(null);
+    setResendNotice(null);
     const result = await verifyOtp(actionData.signupEmail, otp);
     setVerifying(false);
     if (result.error) {
@@ -32,6 +35,20 @@ export function SignupPage() {
       setTimeout(() => navigate("/auth/login"), 2000);
     }
   }, [actionData?.signupEmail, otp]);
+
+  const handleResend = useCallback(async () => {
+    if (!actionData?.signupEmail) return;
+    setResending(true);
+    setOtpError(null);
+    setResendNotice(null);
+    const result = await resendVerificationCode(actionData.signupEmail);
+    setResending(false);
+    if (result.error) {
+      setOtpError(result.error);
+      return;
+    }
+    setResendNotice(t("signup.resendSent"));
+  }, [actionData?.signupEmail, t]);
 
   // Step 3: Verified
   if (actionData?.signupEmail && verified) {
@@ -71,11 +88,18 @@ export function SignupPage() {
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
             />
           </Field>
+          <p className="text-xs leading-6 text-muted-foreground">{t("signup.resendHint")}</p>
           {otpError ? (
             <p className="text-sm text-red-600">{otpError}</p>
           ) : null}
-          <div className="flex justify-end">
-            <Button disabled={otp.length !== 6 || verifying} onClick={handleVerify}>
+          {resendNotice ? (
+            <p className="text-sm text-emerald-700">{resendNotice}</p>
+          ) : null}
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <Button disabled={resending || verifying} onClick={handleResend} type="button" variant="outline">
+              {resending ? t("signup.resending") : t("signup.resend")}
+            </Button>
+            <Button disabled={otp.length !== 6 || verifying || resending} onClick={handleVerify}>
               {verifying ? t("signup.verifying") : t("signup.verify")}
             </Button>
           </div>
@@ -102,10 +126,10 @@ export function SignupPage() {
             <Input
               autoComplete="new-password"
               inputMode="numeric"
-              maxLength={4}
-              minLength={4}
+              maxLength={6}
+              minLength={6}
               name="password"
-              pattern="\d{4}"
+              pattern="\d{6}"
               required
               type={showPin ? "text" : "password"}
             />

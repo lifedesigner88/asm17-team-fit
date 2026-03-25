@@ -5,6 +5,7 @@ export type AdminUser = {
   created_at: string;
   github_address?: string | null;
   notion_url?: string | null;
+  invite_code?: string | null;
   name?: string | null;
   gender?: string | null;
   birth_date?: string | null;

@@ -692,6 +692,53 @@ function HupositoryButton({ className }: { className?: string }) {
   );
 }
 
+function GmailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="3.25" y="5.5" width="17.5" height="13" rx="2.5" fill="white" />
+      <path
+        d="M4.75 8.25 12 13.4l7.25-5.15"
+        stroke="#EA4335"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4.75 8.35v8.4"
+        stroke="#34A853"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      <path
+        d="M19.25 8.35v8.4"
+        stroke="#4285F4"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      <path
+        d="M4.75 16.75h14.5"
+        stroke="#FBBC05"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function SpinnerIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={cn("animate-spin", className)}>
+      <circle cx="12" cy="12" r="8.5" className="stroke-emerald-200" strokeWidth="2.4" />
+      <path
+        d="M20.5 12a8.5 8.5 0 0 0-8.5-8.5"
+        className="stroke-emerald-600"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 // ─── Tech Stack card ─────────────────────────────────────────────────────────
 
 function TechStackCard({ items }: { items: TechStackItem[] }) {
@@ -933,15 +980,21 @@ function CreatorPrWhyCard({
 function CreatorPrCtaCard({
   data,
   email,
+  emailCopying,
   emailCopied,
   onEmailCopy
 }: {
   data: CreatorPrProfile;
   email: string | null;
+  emailCopying: boolean;
   emailCopied: boolean;
   onEmailCopy: () => Promise<void>;
 }) {
   const { t } = useTranslation("persona");
+  const ctaLines = data.cta.body
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 
   return (
     <Card
@@ -959,7 +1012,14 @@ function CreatorPrCtaCard({
             <CardTitle className={cn(SECTION_TITLE_BASE, "max-w-4xl whitespace-pre-line text-emerald-950")}>
               {data.cta.title}
             </CardTitle>
-            <p className="mt-3 text-sm leading-7 text-emerald-900/80">{data.cta.body}</p>
+            <ul className="mt-3 space-y-1.5 pl-3">
+              {ctaLines.map((line) => (
+                <li key={line} className="flex gap-2 text-sm leading-7 text-emerald-900/80">
+                  <span className="mt-0.5 shrink-0 font-semibold text-emerald-600">*</span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {email ? (
@@ -968,18 +1028,25 @@ function CreatorPrCtaCard({
               onClick={() => {
                 void onEmailCopy();
               }}
-              className="group flex h-full min-h-[148px] flex-col justify-between rounded-[24px] border border-emerald-200/90 bg-white px-5 py-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50/70"
+              disabled={emailCopying}
+              className="group flex h-full min-h-[168px] flex-col items-center justify-center rounded-[24px] border border-emerald-200/90 bg-white px-5 py-5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50/70"
             >
-              <div className="space-y-2">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-600">
-                  {t("creatorPr.contactButton")}
-                </div>
-                <div className="break-all text-sm leading-6 font-medium text-slate-800">{email}</div>
-              </div>
-              <div className="flex items-center justify-between gap-3 pt-4">
-                <span className="text-xs font-semibold text-slate-500">
-                  {emailCopied ? t("creatorIntro.emailCopied") : t("creatorPr.contactButton")}
+              <div className="flex flex-col items-center justify-center gap-4">
+                <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-200 bg-white shadow-sm transition group-hover:border-emerald-300">
+                  {emailCopying ? (
+                    <SpinnerIcon className="h-8 w-8" />
+                  ) : (
+                    <GmailIcon className="h-8 w-8" />
+                  )}
                 </span>
+                <div className="space-y-1">
+                  <p className="text-lg font-semibold leading-7 text-slate-950">
+                    {t("creatorPr.contactButton")}
+                  </p>
+                  <p className="break-all text-xs leading-6 font-medium text-slate-600">{email}</p>
+                </div>
+              </div>
+              <div className="mt-5">
                 <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-emerald-700 transition group-hover:border-emerald-300 group-hover:bg-white">
                   {emailCopied ? t("creatorIntro.emailCopied") : t("creatorIntro.emailCopy")}
                 </span>
@@ -1028,30 +1095,27 @@ function PersonaChatHowItWorksButton({ compact = false }: { compact?: boolean })
               aria-labelledby="persona-chat-how-title"
               className="relative z-10 w-full max-w-3xl"
             >
+              <button
+                type="button"
+                aria-label={t("qa.howItWorksClose")}
+                onClick={() => setOpen(false)}
+                className="absolute top-2 right-2 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/90 bg-white/96 text-slate-500 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur transition hover:-translate-y-0.5 hover:text-slate-900 sm:top-3 sm:right-3"
+              >
+                <span className="text-xl leading-none" aria-hidden="true">
+                  ×
+                </span>
+              </button>
               <Card className="max-h-[calc(100vh-2rem)] overflow-y-auto rounded-[30px] border-white/80 bg-white/97 shadow-2xl">
-                <CardHeader className="gap-3 px-5 pt-5 pb-0 sm:px-6 sm:pt-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-2">
-                      <SectionEyebrow className="text-sky-600">
-                        {t("qa.howItWorksBadge")}
-                      </SectionEyebrow>
-                      <CardTitle
-                        id="persona-chat-how-title"
-                        className="text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-[1.45rem]"
-                      >
-                        {t("qa.howItWorksTitle")}
-                      </CardTitle>
-                      <p className={SECTION_TEXT_BASE}>{t("qa.howItWorksDescription")}</p>
-                    </div>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setOpen(false)}
-                      className="text-slate-500 hover:text-slate-900"
+                <CardHeader className="gap-3 px-5 pt-5 pb-0 pr-16 sm:px-6 sm:pt-6 sm:pr-20">
+                  <div className="space-y-2">
+                    <SectionEyebrow className="text-sky-600">{t("qa.howItWorksBadge")}</SectionEyebrow>
+                    <CardTitle
+                      id="persona-chat-how-title"
+                      className="text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-[1.45rem]"
                     >
-                      {t("qa.howItWorksClose")}
-                    </Button>
+                      {t("qa.howItWorksTitle")}
+                    </CardTitle>
+                    <p className={SECTION_TEXT_BASE}>{t("qa.howItWorksDescription")}</p>
                   </div>
                 </CardHeader>
                 <CardContent className={SECTION_CONTENT_BASE}>
@@ -1497,12 +1561,28 @@ export function PersonaPage({ pageMode = "pr" }: { pageMode?: PersonaPageMode })
   }
 
   const [emailCopied, setEmailCopied] = useState(false);
+  const [emailCopying, setEmailCopying] = useState(false);
   const handleEmailCopy = useCallback(async () => {
-    if (!email) return;
-    await navigator.clipboard.writeText(email);
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
-  }, [email]);
+    if (!email || emailCopying) return;
+    setEmailCopying(true);
+    setEmailCopied(false);
+
+    const startedAt = performance.now();
+
+    try {
+      await navigator.clipboard.writeText(email);
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, 420 - elapsed);
+
+      window.setTimeout(() => {
+        setEmailCopying(false);
+        setEmailCopied(true);
+        window.setTimeout(() => setEmailCopied(false), 2000);
+      }, remaining);
+    } catch {
+      setEmailCopying(false);
+    }
+  }, [email, emailCopying]);
 
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(async () => {
@@ -1951,6 +2031,7 @@ export function PersonaPage({ pageMode = "pr" }: { pageMode?: PersonaPageMode })
         <CreatorPrCtaCard
           data={creatorPr}
           email={email}
+          emailCopying={emailCopying}
           emailCopied={emailCopied}
           onEmailCopy={handleEmailCopy}
         />

@@ -1,23 +1,26 @@
 from datetime import date, datetime, time
 from typing import Annotated
+from typing import Literal
 
 from pydantic import BaseModel, EmailStr, StringConstraints
 
-# Signup: exactly 4 digits (demo PIN)
+# Signup: exactly 6 digits (demo PIN)
 SignupPasswordValue = Annotated[
     str,
-    StringConstraints(min_length=4, max_length=4, pattern=r"^\d{4}$"),
+    StringConstraints(min_length=6, max_length=6, pattern=r"^\d{6}$"),
 ]
-# Login: exactly 4 digits (same as signup PIN)
+# Login: exactly 6 digits (same as signup PIN)
 LoginPasswordValue = Annotated[
     str,
-    StringConstraints(min_length=4, max_length=4, pattern=r"^\d{4}$"),
+    StringConstraints(min_length=6, max_length=6, pattern=r"^\d{6}$"),
 ]
+AuthLocaleValue = Literal["ko", "en"]
 
 
 class SignupRequest(BaseModel):
     password: SignupPasswordValue
     email: EmailStr
+    locale: AuthLocaleValue = "ko"
 
 
 class LoginRequest(BaseModel):
@@ -30,8 +33,14 @@ class VerifyRequest(BaseModel):
     otp: str
 
 
+class ResendVerificationRequest(BaseModel):
+    email: EmailStr
+    locale: AuthLocaleValue = "ko"
+
+
 class ResetPinRequest(BaseModel):
     email: EmailStr
+    locale: AuthLocaleValue = "ko"
 
 
 class ResetPinConfirm(BaseModel):
@@ -52,6 +61,7 @@ class UserResponse(BaseModel):
     created_at: datetime
     github_address: str | None = None
     notion_url: str | None = None
+    invite_code: str | None = None
     name: str | None = None
     gender: str | None = None
     birth_date: date | None = None

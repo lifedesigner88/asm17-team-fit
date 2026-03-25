@@ -1,8 +1,14 @@
 import { redirect } from "react-router-dom";
 
+import i18n from "@/lib/i18n";
+
 import type { AuthActionData, RootLoaderData } from "./types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+
+function getAuthLocale(): "ko" | "en" {
+  return i18n.resolvedLanguage?.startsWith("ko") ? "ko" : "en";
+}
 
 export async function rootLoader(): Promise<RootLoaderData> {
   const response = await fetch(`${API_BASE_URL}/auth/me`, {
@@ -29,7 +35,7 @@ export async function signupAction({ request }: { request: Request }): Promise<A
   const response = await fetch(`${API_BASE_URL}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ password, email }),
+    body: JSON.stringify({ password, email, locale: getAuthLocale() }),
     credentials: "include",
   });
 
@@ -45,7 +51,7 @@ export async function requestPinReset(email: string): Promise<{ error?: string }
   const response = await fetch(`${API_BASE_URL}/auth/reset-pin/request`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, locale: getAuthLocale() }),
     credentials: "include",
   });
   if (response.ok) return {};
@@ -77,6 +83,20 @@ export async function verifyOtp(email: string, otp: string): Promise<{ error?: s
 
   const data = (await response.json().catch(() => null)) as { detail?: string } | null;
   return { error: data?.detail ?? "Verification failed" };
+}
+
+export async function resendVerificationCode(email: string): Promise<{ error?: string }> {
+  const response = await fetch(`${API_BASE_URL}/auth/verify/resend`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, locale: getAuthLocale() }),
+    credentials: "include",
+  });
+
+  if (response.ok) return {};
+
+  const data = (await response.json().catch(() => null)) as { detail?: string } | null;
+  return { error: data?.detail ?? "Resend failed" };
 }
 
 export async function loginAction({ request }: { request: Request }): Promise<AuthActionData | Response> {

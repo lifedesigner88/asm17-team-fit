@@ -21,12 +21,30 @@ def _require_text(value: str, label: str) -> str:
     return normalized
 
 
+def _optional_text(value: str | None) -> str | None:
+    if value is None:
+        return None
+    normalized = value.strip()
+    return normalized or None
+
+
+def _validate_room(value: int) -> int:
+    if not (1 <= value <= 5):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="면접 방 번호는 1~5 사이여야 합니다.",
+        )
+    return value
+
+
 def _validate_payload(payload: VerificationApplyRequest) -> None:
     _require_text(payload.name, "이름")
-    _require_text(payload.residence, "거주지")
-    _require_text(payload.phone, "휴대폰 번호")
-    _require_text(payload.github_address, "깃허브 주소")
-    _require_text(payload.notion_url, "노션 링크")
+
+    if payload.gender not in ("M", "F"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="성별은 'M' 또는 'F'만 허용됩니다.",
+        )
 
     date_str = payload.interview_date.isoformat()
     if date_str not in VALID_INTERVIEW_DATES:
@@ -35,26 +53,25 @@ def _validate_payload(payload: VerificationApplyRequest) -> None:
             detail="유효하지 않은 면접 날짜입니다. (3/19~3/22)",
         )
 
-    if payload.gender not in ("M", "F"):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="성별은 'M' 또는 'F'만 허용됩니다.",
-        )
-
     if not (time(9, 0) <= payload.interview_start_time < time(17, 0)):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="면접 시작시간은 09:00 이상 17:00 미만이어야 합니다.",
         )
 
-    if not (1 <= payload.interview_room <= 5):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="면접 방 번호는 1~5 사이여야 합니다.",
-        )
+    _validate_room(payload.interview_room)
 
 
 def _write_payload_to_user(payload: VerificationApplyRequest, user: User) -> None:
+    user.name = _require_text(payload.name, "이름")
+    user.gender = payload.gender
+    user.birth_date = payload.birth_date
+    user.residence = _optional_text(payload.residence)
+    # Reuse the existing field until a dedicated invite-code column is introduced.
+    user.phone = _optional_text(payload.invite_code)
+    user.github_address = _optional_text(payload.github_address)
+    user.notion_url = _optional_text(payload.notion_url)
+
     interview_time_slot = derive_interview_time_slot(payload.interview_start_time)
     if interview_time_slot is None:
         raise HTTPException(
@@ -62,13 +79,6 @@ def _write_payload_to_user(payload: VerificationApplyRequest, user: User) -> Non
             detail="입력한 시작시간으로 타임 슬롯을 계산할 수 없습니다.",
         )
 
-    user.name = _require_text(payload.name, "이름")
-    user.gender = payload.gender
-    user.birth_date = payload.birth_date
-    user.residence = _require_text(payload.residence, "거주지")
-    user.phone = _require_text(payload.phone, "휴대폰 번호")
-    user.github_address = _require_text(payload.github_address, "깃허브 주소")
-    user.notion_url = _require_text(payload.notion_url, "노션 링크")
     user.interview_date = payload.interview_date
     user.interview_start_time = payload.interview_start_time
     user.interview_time_slot = interview_time_slot

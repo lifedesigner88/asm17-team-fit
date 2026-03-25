@@ -21,15 +21,24 @@ from app.common.security import (
 
 from .email import send_otp_email, send_reset_pin_email
 from .models import User
-from .schemas import LoginRequest, ResetPinConfirm, ResetPinRequest, SessionResponse, SignupRequest, UserResponse, VerifyRequest
+from .schemas import (
+    LoginRequest,
+    ResendVerificationRequest,
+    ResetPinConfirm,
+    ResetPinRequest,
+    SessionResponse,
+    SignupRequest,
+    UserResponse,
+    VerifyRequest,
+)
 
 security_scheme = HTTPBearer(auto_error=False)
 
 
 def _read_admin_seed_password() -> str:
-    password = os.getenv("ADMIN_SEED_PASSWORD", "2026")
-    if re.fullmatch(r"\d{4}", password) is None:
-        raise RuntimeError("ADMIN_SEED_PASSWORD must be exactly 4 digits to match the PIN login flow.")
+    password = os.getenv("ADMIN_SEED_PASSWORD", "123456")
+    if re.fullmatch(r"\d{6}", password) is None:
+        raise RuntimeError("ADMIN_SEED_PASSWORD must be exactly 6 digits to match the PIN login flow.")
     return password
 
 
@@ -46,6 +55,7 @@ def to_user_response(user: User) -> UserResponse:
         created_at=user.created_at,
         github_address=user.github_address,
         notion_url=user.notion_url,
+        invite_code=user.phone,
         name=user.name,
         gender=user.gender,
         birth_date=user.birth_date,
@@ -81,11 +91,6 @@ def sync_admin_seed(db: Session) -> None:
         admin.is_admin = True
         admin.is_verified = True
         admin.email = ADMIN_SEED_EMAIL
-        is_valid, updated_hash = verify_password_and_update(ADMIN_SEED_PASSWORD, admin.password_hash)
-        if not is_valid:
-            admin.password_hash = hash_password(ADMIN_SEED_PASSWORD)
-        elif updated_hash:
-            admin.password_hash = updated_hash
     db.commit()
 
 
@@ -94,17 +99,31 @@ def _generate_otp() -> tuple[str, datetime]:
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=10)
     return otp, expires_at
 
+def _issue_signup_verification(user: User, db: Session, locale: str | None = None) -> UserResponse:
+    otp, expires_at = _generate_otp()
+    user.otp_code = otp
+    user.otp_expires_at = expires_at
+    db.commit()
+    db.refresh(user)
+    send_otp_email(user.email, otp, locale)
+    return to_user_response(user)
+
 
 def create_user(payload: SignupRequest, db: Session) -> UserResponse:
-    if db.scalar(select(User).where(User.email == payload.email)) is not None:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already registered")
-    otp, expires_at = _generate_otp()
+    existing_user = db.scalar(select(User).where(User.email == payload.email))
+    if existing_user is not None:
+        if existing_user.is_verified:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already registered")
+        existing_user.password_hash = hash_password(payload.password)
+        existing_user.is_verified = False
+        return _issue_signup_verification(existing_user, db, payload.locale)
+
     user = User(
         email=payload.email,
         password_hash=hash_password(payload.password),
         is_verified=False,
-        otp_code=otp,
-        otp_expires_at=expires_at,
+        otp_code=None,
+        otp_expires_at=None,
         is_admin=False,
     )
     db.add(user)
@@ -113,9 +132,7 @@ def create_user(payload: SignupRequest, db: Session) -> UserResponse:
     except IntegrityError as exc:
         db.rollback()
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already registered") from exc
-    db.refresh(user)
-    send_otp_email(user.email, otp)
-    return to_user_response(user)
+    return _issue_signup_verification(user, db, payload.locale)
 
 
 def verify_otp(payload: VerifyRequest, db: Session) -> None:
@@ -138,6 +155,13 @@ def verify_otp(payload: VerifyRequest, db: Session) -> None:
     db.commit()
 
 
+def resend_verification_code(payload: ResendVerificationRequest, db: Session) -> None:
+    user = db.scalar(select(User).where(User.email == payload.email))
+    if user is None or user.is_verified:
+        return
+    _issue_signup_verification(user, db, payload.locale)
+
+
 def request_pin_reset(payload: ResetPinRequest, db: Session) -> None:
     user = db.scalar(select(User).where(User.email == payload.email))
     if user is None:
@@ -146,7 +170,7 @@ def request_pin_reset(payload: ResetPinRequest, db: Session) -> None:
     user.otp_code = otp
     user.otp_expires_at = expires_at
     db.commit()
-    send_reset_pin_email(user.email, otp)
+    send_reset_pin_email(user.email, otp, payload.locale)
 
 
 def confirm_pin_reset(payload: ResetPinConfirm, db: Session) -> None:

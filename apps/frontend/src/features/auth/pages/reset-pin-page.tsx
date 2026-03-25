@@ -68,13 +68,13 @@ export function ResetPinPage() {
               <Input
                 autoComplete="new-password"
                 inputMode="numeric"
-                maxLength={4}
-                minLength={4}
-                pattern="\d{4}"
-                placeholder="0000"
+                maxLength={6}
+                minLength={6}
+                pattern="\d{6}"
+                placeholder="000000"
                 value={newPin}
                 type={showPin ? "text" : "password"}
-                onChange={(e) => setNewPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
+                onChange={(e) => setNewPin(e.target.value.replace(/\D/g, "").slice(0, 6))}
               />
               <Button size="sm" type="button" variant="outline" onClick={() => setShowPin((v) => !v)}>
                 {showPin ? t("resetPin.hide") : t("resetPin.show")}
@@ -83,7 +83,7 @@ export function ResetPinPage() {
           </Field>
           {error ? <p className="text-sm text-red-600">{error}</p> : null}
           <div className="flex justify-end">
-            <Button disabled={otp.length !== 6 || newPin.length !== 4 || loading} onClick={handleConfirm}>
+            <Button disabled={otp.length !== 6 || newPin.length !== 6 || loading} onClick={handleConfirm}>
               {loading ? t("resetPin.resetting") : t("resetPin.resetPin")}
             </Button>
           </div>

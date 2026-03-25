@@ -1000,6 +1000,12 @@ export function DashboardPage() {
                   <SomaLogoCard />
                 </div>
               )}
+
+              <div className="mt-5 border-t border-border/60 pt-4">
+                <p className="text-xs leading-6 text-muted-foreground">
+                  {t("dashboard.checkStorageNote")}
+                </p>
+              </div>
             </ShellCard>
           </div>
         </div>

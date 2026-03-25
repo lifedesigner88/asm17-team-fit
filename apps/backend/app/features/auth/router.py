@@ -3,8 +3,27 @@ from sqlalchemy.orm import Session
 
 from app.common.db import get_db
 
-from .schemas import LoginRequest, ResetPinConfirm, ResetPinRequest, SessionResponse, SignupRequest, UserResponse, VerifyRequest
-from .service import build_session, clear_session_cookie, confirm_pin_reset, create_user, get_current_user, request_pin_reset, to_user_response, verify_otp
+from .schemas import (
+    LoginRequest,
+    ResendVerificationRequest,
+    ResetPinConfirm,
+    ResetPinRequest,
+    SessionResponse,
+    SignupRequest,
+    UserResponse,
+    VerifyRequest,
+)
+from .service import (
+    build_session,
+    clear_session_cookie,
+    confirm_pin_reset,
+    create_user,
+    get_current_user,
+    request_pin_reset,
+    resend_verification_code,
+    to_user_response,
+    verify_otp,
+)
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -17,6 +36,11 @@ def signup(payload: SignupRequest, db: Session = Depends(get_db)) -> UserRespons
 @router.post("/verify", status_code=status.HTTP_204_NO_CONTENT)
 def verify(payload: VerifyRequest, db: Session = Depends(get_db)) -> None:
     verify_otp(payload, db)
+
+
+@router.post("/verify/resend", status_code=status.HTTP_204_NO_CONTENT)
+def verify_resend(payload: ResendVerificationRequest, db: Session = Depends(get_db)) -> None:
+    resend_verification_code(payload, db)
 
 
 @router.post("/reset-pin/request", status_code=status.HTTP_204_NO_CONTENT)

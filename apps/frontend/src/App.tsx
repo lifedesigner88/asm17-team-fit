@@ -155,7 +155,6 @@ export function App() {
   ];
 
   useEffect(() => {
-    if (!location.pathname.startsWith("/auth/")) return;
     if (typeof window === "undefined") return;
     if (!window.matchMedia("(max-width: 1023px)").matches) return;
 

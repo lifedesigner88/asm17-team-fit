@@ -1,8 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        try {
+          const saved = window.localStorage.getItem("pm_lang");
+          const next =
+            saved === "ko" || saved === "en"
+              ? saved
+              : window.navigator.language?.toLowerCase().startsWith("ko")
+                ? "ko"
+                : "en";
+          document.documentElement.lang = next;
+        } catch {
+          document.documentElement.lang = "ko";
+        }
+      })();
+    </script>
     <link rel="icon" type="image/png" href="/asm17_logo.png" />
     <link rel="apple-touch-icon" href="/asm17_logo.png" />
     <title>박세종 PR | AI SW Maestro 17</title>

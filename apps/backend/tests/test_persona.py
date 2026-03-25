@@ -35,7 +35,7 @@ PERSONA_DATA_KO = {
 }
 
 
-def _create_user(email: str, password: str = "1234", *, is_verified: bool = True) -> int:
+def _create_user(email: str, password: str = "123456", *, is_verified: bool = True) -> int:
     with SessionLocal() as db:
         user = User(
             email=email,

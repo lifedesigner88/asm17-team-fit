@@ -8,7 +8,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
+    fallbackLng: "ko",
     supportedLngs: ["en", "ko"],
     ns: ["common", "auth", "capture", "persona"],
     defaultNS: "common",

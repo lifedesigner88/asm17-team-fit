@@ -5,7 +5,7 @@
   "hero": {
     "badge": "공개 페르소나",
     "topValues": "핵심 가치",
-    "portfolioButton": "최종면접 포트폴리오",
+    "portfolioButton": "심층면접 포트폴리오",
     "healthButton": "헬스체크",
     "healthLoading": "체크 중...",
     "healthError": "실패",
