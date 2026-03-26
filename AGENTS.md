@@ -60,6 +60,7 @@ Build SoMa Community step by step — not just fast, but in a way that makes str
 - Feature code: `apps/frontend/src/features/<domain>` → subfolders `components/`, `pages/`, `layout/`, `utils/`.
 - Before adding a new component, check if shared UI already covers it.
 - If a pattern repeats more than once, lift it — do not inline copy-paste.
+- Preserve the multilingual UI contract. When changing or adding user-facing frontend copy, update both `apps/frontend/public/locales/ko/*` and `apps/frontend/public/locales/en/*`, and do not hardcode single-language strings unless the existing surface already follows that pattern.
 - `index.ts` is the entry point only; no logic.
 
 ### Backend
