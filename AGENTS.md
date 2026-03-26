@@ -60,6 +60,7 @@ Build SoMa Community step by step — not just fast, but in a way that makes str
 - Feature code: `apps/frontend/src/features/<domain>` → subfolders `components/`, `pages/`, `layout/`, `utils/`.
 - Before adding a new component, check if shared UI already covers it.
 - If a pattern repeats more than once, lift it — do not inline copy-paste.
+- Preserve the multilingual UI contract. When changing or adding user-facing frontend copy, update both `apps/frontend/public/locales/ko/*` and `apps/frontend/public/locales/en/*`, and do not hardcode single-language strings unless the existing surface already follows that pattern.
 - `index.ts` is the entry point only; no logic.
 
 ### Backend
@@ -107,6 +108,12 @@ Build SoMa Community step by step — not just fast, but in a way that makes str
 - Input: strip/validate before storage.
 - Personal data (verification info, phone numbers, links, voice/images): handled conservatively.
 - Heavy AI tasks: async, separated from web request cycle.
+
+### Hupository Data Ownership
+
+- `apps/backend/hupository/data` is managed in another workflow and is not the default editing target in this repo.
+- Do not update Hupository data files during normal tasks unless the user explicitly asks for that specific change.
+- If a task needs current-state wording, prefer updating repo docs, code, or UI copy rather than patching Hupository source data.
 
 ## Quality Rules
 
