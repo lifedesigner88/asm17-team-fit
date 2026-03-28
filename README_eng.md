@@ -1,130 +1,124 @@
-# Park Sejong PR for ASM17
+# team-fit
 
-> The root URL now opens directly into `Park Sejong PR`.
+The current GitHub repository URL is `https://github.com/lifedesigner88/asm17-team-fit`.
+
+> Can team building be approached like a coding test?
 >
-> It started from a simple real-world problem: before meeting in person, applicants should be able to share interview schedule, GitHub, and self-introduction Notion links, then understand the people who interviewed together with them faster.
+> I'm Sejong Park, a developer who works through life problems with AI.
 >
-> Inside, the dashboard, verification, and ASM17 team-building operations flow still remain active, and a new `Team-fit Explorer` now acts as the next durable product surface.
+> I believe engineering is about defining a problem clearly and designing a better solution with technology.
+>
+> The problem we are facing is clear: among 300 people we may work with for the next six months, how do we find the two who fit us better?
+>
+> We cannot meet everyone, we cannot choose a team from self-introduction docs alone, and part of the final decision still comes down to intuition.
+>
+> So I am approaching this less as a recommender that declares the right answer and more as a structure that narrows the candidate set and helps us decide who to talk to first.
+>
+> This repository is the first demo for showing how I see that problem and how I am currently trying to solve it.
 
 For the Korean README, see [README.md](README.md).
 
+## Current Product Definition
+
+As of March 28, 2026, the root experience of this project is `Team-fit exploration`, not `Park Sejong PR`.
+
+- `/` is the `Team-fit exploration` front door that explains the problem and immediately opens the profile-and-recommendation flow.
+- `/persona/sejong` is the dedicated builder profile page.
+- `/ai/sejong` is the login-based `AI Sejong` multi-turn chat.
+- `/seoul/dashboard` remains the ASM17 Seoul interview discovery and ops surface.
+- `/team-fit` is kept as a legacy alias and now resolves to `/`.
+
+The current product is therefore `team-fit + AI Sejong + ASM17 operations tooling`.
+
 ## Why I Built This
 
-SW Maestro 17 team building is a real, time-bounded problem.
+The original motivation came from SW Maestro 17 team building.
 
-Before people meet in person, there is usually very little structured context to help them decide who they should talk to. Most people only know a name, a short intro, or a GitHub link passed around in chat.
+Before people meet in person, there is very little structured context. Most people end up deciding based on a name, a short intro, a GitHub link, and eventually intuition.
 
-This project started from one practical idea:
+This project is not trying to replace human judgment with an automated truth machine. It is trying to answer a more practical question:
 
-> Before meeting people in person, it would be useful if applicants could share interview schedule, GitHub, and intro links and understand the people who interviewed together with them.
+> Before meeting in person, can we narrow down who is worth talking to first in a better way?
 
-This repo is my attempt to turn that idea into a small, usable product.
-
-As of March 25, 2026, the main entry has been reordered:
-
-- `/` is the `Park Sejong PR` page itself
-- `Park Sejong PR`, `AI Sejong`, YouTube, and shipped surfaces act as the first proof assets
-- the Seoul dashboard, verification, and ops flow now sit one step behind that first impression
-- the new `Team-fit Explorer` is the next product layer for choosing better long-term teammates
+The current implementation is the first product experiment around that question.
 
 ## What Users Can Do Now
 
-- Sign up and log in
-- Open `/` and land directly on the `Park Sejong PR` page
-- Preview the `Team-fit Explorer` UI before logging in
-- Save a lightweight matching profile in the `Team-fit Explorer` after logging in
-- See recommendations for people who are similar, complementary, or far-but-interesting after 17th-cohort approval
+- Open `/` and immediately see the problem framing plus the team-fit exploration demo
+- Preview the profile input UI and recommendation structure before logging in
+- Save a Step 1 and Step 2 team-fit profile after logging in
+- Unlock `similar / complementary / far-but-interesting` recommendations after 17th-cohort approval
+- Open recommendation cards with reasons, one-line intro, MBTI, SDGs, GitHub / Notion / contact links
+- Open `/persona/sejong` and review Sejong's builder profile
+- Use the login-only `AI Sejong` multi-turn chat at `/ai/sejong`
+- Sign up, log in, and reset PIN
 - Complete email verification and 17th-cohort verification
-- Enter interview date, start time, and related interview information
-- Add a GitHub profile link
-- Add a Notion self-introduction link
-- View people who interviewed in the same slot
-- Use the service before team building to understand possible teammates faster
-- Open the Park Sejong PR / introduction page as one part of the overall product flow
-- Use the login-only `AI Sejong` multi-turn chat
+- Enter interview date and start time
+- Connect GitHub / Notion links
+- Explore people interviewed in the same slot through `/seoul/dashboard`
 
 ## Current Core Flow
 
-1. A user enters `/` and lands on the `Park Sejong PR` page itself.
-2. The user scans the PR page, YouTube, and `AI Sejong` as proof surfaces first.
-3. If interested, the user can preview the `Team-fit Explorer` UI before signing up and logging in.
-4. After logging in, the user can save a lightweight team-fit profile: interests, problems, domains, role, stack, working style, and pace.
-5. Once email verification and 17th-cohort approval are complete, the system recommends people who feel similar, complementary, or unexpectedly promising.
-7. The user enters interview date, start time, and slot-related information when needed.
-8. The user adds profile links such as GitHub and a self-introduction Notion page.
-9. The system places the user into an interview slot.
-10. The user browses other people from the same slot before team building.
+1. A user enters `/` and first understands the team-building problem plus the purpose of `Team-fit exploration`.
+2. On the same surface, the user previews the profile flow and recommendation buckets.
+3. After logging in, the user saves Step 1 signals such as interests, problems, domains, role, stack, working style, and pace.
+4. If they want, they add Step 2 signals such as a one-line intro, MBTI axis values, and four SDGs.
+5. After 17th-cohort approval, the system uses structured signals and vector search to recommend `similar / complementary / far-but-interesting` people.
+6. The user reviews reasons and profile links, then narrows down who to talk to first.
+7. If needed, they continue into `/persona/sejong`, `AI Sejong`, or the Seoul dashboard for more context.
 
 ## Key Features
 
-- Email signup, login, and PIN reset flow
-- `Team-fit Explorer` with guest preview, profile save after login, and recommendations unlocked after 17th-cohort approval
-- Recommendation cards for similar, complementary, and unexpected matches that unlock after 17th-cohort approval
-- Email verification and 17th-cohort verification-based access control
-- Interview schedule input for SW Maestro 17 applicants
-- GitHub profile link input
-- Notion self-introduction link input
-- Dashboard and slot-based browsing for people who interviewed together
-- Park Sejong PR page for the builder of the project
-- Login-only `AI Sejong` multi-turn chat page
-- Admin approval flow for managing access to member detail views
-- Bilingual UI support for Korean and English
+- Problem-framing + team-fit landing at `/`
+- Guest preview for the team-fit profile flow
+- Step 1 core signals + Step 2 supporting signals
+- MBTI five-axis selection and exact-four SDG validation
+- `similar / complementary / far-but-interesting` recommendation buckets
+- Recommendation cards with explanation chips and profile links
+- Preview before login / save after login / recommendations after approval
+- Builder profile page at `/persona/sejong`
+- Login-only `AI Sejong`
+- Email signup, login, and PIN reset
+- Email verification and 17th-cohort approval-based access control
+- Interview slot input and Seoul dashboard exploration
+- Korean / English UI
 
 ## How AI Sejong Works
 
-`AI Sejong` is not just a one-shot chat box. It is currently designed as a `login-based multi-turn chat` for team-building use.
+`AI Sejong` is not a one-shot chat box. It is a login-based multi-turn chat.
 
 - Only logged-in users can use it.
 - Questions and answers are stored in the DB.
-- A recent slice of the conversation is sent back into the model to preserve multi-turn context.
-- Responses are grounded in Sejong's persona data, creator PR data, and selected core Hupository documents.
-- Logging is kept to discourage careless use and to make common question patterns reviewable later.
+- A recent slice of the conversation is sent back into the model to preserve context.
+- Responses are grounded in Sejong's persona data, creator-profile data, and selected Hupository documents.
+- Right now it uses `profile/persona/snapshot`, `decisions.yaml`, the latest `session.md`, and some recent journal context when appropriate.
 
-It is not a finished AI product yet. The point right now is to learn what people actually ask in a real team-building setting, and what kind of context makes those conversations more useful.
+It is not a finished AI product yet, but it is already useful for learning what people actually ask in a team-building setting.
 
 ## Future Direction
 
-The current scope is intentionally narrow.
+The immediate goal is not to become a giant community platform.
 
-Right now, the goal is to move from personal PR toward a durable people-discovery tool. It is still intentionally smaller than a full community platform.
+The current product direction is to make these parts sharper first:
 
-That means the current product already includes:
-
-- lightweight team-fit profile intake
-- structured-signal plus vector-based recommendations
-- card-first teammate discovery
-
-The next direction I want to explore is:
-
-- better trio / shortlist support
-- richer participant profile surfaces beyond the current creator page
-- better grounding, retrieval, conversation UX, and question-pattern analysis for `AI Sejong`
-
-These are roadmap ideas, not finished features.
-
-## What I’d Like To Improve With Teammates
-
-This project already works, but there is still a lot of room to sharpen it.
-
-- How much data the AI should use, and how to ground it more reliably
-- How to turn common question patterns into product improvements
-- What kind of recommendation, filtering, and conversation UX actually helps team building
-
-I would especially like to work with people who want to make the AI layer more useful, more grounded, and more productively connected to the team-building flow.
+- smoother team-fit profile intake
+- clearer recommendation explanations
+- shortlist / trio support that genuinely helps decisions
+- better grounding, retrieval, and conversation quality for `AI Sejong`
 
 ## Tech Stack
 
 | Layer     | Tech                                                                           |
 | --------- | ------------------------------------------------------------------------------ |
 | Frontend  | React 19, React Router v7, TypeScript, Tailwind CSS, Vite                      |
-| Backend   | FastAPI, SQLAlchemy, Supabase Postgres, pgvector, OpenAI embeddings             |
+| Backend   | FastAPI, SQLAlchemy, Supabase Postgres, pgvector, OpenAI embeddings            |
 | AI Worker | Python, LangGraph, Claude API (`claude-haiku-4-5`) kept for future experiments |
 | Tooling   | Nx, pnpm, uv                                                                   |
 | Infra     | Docker Compose                                                                 |
 
 Main directories:
 
-- `apps/frontend` — Park Sejong PR, AI Sejong, Team-fit Explorer, dashboard, and verification flow
+- `apps/frontend` — Team-fit exploration, Sejong profile, AI Sejong, dashboard, and verification flow
 - `apps/backend` — auth, verification, team-fit recommendations, dashboard, admin, and persona APIs
 - `apps/ai-worker` — legacy / experimental worker for later AI features
 - `infrastructure/terraform` — infrastructure-related workspace
@@ -142,8 +136,8 @@ Main directories:
 ### First-time setup
 
 ```bash
-git clone <repo-url>
-cd 260309_persona-mirror
+git clone https://github.com/lifedesigner88/asm17-team-fit.git
+cd asm17-team-fit
 node scripts/setup-dev.mjs
 ```
 
@@ -162,11 +156,14 @@ For backend and AI worker development, fill in:
 ```text
 DATABASE_URL=...
 ANTHROPIC_API_KEY=...
-OPENAI_API_KEY=...  # optional in local fallback mode, recommended for real embeddings
+OPENAI_API_KEY=...  # real embeddings for team-fit explorer; optional in local fallback mode
 RESEND_API_KEY=...   # optional
 ```
 
 If you use the AI worker, keep the same `DATABASE_URL` in both `apps/backend/.env` and `apps/ai-worker/.env`.
+
+By default, Hupository-backed answers read from `apps/backend/hupository`.
+If you want another location, set `HUPOSITORY_ROOT` in `apps/backend/.env`.
 
 ### Run locally
 
@@ -177,10 +174,11 @@ pnpm dev
 Main local URLs:
 
 - Frontend: `http://localhost:3000`
-- Main app entry / Park Sejong PR page: `http://localhost:3000/`
-- Legacy Park Sejong PR link: `http://localhost:3000/persona/sejong` -> `http://localhost:3000/`
+- Main entry / Team-fit exploration: `http://localhost:3000/`
+- Sejong profile: `http://localhost:3000/persona/sejong`
 - AI Sejong page: `http://localhost:3000/ai/sejong`
-- Team-fit Explorer: `http://localhost:3000/team-fit`
+- Legacy team-fit alias: `http://localhost:3000/team-fit` -> `http://localhost:3000/`
+- Seoul dashboard: `http://localhost:3000/seoul/dashboard`
 - Backend API docs: `http://localhost:8000/docs`
 
 ### Run with Docker
@@ -203,11 +201,11 @@ pnpm format
 
 There are no polished screenshots checked into the repository yet.
 
-For now, the easiest way to explore the product is through these routes:
+For now, the fastest way to explore the product is through these routes:
 
-- `http://localhost:3000/` — Park Sejong PR root page and default shared link
-- `http://localhost:3000/persona/sejong` — legacy Park Sejong PR link that now resolves to `/`
-- `http://localhost:3000/ai/sejong` — AI Sejong chat page inside the product
-- `http://localhost:3000/team-fit` — Team-fit Explorer and recommendations
-- `http://localhost:3000/seoul/dashboard` — main community and interview-context flow
+- `http://localhost:3000/` — Team-fit exploration root page and default shared link
+- `http://localhost:3000/persona/sejong` — builder profile page
+- `http://localhost:3000/ai/sejong` — AI Sejong chat page
+- `http://localhost:3000/team-fit` — legacy alias that now resolves to `/`
+- `http://localhost:3000/seoul/dashboard` — ASM17 community and interview-context flow
 - `http://localhost:8000/docs` — backend API documentation

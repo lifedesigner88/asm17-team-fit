@@ -25,6 +25,14 @@ const FEATURED_NAV_BASE =
   "rounded-2xl border px-4 py-3.5 text-sm leading-5 transition shadow-[0_8px_22px_rgba(15,23,42,0.04)]";
 
 function getNavigationItemClasses(item: NavigationItem, isActive: boolean): string {
+  if (item.to === "/") {
+    return cn(
+      FEATURED_NAV_BASE,
+      "border-emerald-200/80 bg-[linear-gradient(135deg,rgba(240,253,244,0.98),rgba(236,253,245,0.92))] font-medium text-emerald-950 hover:border-emerald-300/80 hover:bg-emerald-50/92 hover:text-emerald-950",
+      isActive && "ring-1 ring-emerald-300/80 shadow-[0_12px_26px_rgba(16,185,129,0.12)]"
+    );
+  }
+
   if (item.to === "/ai/sejong") {
     return cn(
       FEATURED_NAV_BASE,
@@ -129,8 +137,9 @@ export function App() {
   const { sessionUser } = useLoaderData() as RootLoaderData;
   const contentRef = useRef<HTMLDivElement | null>(null);
   const navigationItems: NavigationItem[] = [
+    { to: "/", label: t("nav.teamFitExplorer") },
+    { to: "/persona/sejong", label: t("nav.sejongPersona") },
     { to: "/ai/sejong", label: t("nav.sejongAiChat") },
-    { to: "/team-fit", label: t("nav.teamFitExplorer") },
     ...(sessionUser
       ? [
           {

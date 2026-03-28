@@ -18,9 +18,9 @@
     "copiedBtn": "완료"
   },
   "creatorIntro": {
-    "badge": "실전 팀빌딩 PR",
-    "title": "박세종의 역할과 팀 조합만 짧게 보여드리고 싶습니다.",
-    "description": "AI SW Maestro 17 팀빌딩 전에 같이 팀해볼 만한지 빠르게 보는 박세종 PR 페이지입니다.",
+    "badge": "제작자 프로필",
+    "title": "박세종이 어떤 문제를 어떻게 풀어왔는지 짧게 보여드리고 싶습니다.",
+    "description": "AI SW Maestro 17 팀빌딩 맥락에서 박세종의 역할, 문제의식, 협업 방향을 빠르게 보는 프로필 페이지입니다.",
     "contact": "완성형보다 같이 만들고 같이 성장할 팀을 찾고 있습니다.",
     "aiBadge": "AI 제작 메모",
     "aiTitle": "AI를 활용해 생성된 페이지",
@@ -179,8 +179,8 @@
     "compactTitle": "휴포지토리 기반 세종 AI",
     "chatPageBadge": "세종AI 챗봇",
     "chatPageTitle": "세종AI 챗봇",
-    "chatPageDescription": "박세종 PR과 분리된 전용 챗 페이지입니다. 궁금한 점을 바로 물어보세요.",
-    "chatPagePrButton": "박세종 PR 보기",
+    "chatPageDescription": "박세종 프로필과 분리된 전용 챗 페이지입니다. 궁금한 점을 바로 물어보세요.",
+    "chatPagePrButton": "박세종 프로필 보기",
     "description": "",
     "compactDescription": "",
     "disclaimer": "AI가 생성한 답변이라 실제 세종의 생각이나 표현과 다를 수 있습니다.",

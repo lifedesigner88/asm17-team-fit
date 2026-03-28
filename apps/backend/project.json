@@ -21,7 +21,7 @@
       "options": {
         "commands": [
           {
-            "command": "node scripts/docker-build.mjs apps/backend/Dockerfile persona-mirror-backend:dev"
+            "command": "node scripts/docker-build.mjs apps/backend/Dockerfile team-fit-backend:dev"
           },
           {
             "command": "node scripts/docker-run-backend.mjs"

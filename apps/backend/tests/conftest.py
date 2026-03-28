@@ -9,7 +9,7 @@ BACKEND_ROOT = Path(__file__).resolve().parents[1]
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-os.environ.setdefault("JWT_SECRET_KEY", "persona-mirror-test-secret-key-2026")
+os.environ.setdefault("JWT_SECRET_KEY", "team-fit-test-secret-key-2026-main")
 os.environ.setdefault("AUTH_COOKIE_SECURE", "false")
 os.environ.setdefault("BACKEND_CORS_ORIGINS", "http://localhost:3000")
 os.environ.setdefault("ADMIN_SEED_EMAIL", "parksejong88@gmail.com")

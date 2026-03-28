@@ -19,16 +19,16 @@ function watch(command, args, label) {
 
 watch("docker", ["compose", "logs", "-f", "backend", "frontend", "ai-worker"], "compose");
 
-if (containerExists("persona-mirror-backend")) {
-  watch("docker", ["logs", "-f", "persona-mirror-backend"], "backend");
+if (containerExists("team-fit-backend")) {
+  watch("docker", ["logs", "-f", "team-fit-backend"], "backend");
 }
 
-if (containerExists("persona-mirror-frontend")) {
-  watch("docker", ["logs", "-f", "persona-mirror-frontend"], "frontend");
+if (containerExists("team-fit-frontend")) {
+  watch("docker", ["logs", "-f", "team-fit-frontend"], "frontend");
 }
 
-if (containerExists("persona-mirror-ai-worker")) {
-  watch("docker", ["logs", "-f", "persona-mirror-ai-worker"], "ai-worker");
+if (containerExists("team-fit-ai-worker")) {
+  watch("docker", ["logs", "-f", "team-fit-ai-worker"], "ai-worker");
 }
 
 function shutdown() {

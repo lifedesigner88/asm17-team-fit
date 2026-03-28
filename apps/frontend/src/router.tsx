@@ -44,8 +44,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <PersonaPage pageMode="pr" />,
-        loader: sejongPersonaLoader
+        element: <TeamFitPage />,
+        loader: teamFitLoader
       },
       {
         path: "home",
@@ -138,7 +138,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "persona/sejong",
-        element: <Navigate to="/" replace />
+        element: <PersonaPage pageMode="pr" />,
+        loader: sejongPersonaLoader
       },
       {
         path: "persona/:personId",
@@ -152,8 +153,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "team-fit",
-        element: <TeamFitPage />,
-        loader: teamFitLoader
+        element: <Navigate to="/" replace />
       }
     ]
   }

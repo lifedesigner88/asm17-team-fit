@@ -58,7 +58,7 @@ const ROLE_OPTIONS = [
   "fullstack_builder",
   "data_ai_research",
   "pm_operator",
-  "design",
+  "design"
 ] as const;
 
 const STACK_OPTIONS = [
@@ -319,10 +319,7 @@ function getDraftSyncKey(draft: TeamFitDraft, mbtiAxisValues: MbtiAxisValues) {
   return JSON.stringify(toPayload(draft, mbtiAxisValues));
 }
 
-function getMbtiAxisLetter(
-  axis: (typeof MBTI_AXES)[number],
-  leftPercent: number
-) {
+function getMbtiAxisLetter(axis: (typeof MBTI_AXES)[number], leftPercent: number) {
   if (leftPercent > 50) {
     return axis.left;
   }
@@ -339,7 +336,10 @@ function parseMbtiAxisValues(value: string | null | undefined): MbtiAxisValues {
     return { ...EMPTY_MBTI_AXIS_VALUES };
   }
 
-  const compact = value.trim().toUpperCase().replace(/[^A-Z]/g, "");
+  const compact = value
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "");
   if (!compact) {
     return { ...EMPTY_MBTI_AXIS_VALUES };
   }
@@ -390,7 +390,9 @@ function formatMbtiValue(axisValues: MbtiAxisValues) {
 }
 
 function formatMbtiPreview(axisValues: MbtiAxisValues) {
-  const letters = MBTI_AXES.map((axis) => getMbtiAxisLetter(axis, axisValues[axis.id])).filter(Boolean);
+  const letters = MBTI_AXES.map((axis) => getMbtiAxisLetter(axis, axisValues[axis.id])).filter(
+    Boolean
+  );
   if (letters.length === 0) {
     return "";
   }
@@ -543,7 +545,12 @@ function VerificationIcon() {
         strokeWidth="1.7"
         strokeLinejoin="round"
       />
-      <path d="m9.2 12.1 1.86 1.86 3.74-4.01" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <path
+        d="m9.2 12.1 1.86 1.86 3.74-4.01"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -603,7 +610,9 @@ function HeroStatusCard({
         <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
           {label}
         </span>
-        <span className={cn("mt-1 block break-words text-[13px] font-medium leading-5", styles.value)}>
+        <span
+          className={cn("mt-1 block break-words text-[13px] font-medium leading-5", styles.value)}
+        >
           {value}
         </span>
       </span>
@@ -657,6 +666,68 @@ function HeroSummaryPill({
   );
 }
 
+type LandingMetricTone = "amber" | "emerald" | "sky";
+
+const LANDING_METRIC_CARD_STYLES: Record<
+  LandingMetricTone,
+  {
+    card: string;
+    label: string;
+    value: string;
+    description: string;
+  }
+> = {
+  amber: {
+    card: "border-amber-200/80 bg-white/92 shadow-[0_16px_38px_rgba(245,158,11,0.1)]",
+    label: "text-amber-700",
+    value: "text-slate-950",
+    description: "text-slate-600"
+  },
+  emerald: {
+    card: "border-emerald-200/80 bg-emerald-50/88 shadow-[0_16px_38px_rgba(16,185,129,0.1)]",
+    label: "text-emerald-700",
+    value: "text-emerald-950",
+    description: "text-emerald-900/80"
+  },
+  sky: {
+    card: "border-sky-200/80 bg-sky-50/88 shadow-[0_16px_38px_rgba(14,165,233,0.1)]",
+    label: "text-sky-700",
+    value: "text-sky-950",
+    description: "text-sky-900/80"
+  }
+};
+
+function LandingMetricCard({
+  label,
+  value,
+  description,
+  tone
+}: {
+  label: string;
+  value: string;
+  description: string;
+  tone: LandingMetricTone;
+}) {
+  const styles = LANDING_METRIC_CARD_STYLES[tone];
+
+  return (
+    <div className={cn("rounded-[28px] border px-5 py-5", styles.card)}>
+      <p className={cn("text-[11px] font-semibold uppercase tracking-[0.18em]", styles.label)}>
+        {label}
+      </p>
+      <p
+        className={cn(
+          "mt-3 text-2xl font-semibold tracking-[-0.04em] sm:text-[1.9rem]",
+          styles.value
+        )}
+      >
+        {value}
+      </p>
+      <p className={cn("mt-2 text-sm leading-6", styles.description)}>{description}</p>
+    </div>
+  );
+}
+
 function TeamFitSectionCard({
   eyebrow,
   title,
@@ -677,7 +748,9 @@ function TeamFitSectionCard({
           </p>
         ) : null}
         <h3 className="text-xl font-semibold tracking-[-0.03em]">{title}</h3>
-        {description ? <p className="text-sm leading-6 text-muted-foreground">{description}</p> : null}
+        {description ? (
+          <p className="text-sm leading-6 text-muted-foreground">{description}</p>
+        ) : null}
       </div>
       {children}
     </ShellCard>
@@ -750,10 +823,7 @@ export function TeamFitPage() {
           ? getDraftSyncKey(hydratedDraft, resolvedMbtiAxisValues)
           : null;
         setStep(
-          loadedProfile?.completion_stage === "step2" ||
-            loadedProfile?.impact_tags.length
-            ? 2
-            : 1
+          loadedProfile?.completion_stage === "step2" || loadedProfile?.impact_tags.length ? 2 : 1
         );
       } catch (loadError) {
         if (!active) {
@@ -878,6 +948,60 @@ export function TeamFitPage() {
 
   return (
     <div className="space-y-6">
+      <ShellCard className="overflow-hidden border-amber-100/90 bg-[linear-gradient(135deg,rgba(255,251,235,0.98),rgba(240,253,244,0.95),rgba(239,246,255,0.94))]">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.14fr)_minmax(320px,0.86fr)] xl:items-start">
+          <div className="space-y-5">
+            <div className="space-y-3">
+              <StatusPill label={t("teamfit.landing.badge")} tone="warn" />
+              <p className="text-sm font-medium text-slate-600">{t("teamfit.landing.intro")}</p>
+              <h1 className="max-w-4xl text-3xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl">
+                {t("teamfit.landing.title")}
+              </h1>
+            </div>
+
+            <div className="space-y-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+              <p>{t("teamfit.landing.problemFrame")}</p>
+              <p>{t("teamfit.landing.constraintFrame")}</p>
+              <p>{t("teamfit.landing.approachFrame")}</p>
+              <p>{t("teamfit.landing.demoFrame")}</p>
+            </div>
+
+            <div className="rounded-[28px] border border-slate-200/85 bg-white/85 px-5 py-5 shadow-[0_18px_42px_rgba(15,23,42,0.06)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                {t("teamfit.landing.ctaLabel")}
+              </p>
+              <p className="mt-2 text-base font-semibold tracking-[-0.03em] text-slate-950">
+                {t("teamfit.landing.ctaTitle")}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {t("teamfit.landing.ctaBody")}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
+            <LandingMetricCard
+              label={t("teamfit.landing.scopeLabel")}
+              value={t("teamfit.landing.scopeValue")}
+              description={t("teamfit.landing.scopeBody")}
+              tone="amber"
+            />
+            <LandingMetricCard
+              label={t("teamfit.landing.goalLabel")}
+              value={t("teamfit.landing.goalValue")}
+              description={t("teamfit.landing.goalBody")}
+              tone="emerald"
+            />
+            <LandingMetricCard
+              label={t("teamfit.landing.guideLabel")}
+              value={t("teamfit.landing.guideValue")}
+              description={t("teamfit.landing.guideBody")}
+              tone="sky"
+            />
+          </div>
+        </div>
+      </ShellCard>
+
       <ShellCard className="overflow-hidden border-sky-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,249,255,0.93))]">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.12fr)_minmax(320px,0.88fr)] xl:items-stretch">
           <div className="flex min-w-0 flex-col justify-between gap-5">
@@ -933,7 +1057,9 @@ export function TeamFitPage() {
               <HeroStatusCard
                 icon={<GitHubIcon />}
                 label={t("teamfit.hero.githubLabel")}
-                value={githubLinked ? t("teamfit.hero.githubLinked") : t("teamfit.hero.githubMissing")}
+                value={
+                  githubLinked ? t("teamfit.hero.githubLinked") : t("teamfit.hero.githubMissing")
+                }
                 tone={githubLinked ? "slate" : "sky"}
                 href={sessionUser?.github_address ?? undefined}
                 title={sessionUser?.github_address ?? t("teamfit.hero.githubMissing")}
@@ -941,7 +1067,9 @@ export function TeamFitPage() {
               <HeroStatusCard
                 icon={<NotionIcon />}
                 label={t("teamfit.hero.notionLabel")}
-                value={notionLinked ? t("teamfit.hero.notionLinked") : t("teamfit.hero.notionMissing")}
+                value={
+                  notionLinked ? t("teamfit.hero.notionLinked") : t("teamfit.hero.notionMissing")
+                }
                 tone={notionLinked ? "violet" : "sky"}
                 href={sessionUser?.notion_url ?? undefined}
                 title={sessionUser?.notion_url ?? t("teamfit.hero.notionMissing")}
@@ -964,9 +1092,7 @@ export function TeamFitPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {t("teamfit.form.pill")}
             </p>
-            <h3 className="text-2xl font-semibold tracking-[-0.03em]">
-              {t("teamfit.form.title")}
-            </h3>
+            <h3 className="text-2xl font-semibold tracking-[-0.03em]">{t("teamfit.form.title")}</h3>
             <p className="text-sm leading-6 text-muted-foreground">
               {t("teamfit.form.description")}
             </p>
@@ -996,7 +1122,9 @@ export function TeamFitPage() {
 
         {isGuest ? (
           <div className="rounded-2xl border border-sky-200/80 bg-sky-50/85 px-4 py-4">
-            <p className="text-sm font-medium text-sky-950">{t("teamfit.form.guestPreviewTitle")}</p>
+            <p className="text-sm font-medium text-sky-950">
+              {t("teamfit.form.guestPreviewTitle")}
+            </p>
             <p className="mt-1 text-sm leading-6 text-sky-900/85">
               {t("teamfit.form.guestPreviewBody")}
             </p>
@@ -1111,7 +1239,9 @@ export function TeamFitPage() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="text-sm font-semibold text-violet-950">{t("teamfit.fields.mbti")}</p>
+                    <p className="text-sm font-semibold text-violet-950">
+                      {t("teamfit.fields.mbti")}
+                    </p>
                     <Badge
                       variant="outline"
                       className="border-violet-200 bg-white/90 text-violet-700"
@@ -1259,7 +1389,10 @@ export function TeamFitPage() {
                           {axis.right}
                         </span>
                         <div className="flex flex-col items-start">
-                          <span className="text-xs font-semibold" style={{ color: axis.rightColor }}>
+                          <span
+                            className="text-xs font-semibold"
+                            style={{ color: axis.rightColor }}
+                          >
                             {t(`teamfit.mbtiDimensions.${axis.rightLabelKey}`)}
                           </span>
                           <span
@@ -1280,16 +1413,10 @@ export function TeamFitPage() {
               label={
                 <span className="flex flex-wrap items-center gap-2">
                   <span>{t("teamfit.fields.impactTags")}</span>
-                  <Badge
-                    variant="outline"
-                    className="border-pink-200 bg-pink-50 text-pink-700"
-                  >
+                  <Badge variant="outline" className="border-pink-200 bg-pink-50 text-pink-700">
                     {t("teamfit.fields.impactTagsBadge")}
                   </Badge>
-                  <Badge
-                    variant="outline"
-                    className="border-slate-200 bg-white text-slate-700"
-                  >
+                  <Badge variant="outline" className="border-slate-200 bg-white text-slate-700">
                     {t("teamfit.fields.impactTagsCount", {
                       count: draft.impact_tags.length,
                       max: 4
@@ -1297,9 +1424,12 @@ export function TeamFitPage() {
                   </Badge>
                 </span>
               }
-              hint={`${t("teamfit.fields.impactTagsHint")} ${t("teamfit.fields.impactTagsExactRule", {
-                count: 4
-              })} ${t("teamfit.fields.impactTagsSource")}`}
+              hint={`${t("teamfit.fields.impactTagsHint")} ${t(
+                "teamfit.fields.impactTagsExactRule",
+                {
+                  count: 4
+                }
+              )} ${t("teamfit.fields.impactTagsSource")}`}
               items={SDG_CARD_OPTIONS.map((item) => ({
                 value: item.value,
                 goal: item.goal,
@@ -1314,14 +1444,15 @@ export function TeamFitPage() {
             />
 
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-4">
-              <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isFormLocked}>
-                {t("teamfit.actions.back")}
-              </Button>
               <Button
                 type="button"
-                onClick={() => void saveProfile()}
+                variant="outline"
+                onClick={() => setStep(1)}
                 disabled={isFormLocked}
               >
+                {t("teamfit.actions.back")}
+              </Button>
+              <Button type="button" onClick={() => void saveProfile()} disabled={isFormLocked}>
                 {saving
                   ? t("teamfit.actions.saving")
                   : isGuest
@@ -1364,11 +1495,7 @@ export function TeamFitPage() {
               : t("teamfit.empty.recommendations", { bucket: title });
 
           return (
-            <TeamFitSectionCard
-              key={group.key}
-              title={title}
-              description={description}
-            >
+            <TeamFitSectionCard key={group.key} title={title} description={description}>
               {group.items.length > 0 ? (
                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                   {group.items.map((recommendation, index) => (
@@ -1386,8 +1513,8 @@ export function TeamFitPage() {
                     showGuestPreviewNotice
                       ? "border border-sky-200 bg-sky-50/80 shadow-[0_10px_30px_rgba(14,165,233,0.08)]"
                       : showVerificationNotice
-                      ? "border border-rose-200 bg-rose-50/80 shadow-[0_10px_30px_rgba(190,24,93,0.08)]"
-                      : "border border-dashed border-border/70 bg-muted/30"
+                        ? "border border-rose-200 bg-rose-50/80 shadow-[0_10px_30px_rgba(190,24,93,0.08)]"
+                        : "border border-dashed border-border/70 bg-muted/30"
                   )}
                 >
                   <p

@@ -1,6 +1,6 @@
 {
   "nav": {
-    "frontDoor": "Park Sejong | PR",
+    "frontDoor": "team-fit",
     "overview": "Overview",
     "dashboardSeoul": "Seoul dashboard",
     "dashboardBusan": "Busan dashboard",
@@ -14,15 +14,15 @@
     "adminVerifications": "Verification admin",
     "capture": "Persona shell",
     "mySubmissions": "Dummy submissions",
-    "demoPersona": "Park Sejong PR",
-    "sejongPersona": "Park Sejong PR",
+    "demoPersona": "Sejong profile",
+    "sejongPersona": "Sejong profile",
     "sejongAiChat": "AI Sejong Chat"
   },
   "sidebar": {
     "phase": "ASM17",
-    "brandTitle": "Park Sejong | PR",
-    "brandSubtitle": "for AI SW Maestro 17 team building",
-    "projectGithubLabel": "PR Project",
+    "brandTitle": "team-fit",
+    "brandSubtitle": "A team-building experiment for narrowing who to talk to first",
+    "projectGithubLabel": "team-fit repo",
     "blogLabel": "Blog",
     "blogAddress": "blog.naver.com/lifedesigner88",
     "directInquiry": "1:1 inquiry",
@@ -33,7 +33,7 @@
     "guest": "guest",
     "adminSession": "admin session",
     "memberSession": "member session",
-    "footer": "Signup, approval, and dashboard access are the current product focus."
+    "footer": "The current work is refining the problem framing, profile intake, and recommendation flow."
   },
   "home": {
     "pill": "ASM17 Team Building",
@@ -104,7 +104,7 @@
       "Notion intro link",
       "People interviewed together",
       "Talk with AI Sejong",
-      "Park Sejong PR",
+      "Sejong profile",
       "Admin approval",
       "Korean / English UI"
     ],
@@ -183,15 +183,36 @@
       "saveFailed": "Something went wrong while saving your profile."
     },
     "access": {
-      "guestTitle": "You are previewing the Team-fit Explorer UI",
+      "guestTitle": "You are previewing the root Team-fit exploration flow",
       "guestBody": "Once you log in, you can save your team-fit profile. Recommendations unlock after 17th-cohort approval.",
       "approvalTitle": "You can save your team-fit profile now",
       "approvalBody": "Recommendations unlock after 17th-cohort approval. You can still save your information in advance."
     },
+    "landing": {
+      "badge": "Problem framing",
+      "intro": "I'm Sejong Park, a developer who works through life problems with AI.",
+      "title": "Can team building be approached like a coding test?",
+      "problemFrame": "I believe engineering is about defining a problem clearly and designing a better solution with technology. The problem we are facing is clear: among 300 people we may spend the next six months with, how can we find the two who fit us better?",
+      "constraintFrame": "We cannot meet everyone, we cannot choose teammates from self-introductions alone, and in the end we still make part of the decision by intuition.",
+      "approachFrame": "So I am treating this less like a machine that declares the right answer and more like a structure that narrows the candidate set and helps us decide who to start talking to first.",
+      "demoFrame": "This page is the first demo for showing how I see that problem and how I am currently trying to solve it.",
+      "ctaLabel": "If this resonates",
+      "ctaTitle": "If you want to experiment on this problem more deeply together, feel free to reach out.",
+      "ctaBody": "The profile flow and recommendation buckets below are not a finished truth machine yet. They are the first product experiment for making team-fit exploration more useful.",
+      "scopeLabel": "Search space",
+      "scopeValue": "2 out of 300",
+      "scopeBody": "The goal is to narrow down who to talk to before anyone tries to meet everyone.",
+      "goalLabel": "Decision style",
+      "goalValue": "Narrow the shortlist",
+      "goalBody": "Rather than pretending to know the single right answer, the product focuses on turning team signals into a stronger shortlist.",
+      "guideLabel": "Tool role",
+      "guideValue": "Start better conversations",
+      "guideBody": "Recommendations do not replace judgment. They help organize who seems worth talking to first."
+    },
     "hero": {
       "pill": "Team-fit explorer",
-      "title": "Fit teammates.",
-      "description": "Share your problem focus, working style, and pace. We group people into similar, complementary, and interesting matches.",
+      "title": "Who should I talk to first?",
+      "description": "This is not a recommendation engine that claims to know the answer. It uses problem and collaboration signals to narrow the candidates worth meeting first.",
       "statusLabel": "Status",
       "accountLabel": "Account",
       "guestAccount": "Guest preview",
@@ -228,8 +249,8 @@
     },
     "form": {
       "pill": "Onboarding",
-      "title": "Build your matching profile",
-      "description": "Step 1 is the high-signal core. Step 2 adds optional detail only if you want a better ranking surface.",
+      "title": "Build your team-fit profile",
+      "description": "Step 1 covers the high-signal core. Step 2 adds optional detail that makes later judgment clearer.",
       "guestPreviewTitle": "You can preview this screen without logging in",
       "guestPreviewBody": "Right now you are previewing the Team-fit Explorer UI. Once you log in, you can save your profile, and recommendations unlock after 17th-cohort approval.",
       "stepOneLabel": "Step 1",
@@ -468,7 +489,7 @@
     "description": "Right now, the product priority is to make the Seoul interview dashboard and verification flow solid first.",
     "subtext": "The Busan dashboard route is in place early, but it will stay inactive until the real data structure and ops flow are ready.",
     "primaryAction": "Open Seoul dashboard",
-    "secondaryAction": "Back to Park Sejong PR"
+    "secondaryAction": "Back to Team-fit exploration"
   },
   "button": {
     "logout": "Logout",

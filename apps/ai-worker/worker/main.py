@@ -11,9 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, JSON, String, create_engine, func, select, text, update  # noqa: E402
-from sqlalchemy.orm import Session, declarative_base, mapped_column, relationship  # noqa: E402
-from sqlalchemy.orm import Mapped  # noqa: E402
+from sqlalchemy import DateTime, Integer, JSON, String, create_engine, func, select, update  # noqa: E402
+from sqlalchemy.orm import Mapped, Session, declarative_base, mapped_column  # noqa: E402
 
 from worker.graph import graph  # noqa: E402
 
