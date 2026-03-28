@@ -75,20 +75,20 @@
     ASM17
   </text>
 
-  <text x="188" y="255" fill="#0F172A" class="kr" font-size="66" font-weight="700" letter-spacing="-0.05em">
-    박세종
+  <text x="188" y="255" fill="#0F172A" class="kr" font-size="64" font-weight="700" letter-spacing="-0.05em">
+    팀핏 탐색
   </text>
   <text x="188" y="313" fill="#334155" class="kr" font-size="30" font-weight="600" letter-spacing="-0.03em">
-    박세종 PR | AI Builder | 팀업 Front Door
+    team-fit | Team-building search experiment
   </text>
   <text x="188" y="382" fill="#334155" class="kr" font-size="24" font-weight="500">
-    문제를 보면, 직접 제품으로 만드는 사람
+    300명 중 나와 핏이 맞는 2명을 더 잘 찾기
   </text>
   <text x="188" y="421" fill="#475569" class="kr" font-size="23" font-weight="400">
-    박세종 PR, 세종AI 챗봇, 운영 도구를 한 링크에
+    후보를 좁히고, 누구와 먼저 대화할지 돕는 구조
   </text>
   <text x="188" y="462" fill="#64748B" class="kr" font-size="20" font-weight="400">
-    AI SW Maestro 17 팀빌딩을 위한 첫인상 링크
+    AI SW Maestro 17 팀빌딩을 위한 첫 데모
   </text>
 
   <g>
@@ -103,10 +103,10 @@
       stroke-width="1.5"
     />
     <text x="804" y="213" fill="#A16207" class="kr" font-size="16" font-weight="700" letter-spacing="0.12em">
-      사람
+      문제
     </text>
     <text x="804" y="248" fill="#0F172A" class="kr" font-size="24" font-weight="600">
-      문제의식이 선명함
+      팀빌딩을 문제처럼 정의
     </text>
   </g>
 
@@ -122,10 +122,10 @@
       stroke-width="1.5"
     />
     <text x="804" y="317" fill="#0369A1" class="kr" font-size="16" font-weight="700" letter-spacing="0.12em">
-      증거
+      구조
     </text>
     <text x="804" y="352" fill="#0F172A" class="kr" font-size="24" font-weight="600">
-      AI 데모와 실제 결과물
+      프로필과 추천 버킷
     </text>
   </g>
 
@@ -141,23 +141,23 @@
       stroke-width="1.5"
     />
     <text x="804" y="421" fill="#15803D" class="kr" font-size="16" font-weight="700" letter-spacing="0.12em">
-      팀
+      대화
     </text>
     <text x="804" y="456" fill="#0F172A" class="kr" font-size="24" font-weight="600">
-      같이 해볼 만한 팀핏
+      누구를 먼저 만날까
     </text>
   </g>
 
   <rect x="188" y="516" width="168" height="40" rx="20" fill="#0F172A" />
   <text x="272" y="542" text-anchor="middle" fill="white" class="kr" font-size="18" font-weight="700">
-    박세종 PR
+    팀핏 탐색
   </text>
   <rect x="372" y="516" width="148" height="40" rx="20" fill="#E0F2FE" />
   <text x="446" y="542" text-anchor="middle" fill="#075985" class="kr" font-size="18" font-weight="700">
-    AI 세종
+    Sejong AI
   </text>
   <rect x="536" y="516" width="160" height="40" rx="20" fill="#ECFCCB" />
   <text x="616" y="542" text-anchor="middle" fill="#3F6212" class="kr" font-size="18" font-weight="700">
-    운영 도구
+    Shortlist flow
   </text>
 </svg>

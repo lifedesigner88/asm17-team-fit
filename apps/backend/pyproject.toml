@@ -1,5 +1,5 @@
 [project]
-name = "persona-mirror-backend"
+name = "team-fit-backend"
 version = "0.1.0"
 requires-python = ">=3.11,<3.12"
 dependencies = [

@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const containerName = "persona-mirror-backend";
+const containerName = "team-fit-backend";
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -38,11 +38,11 @@ const status = run("docker", [
   "--name",
   containerName,
   "--network",
-  "persona-mirror_default",
+  "team-fit_default",
   "-p",
   "8000:8000",
   ...envFlags,
-  "persona-mirror-backend:dev"
+  "team-fit-backend:dev"
 ]);
 
 process.exit(status);

@@ -14,12 +14,8 @@ function run(command, args, options = {}) {
   return result.status ?? 0;
 }
 
-run(
-  "docker",
-  ["rm", "-f", "persona-mirror-backend", "persona-mirror-frontend", "persona-mirror-ai-worker"],
-  {
-    stdio: "ignore"
-  }
-);
+run("docker", ["rm", "-f", "team-fit-backend", "team-fit-frontend", "team-fit-ai-worker"], {
+  stdio: "ignore"
+});
 
 process.exit(run("docker", ["compose", "down"]));

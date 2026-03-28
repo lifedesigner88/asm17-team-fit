@@ -8,7 +8,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "node scripts/docker-build.mjs apps/ai-worker/Dockerfile persona-mirror-ai-worker:dev",
+          "node scripts/docker-build.mjs apps/ai-worker/Dockerfile team-fit-ai-worker:dev",
           "node scripts/docker-run-ai-worker.mjs"
         ],
         "parallel": false
@@ -18,9 +18,7 @@
       "executor": "nx:run-commands",
       "options": {
         "envFile": "apps/ai-worker/.env",
-        "commands": [
-          "cd apps/ai-worker && uv run python -u -m worker.main"
-        ],
+        "commands": ["cd apps/ai-worker && uv run python -u -m worker.main"],
         "parallel": false
       }
     }

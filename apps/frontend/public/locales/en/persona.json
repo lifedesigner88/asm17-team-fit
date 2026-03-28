@@ -18,9 +18,9 @@
     "copiedBtn": "Done"
   },
   "creatorIntro": {
-    "badge": "Real team-building PR",
-    "title": "A short view of my role and team fit.",
-    "description": "A concise Park Sejong PR page to quickly see whether we may be a good team for AI SW Maestro 17.",
+    "badge": "Builder profile",
+    "title": "A short view of the problems I have been trying to solve and how I work.",
+    "description": "A concise profile page for quickly understanding Sejong's role, problem framing, and collaboration direction in the AI SW Maestro 17 context.",
     "contact": "I am looking for teammates who want to build and grow together, not only fully polished experts.",
     "aiBadge": "AI Note",
     "aiTitle": "AI-generated page",
@@ -179,8 +179,8 @@
     "compactTitle": "Hupository-based Sejong AI",
     "chatPageBadge": "AI Sejong Chat",
     "chatPageTitle": "AI Sejong Chat",
-    "chatPageDescription": "This is the dedicated chat page separated from Park Sejong PR. Ask whatever you are curious about.",
-    "chatPagePrButton": "Open Park Sejong PR",
+    "chatPageDescription": "This is the dedicated chat page separated from Sejong's profile. Ask whatever you are curious about.",
+    "chatPagePrButton": "Open Sejong profile",
     "description": "",
     "compactDescription": "",
     "disclaimer": "This is an AI-generated response, so it may differ from Sejong's actual opinion or wording.",

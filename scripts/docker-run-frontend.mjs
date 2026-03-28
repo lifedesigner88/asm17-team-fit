@@ -1,12 +1,12 @@
 import { spawnSync } from "node:child_process";
 
-const containerName = "persona-mirror-frontend";
+const containerName = "team-fit-frontend";
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     stdio: "inherit",
     shell: false,
-    ...options,
+    ...options
   });
 
   if (result.error) {
@@ -29,7 +29,7 @@ const status = run("docker", [
   "PERSONA_VITE_CACHE_DIR=/tmp/persona-vite-cache",
   "--env-file",
   "apps/frontend/.env",
-  "persona-mirror-frontend:dev",
+  "team-fit-frontend:dev"
 ]);
 
 process.exit(status);

@@ -1,6 +1,6 @@
 {
   "nav": {
-    "frontDoor": "박세종 | PR",
+    "frontDoor": "팀핏 탐색",
     "overview": "개요",
     "dashboardSeoul": "서울 대시보드",
     "dashboardBusan": "부산 대시보드",
@@ -14,15 +14,15 @@
     "adminVerifications": "인증 관리",
     "capture": "페르소나 구조",
     "mySubmissions": "더미 제출 목록",
-    "demoPersona": "박세종 PR",
-    "sejongPersona": "박세종 PR",
+    "demoPersona": "박세종 프로필",
+    "sejongPersona": "박세종 프로필",
     "sejongAiChat": "세종AI 챗봇"
   },
   "sidebar": {
     "phase": "ASM17",
-    "brandTitle": "박세종 | PR",
-    "brandSubtitle": "for AI SW Maestro 17 team building",
-    "projectGithubLabel": "PR 프로젝트",
+    "brandTitle": "팀핏 탐색",
+    "brandSubtitle": "누구와 먼저 대화할지 좁히는 팀빌딩 실험",
+    "projectGithubLabel": "team-fit repo",
     "blogLabel": "블로그",
     "blogAddress": "blog.naver.com/lifedesigner88",
     "directInquiry": "1:1 문의",
@@ -33,7 +33,7 @@
     "guest": "게스트",
     "adminSession": "관리자 세션",
     "memberSession": "회원 세션",
-    "footer": "회원가입, 인증 승인, 대시보드 조회 흐름이 먼저 완성되고 있습니다."
+    "footer": "문제 정의, 프로필 입력, 추천 탐색 흐름을 계속 다듬고 있습니다."
   },
   "home": {
     "pill": "ASM17 Team Building",
@@ -104,7 +104,7 @@
       "Notion 소개 링크",
       "같이 면접 본 사람들 보기",
       "AI 세종과 대화",
-      "박세종 PR",
+      "박세종 프로필",
       "관리자 승인",
       "한/영 UI"
     ],
@@ -178,15 +178,36 @@
       "saveFailed": "프로필 저장 중 문제가 생겼습니다."
     },
     "access": {
-      "guestTitle": "지금은 팀핏 탐색 UI를 미리 보는 상태입니다",
+      "guestTitle": "지금은 루트 팀핏 탐색을 미리 보는 상태입니다",
       "guestBody": "로그인하면 팀핏 프로필을 저장할 수 있습니다. 추천 결과는 17기 합격 인증 승인 후 열립니다.",
       "approvalTitle": "지금은 팀핏 프로필 저장까지 가능합니다",
       "approvalBody": "추천 결과는 17기 합격 인증 승인 후 열립니다. 지금 입력한 정보는 미리 저장해 둘 수 있습니다."
     },
+    "landing": {
+      "badge": "문제 정의",
+      "intro": "인생문제를 인공지능과 풀어가는 개발자, 박세종입니다.",
+      "title": "팀빌딩 문제를 코테처럼 풀 수 있을까?",
+      "problemFrame": "엔지니어링의 본질은 문제를 명확히 정의하고, 기술로 더 나은 해법을 설계하는 일이라고 생각합니다. 지금 우리가 함께 겪는 문제는 분명합니다. 6개월을 함께할 300명 중, 나와 핏이 맞는 2명을 어떻게 더 나은 방식으로 찾아갈 것인가.",
+      "constraintFrame": "모든 사람을 다 만나볼 수는 없고, 자기소개서만 읽고 팀을 정할 수도 없고, 마지막에는 결국 촉까지 포함한 판단을 하게 됩니다.",
+      "approachFrame": "그래서 저는 이 문제를 정답을 맞히는 추천기보다 후보를 좁히고, 누구와 먼저 대화를 시작할지 돕는 구조로 접근해보고 있습니다.",
+      "demoFrame": "이 페이지는 그 문제를 제가 어떻게 보고 있고, 현재 어떤 방식으로 풀어보고 있는지 보여주기 위한 첫 데모입니다.",
+      "ctaLabel": "함께 실험할 분께",
+      "ctaTitle": "이 문제를 더 깊게 함께 실험해보고 싶은 분은 편하게 연락 주세요.",
+      "ctaBody": "아래 프로필 입력과 추천 버킷은 아직 완성형 정답이 아니라, 팀핏 탐색을 더 잘 만들기 위한 첫 제품 실험입니다.",
+      "scopeLabel": "탐색 범위",
+      "scopeValue": "300명 중 2명",
+      "scopeBody": "모든 사람을 다 만나보기 전에, 먼저 대화할 후보를 더 빨리 좁히는 것이 목표입니다.",
+      "goalLabel": "판단 방식",
+      "goalValue": "후보 좁히기",
+      "goalBody": "정답을 단정하기보다, 문제와 협업 신호를 바탕으로 shortlist를 만드는 쪽에 집중합니다.",
+      "guideLabel": "도구의 역할",
+      "guideValue": "대화 시작 돕기",
+      "guideBody": "추천은 최종 결정을 대신하지 않고, 누구와 먼저 이야기해볼지 정리하는 출발점이 됩니다."
+    },
     "hero": {
       "pill": "팀핏 탐색",
-      "title": "핏 좋은 동료",
-      "description": "문제, 협업 방식, 페이스를 입력하면 비슷한 사람, 보완되는 사람, 흥미로운 사람으로 나눠 보여줍니다.",
+      "title": "누구와 먼저 대화를 시작할까",
+      "description": "이 도구는 정답을 찍는 추천기가 아니라, 문제와 협업 신호를 바탕으로 지금 먼저 만나볼 후보를 좁혀줍니다.",
       "statusLabel": "상태",
       "accountLabel": "계정",
       "guestAccount": "게스트 미리보기",
@@ -223,8 +244,8 @@
     },
     "form": {
       "pill": "온보딩",
-      "title": "매칭용 프로필을 먼저 채워보세요",
-      "description": "1단계는 고신호 필수 정보, 2단계는 원하면 넣는 보조 정보입니다.",
+      "title": "팀핏 프로필을 먼저 정리해보세요",
+      "description": "1단계는 고신호 필수 정보, 2단계는 판단을 더 선명하게 만드는 보조 정보입니다.",
       "guestPreviewTitle": "로그인 없이도 화면은 먼저 볼 수 있습니다",
       "guestPreviewBody": "지금은 팀핏 탐색 UI를 미리 둘러보는 상태입니다. 로그인하면 프로필을 저장할 수 있고, 추천 결과는 17기 합격 인증 승인 후 열립니다.",
       "stepOneLabel": "1단계",
@@ -463,7 +484,7 @@
     "description": "현재 제품 우선순위는 서울 인터뷰 대시보드와 인증 흐름을 먼저 단단하게 만드는 데 있습니다.",
     "subtext": "부산 대시보드는 자리만 먼저 열어두었고, 실제 데이터 구조와 운영 흐름이 정리되면 그때 활성화할 예정입니다.",
     "primaryAction": "서울 대시보드 보기",
-    "secondaryAction": "박세종 PR로 돌아가기"
+    "secondaryAction": "팀핏 탐색으로 돌아가기"
   },
   "button": {
     "logout": "로그아웃",
