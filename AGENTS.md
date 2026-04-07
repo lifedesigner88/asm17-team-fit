@@ -81,7 +81,7 @@ Build SoMa Community step by step — not just fast, but in a way that makes str
 
 | Command              | Purpose                           |
 | -------------------- | --------------------------------- |
-| `pnpm setup`         | Initial install + env generation  |
+| `pnpm bootstrap`     | Initial install + env generation  |
 | `pnpm dev`           | Local dev server                  |
 | `pnpm infra:up/down` | Infra helper commands when needed |
 | `pnpm docker`        | Build and run Dockerfiles         |
@@ -98,7 +98,7 @@ Build SoMa Community step by step — not just fast, but in a way that makes str
 
 - `apps/frontend/.env` and `apps/backend/.env` are not committed — only `.env.example` files are tracked.
 - `compose.env` holds Docker Compose demo defaults and is tracked.
-- `pnpm setup/dev/docker` auto-generate `.env` from `.env.example` when needed.
+- `pnpm bootstrap` or `pnpm run setup`, plus `pnpm dev/docker`, auto-generate `.env` from `.env.example` when needed.
 - Do not mix env roles: local dev/docker → app `.env`; compose demo → `compose.env`.
 
 ## Security and Data Rules

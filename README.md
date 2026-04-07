@@ -74,9 +74,10 @@
 ## 로컬 실행
 
 ```bash
-pnpm setup
+pnpm bootstrap
 pnpm dev
 ```
 
+- `pnpm setup` is a pnpm built-in command in pnpm `10.31.0`, so use `pnpm bootstrap` or `pnpm run setup` for this repo's install script.
 - Frontend: `http://localhost:3000`
 - Backend docs: `http://localhost:8000/docs`
